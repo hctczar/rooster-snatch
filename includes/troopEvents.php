@@ -117,8 +117,9 @@ $eventAdder = ""
 	
 echo $troopMenu;
 $active = $_SESSION["active"];
-echo "<br/><table border='1'>";
-$result=mysql_query("SELECT * FROM wp_eventsSigned WHERE (troopID = '".mysql_real_escape_string($active)."')");
+echo "<br/><table border='1' class='sortable'>";
+echo "<tr><th>Event Title</th><th id='timeHeader'>Time</th><th>Signed Up</th><th colspan='2' class='sorttable_nosort'></th><tr>";
+$result=mysql_query("SELECT * FROM wp_eventsSigned WHERE (troopID = '".mysql_real_escape_string($active)."') ORDER BY eventID");
 while ($row = mysql_fetch_array($result))
 {
 	$result2=mysql_query("SELECT * FROM wp_eventsMeta WHERE id = '".mysql_real_escape_string($row["eventMetaID"])."'");
@@ -132,12 +133,16 @@ while ($row = mysql_fetch_array($result))
 	$week = $row2['week'];
 	$weekDays = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
 	$day = $weekDays[$row2['day']];
+	$sortDay = $row2['day'];
 	$time = strtotime($row2['time']);
+	$sortTime = (int)$time;
+	$sortTime += 1000000*$sortDay + 1000000000*$week;
 	$time = date('g:ia',$time);
 	$registered = $row['registered'];
 	$title = stripslashes($row3["name"]);
-	echo "<tr><td>".$registered." campers signed up for ".$title." ".$day." at ".$time." on week ".$week."</td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventDelete'><input type='submit' value='delete' style='width:8em'></form></td></tr>";			
+	echo "<tr><td align='center'>".$title."</td><td align='center' sorttable_customkey='".$sortTime."'>".$day." at ".$time.", Week ".$week."</td><td align='center'>".$registered."</td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventDelete'><input type='submit' value='delete' style='width:8em'></form></td></tr>";				
 }
 echo "</table><br/>";
+echo "<script>var myTH = document.getElementsByTagName('th')[0];sorttable.innerSortFunction.apply(myTH, []);</script>";
 echo $eventAdder;
 ?>

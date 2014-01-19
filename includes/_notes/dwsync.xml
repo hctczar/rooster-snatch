@@ -16,9 +16,10 @@
 <file name="troopRosterDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130343842572010291" remote="130343842590000000" Dst="1" />
 <file name="troopRosterEdit.php" server="ssh.phx.nearlyfreespeech.net" local="130343814648933182" remote="130343818360000000" Dst="1" />
 <file name="troopRosterUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130343837850690247" remote="130343837850000000" Dst="1" />
-<file name="troopEvents.php" server="ssh.phx.nearlyfreespeech.net" local="130343872074177718" remote="130343872070000000" Dst="1" />
+<file name="troopEvents.php" server="ssh.phx.nearlyfreespeech.net" local="130346461150955609" remote="130346461170000000" Dst="1" />
 <file name="troopEventDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130343872079688034" remote="130343872080000000" Dst="1" />
 <file name="troopEventAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130343872085058341" remote="130343872080000000" Dst="1" />
 <file name="troopEventEdit.php" server="ssh.phx.nearlyfreespeech.net" local="130343861972639944" remote="130343861980000000" Dst="1" />
 <file name="troopEventUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130343872090498652" remote="130343872090000000" Dst="1" />
+<file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130346426613580184" remote="130346426700000000" Dst="1" />
 </dwsync>

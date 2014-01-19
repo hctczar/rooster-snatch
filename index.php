@@ -17,6 +17,7 @@
 	//the address of the host
 	$siteAddress = "http://operation-rooster-snatch.nfshost.com";
 ?><head>
+
 <link rel="stylesheet" href="//www.makajawan.com/plugins/addthis/css/output.css?ver=3.8">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&ver=3.8">
 <link rel="stylesheet" href="//www.makajawan.com/wp-includes/css/dashicons.min.css?ver=3.8">
@@ -29,6 +30,7 @@
 <style>
 input[type="number"] {height:30px;}
 </style>
+<script src="/includes/sorttable.js"></script>
 </head>
 
 
