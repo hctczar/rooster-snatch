@@ -27,7 +27,7 @@ while ($row = mysql_fetch_array($result))
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeA)."'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeAName = $row1["badge"];
-	$badgeALocation = $row1["camp"]." ".$row1["Area"];
+	$badgeALocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
 	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'B'");
 	$row1 = mysql_fetch_array($result1);
@@ -35,7 +35,7 @@ while ($row = mysql_fetch_array($result))
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeB)."'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeBName = $row1["badge"];
-	$badgeBLocation = $row1["camp"]." ".$row1["Area"];
+	$badgeBLocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
 	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'C'");
 	$row1 = mysql_fetch_array($result1);
@@ -43,7 +43,7 @@ while ($row = mysql_fetch_array($result))
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeC)."'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeCName = $row1["badge"];
-	$badgeCLocation = $row1["camp"]." ".$row1["Area"];
+	$badgeCLocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
 	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'D'");
 	$row1 = mysql_fetch_array($result1);
@@ -51,7 +51,7 @@ while ($row = mysql_fetch_array($result))
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeD)."'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeDName = $row1["badge"];
-	$badgeDLocation = $row1["camp"]." ".$row1["Area"];
+	$badgeDLocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
 	//print badge names and locations to table
 	echo "<tr><td>".$name."</td><td>".$badgeAName."</td><td>".$badgeALocation."</td><td class='Liam'>".$badgeBName."</td><td class='Liam'>".$badgeBLocation."</td><td>".$badgeCName."</td><td>".$badgeCLocation."</td><td class='Liam'>".$badgeDName."</td><td class='Liam'>".$badgeDLocation."</td></tr>";
