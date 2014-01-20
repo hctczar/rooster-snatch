@@ -51,6 +51,7 @@ include("includes/strings.php");
 ?>
 
 <?php
+	echo "automatic updates working!";
 	//Select which "page" to display, based on $_POST values
 	if (! isset($_POST["page"]))
 	//generate the login page
