@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="//www.makajawan.com/plugins/wp-jquery-lightbox/styles/lightbox.min.css?ver=1.4">
 <style>
 input[type="number"] {height:30px;}
+/* Much like commenting out text in Dreamweaver, applying Liam as a class makes an item grey.*/
+.Liam {background-color: buttonface;}
 </style>
 <script src="/includes/sorttable.js"></script>
 </head>
@@ -203,6 +205,13 @@ include("includes/strings.php");
 	elseif ($_POST['page'] == "troopEventUpdate")
 	{
 		include("includes/troopEventUpdate.php");
+	}
+	/*------------------------------------------------
+	                  TROOP SCHEDULE
+	/*------------------------------------------------*/
+	elseif ($_POST['page'] == "troopSchedule")
+	{
+		include("includes/troopSchedule.php");
 	}
 ?>
 </div>

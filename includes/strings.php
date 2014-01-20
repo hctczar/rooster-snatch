@@ -52,9 +52,9 @@ $troopMenu = ""
 	."<td><form method='post'><input type='hidden' name='page' value='troopCampsite'><input type='submit' value='Campsite Requests' style='width:16em'></form></td>"
 	."</tr>"
 	."<tr>"
-	."<td></td>"
 	."<td><form method='post'><input type='hidden' name='page' value='troopEvents'><input type='submit' value='Event Signup' style='width:16em'></form></td>"
 	."<td></td>"
+	."<td><form method='post'><input type='hidden' name='page' value='troopSchedule'><input type='submit' value='View Schedule' style='width:16em'></form></td>"
 	."</tr>"
 	."</table>";
 /*-------------------------------------------------------------------
