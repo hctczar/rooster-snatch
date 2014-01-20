@@ -143,6 +143,5 @@ while ($row = mysql_fetch_array($result))
 	echo "<tr><td align='center'>".$title."</td><td align='center' sorttable_customkey='".$sortTime."'>".$day." at ".$time.", Week ".$week."</td><td align='center'>".$registered."</td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventDelete'><input type='submit' value='delete' style='width:8em'></form></td></tr>";				
 }
 echo "</table><br/>";
-echo "<script>var myTH = document.getElementsByTagName('th')[0];sorttable.innerSortFunction.apply(myTH, []);</script>";
 echo $eventAdder;
 ?>
