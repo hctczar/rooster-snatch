@@ -33,6 +33,7 @@ input[type="number"] {height:30px;}
 .Liam {background-color: buttonface;}
 </style>
 <script src="/includes/sorttable.js"></script>
+<script> document.domain = 'makajawan.com' </script>
 </head>
 
 
