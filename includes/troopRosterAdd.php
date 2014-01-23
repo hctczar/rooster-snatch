@@ -49,7 +49,7 @@ for ($iter=0;$iter<20;$iter++)
 		$firstName = ucfirst($firstName);
 		$lastName = ucfirst($lastName);
 		$message=$message.$firstName." ".$lastName."\r\n    username: ".$username."\r\n    passcode: ".$password."\r\n\r\n";
-		mysql_query("INSERT INTO wp_campers (troopID, firstName, lastName, youth, username, password) VALUES ('".mysql_real_escape_string($troopID)."', '".mysql_real_escape_string($firstName)."', '".mysql_real_escape_string($lastName)."', '".mysql_real_escape_string($youth)."', '".mysql_real_escape_string($username)."', '".$passwordEncrypt."')");
+		mysql_query("INSERT INTO wp_campers (troopID, firstName, lastName, youth, username, tempPass) VALUES ('".mysql_real_escape_string($troopID)."', '".mysql_real_escape_string($firstName)."', '".mysql_real_escape_string($lastName)."', '".mysql_real_escape_string($youth)."', '".mysql_real_escape_string($username)."', '".$passwordEncrypt."')");
 		$result = mysql_query("SELECT * FROM wp_campers WHERE (username = '".mysql_real_escape_string($username)."')");
 		$row = mysql_fetch_array($result);
 		$camperID = $row["id"];

@@ -67,6 +67,48 @@ include("includes/strings.php");
 	{
 		include("includes/scout.php");
 	}
+		/*------------------------------------------------
+	                  SCOUT PASSWORD UPDATE
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutPasswordUpdate")
+	{
+		include("includes/scoutPasswordUpdate.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT RESET PASSWORD
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutResetPassword")
+	{
+		include("includes/scoutResetPassword.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT RESET PASSWORD PWD
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutResetPasswordPwd")
+	{
+		include("includes/scoutResetPasswordPwd.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT RESET PASSWORD USR
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutResetPasswordUsr")
+	{
+		include("includes/scoutResetPasswordUsr.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT ACCOUNT
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutAccount")
+	{
+		include("includes/scoutAccount.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT ACCOUNT UPDATE
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutAccountUpdate")
+	{
+		include("includes/scoutAccountUpdate.php");
+	}
 	/*------------------------------------------------
 	                  SCOUT SIGNUP
 	/*------------------------------------------------*/
@@ -94,6 +136,34 @@ include("includes/strings.php");
 	elseif ($_POST["page"] == "troop")
 	{
 		include("includes/troop.php");
+	}
+	/*------------------------------------------------
+	                  TROOP PASSWORD UPDATE
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "troopPasswordUpdate")
+	{
+		include("includes/troopPasswordUpdate.php");
+	}
+	/*------------------------------------------------
+	                  TROOP RESET PASSWORD
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "troopResetPassword")
+	{
+		include("includes/troopResetPassword.php");
+	}
+	/*------------------------------------------------
+	                  TROOP RESET PASSWORD PWD
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "troopResetPasswordPwd")
+	{
+		include("includes/troopResetPasswordPwd.php");
+	}
+	/*------------------------------------------------
+	                  TROOP RESET PASSWORD USR
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "troopResetPasswordUsr")
+	{
+		include("includes/troopResetPasswordUsr.php");
 	}
 	/*------------------------------------------------
 	                  WEEK SELECT (deprecated)

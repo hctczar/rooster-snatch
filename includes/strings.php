@@ -169,11 +169,40 @@ $rosterEditor = ""
 $scoutMenu = ""
 	."<table>"
 	."<tr>"
-	."<td style='width:16em'></td>"
-	."<td><form method='post'><input type='hidden' name='page' value='scoutSignup'><input type='submit' value='Sign Up For Merit Badges' style='width:16em'></form></td>"
-	."<td style='width:16em'></td>"
+	."<td style='width:16em'><form method='post'><input type='hidden' name='page' value='scoutAccount'><input type='submit' value='Account Settings' style='width:16em'></form></td>"
+	."<td></td>"
+	."<td style='width:16em'><form method='post'><input type='hidden' name='page' value='scoutSignup'><input type='submit' value='Sign Up For Merit Badges' style='width:16em'></form></td>"
 	."<tr>"
 	."</table>";
+/*-------------------------------------------------------------------
+                        SCOUT ACCOUNT
+-------------------------------------------------------------------*/
+$scoutAccount = ""
+	."<form method='post'>"
+	."If you would like to choose a new passcode, please type the new passcode below. <br/><br/>"
+	.""
+	."New Passcode: <input type='password' name='passcode1' id='passcode1' autocomplete='off'><br/>"
+	."New Passcode: <input type='password' name='passcode2' id='passcode2' onChange='matchPasscode()' onMouseOut='matchPasscode()' autocomplete='off'>"
+	."<div id='mismatch' style='color:red'></div>"
+	."<br/>"
+	."<input type='hidden' name='page' value='scoutAccountUpdate'>"
+	."<div id='submit'><input type='submit' value='Sumbit Changes'></div>"
+	."<script type='text/javascript'>"
+	."	function matchPasscode() {"
+	."		if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)"
+	."		{"
+	."			document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
+	."          document.getElementById('submit').innerHTML = 'OOPS';"
+	."		}"
+	."		else"
+	."		{"
+	."			document.getElementById('mismatch').innerHTML = '';"
+	."          document.getElementById('submit').innerHTML = '<input type=\'submit\' value=\'Sumbit Changes\'>';"
+	."		}"
+	."	}"
+	.""
+	."</script>"
+;
 /*-------------------------------------------------------------------
                         SCOUT SIGNUP
 -------------------------------------------------------------------*/
