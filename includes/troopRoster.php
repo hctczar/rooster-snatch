@@ -14,13 +14,13 @@ if ($row = mysql_fetch_array($result))
 }
 echo $troopMenu;
 //prints campers in first week troop is camping for.
-echo "WEEK ".$week1;
-echo "<table border='1' style='width:42em'>";
+echo "<table class='table table-striped' style='width:42em'>";
+echo "<tr><th colspan='6'>Week $week1</th></tr>";
 $result = mysql_query("SELECT * FROM wp_roster WHERE (troopID = '".mysql_real_escape_string($active)."' and youth = '0' and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week1)."') ORDER BY lastName, firstName");
 while ($row = mysql_fetch_array($result))
 {
 	$ID = $row['camperID'];
-	echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Adult)</td><td>Week ".$week1."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week1."'><input type='submit' value='delete' style='width:8em'></form></td><td></td></tr>";
+	echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Adult)</td><td>Week ".$week1."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input type='submit' class='btn btn btn-primary' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week1."'><input type='submit' value='delete' class='btn btn-danger' style='width:8em'></form></td><td></td></tr>";
 }
 $result = mysql_query("SELECT * FROM wp_roster WHERE (troopID = '".mysql_real_escape_string($active)."' and youth = 1 and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week1)."') ORDER BY lastName,firstName");
 while ($row = mysql_fetch_array($result))
@@ -35,19 +35,19 @@ while ($row = mysql_fetch_array($result))
 		$hasSigned = "<img src='http://www.makajawan.com/assets/greenCheck.gif' alt='Scout has registered for badges' width = '32' height='32'>";
 	}
 	//stop checking if the scout has registered for badges
-	echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Youth)</td><td>Week ".$week1."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week1."'><input type='submit' value='delete' style='width:8em'></form></td><td>$hasSigned</td></tr>";
+	echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Youth)</td><td>Week ".$week1."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input class='btn' type='submit' class='btn btn btn-primary' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week1."'><input type='submit' value='delete' class='btn btn-danger' style='width:8em'></form></td><td>$hasSigned</td></tr>";
 }
 echo "</table>";
 //if troops signed up for 2 weeks, prints second week campers
 if ($week2 != 0)
 {
-	echo "<br/>WEEK ".$week2;
-	echo "<table border='1' style='width:42em'>";
+	echo "<table class='table table-striped' style='width:42em'>";
+	echo "<tr><th colspan='6'>Week $week2</th></tr>";
 	$result = mysql_query("SELECT * FROM wp_roster WHERE (troopID = '".mysql_real_escape_string($active)."' and youth = 0 and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week2)."') ORDER BY lastName,firstName");
 	while ($row = mysql_fetch_array($result))
 	{
 		$ID = $row['camperID'];
-		echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Adult)</td><td>Week ".$week2."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week2."'><input type='submit' value='delete' style='width:8em'></form></td><td></td></tr>";
+		echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Adult)</td><td>Week ".$week2."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input class='btn' type='submit' class='btn btn-primary' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week2."'><input type='submit' class='btn btn-danger' value='delete' style='width:8em'></form></td><td></td></tr>";
 	}
 	$result = mysql_query("SELECT * FROM wp_roster WHERE (troopID = '".mysql_real_escape_string($active)."' and youth = 1 and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week2)."') ORDER BY lastName,firstName");
 	while ($row = mysql_fetch_array($result))
@@ -62,7 +62,7 @@ if ($week2 != 0)
 			$hasSigned = "<img src='http://www.makajawan.com/assets/greenCheck.gif' alt='Scout has registered for badges' width = '32' height='32'>";
 		}
 		//stop checking if the scout has registered for badges
-		echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Youth)</td><td>Week ".$week2."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week2."'><input type='submit' value='delete' style='width:8em'></form></td><td>$hasSigned</td></tr>";
+		echo "<tr><td>".stripslashes($row['lastName']).", ".stripslashes($row['firstName'])." (Youth)</td><td>Week ".$week2."<td/><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='active' value='".$active."'><input type='hidden' name='page' value='troopRosterEdit'><input class='btn btn-primary' type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='camper' value='".$ID."'><input type='hidden' name='page' value='troopRosterDelete'><input type='hidden' name='week' value='".$week2."'><input type='submit' class='btn btn-danger' value='delete' style='width:8em'></form></td><td>$hasSigned</td></tr>";
 	}
 	echo "</table>";
 }
