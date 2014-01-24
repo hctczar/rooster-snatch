@@ -17,18 +17,8 @@
 	//the address of the host
 	$siteAddress = "http://operation-rooster-snatch.nfshost.com";
 ?><head>
-
-<link rel="stylesheet" href="//www.makajawan.com/plugins/addthis/css/output.css?ver=3.8">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&ver=3.8">
-<link rel="stylesheet" href="//www.makajawan.com/wp-includes/css/dashicons.min.css?ver=3.8">
-<link rel="stylesheet" href="//www.makajawan.com/wp-includes/css/admin-bar.min.css?ver=3.8">
-<link rel="stylesheet" href="//www.makajawan.com/plugins/wordpress-seo/css/adminbar.css?ver=1.4.19">
-<link rel="stylesheet" href="//www.makajawan.com/assets/css/bootstrap.css">
-<link rel="stylesheet" href="//www.makajawan.com/assets/css/bootstrap-responsive.css">
-<link rel="stylesheet" href="//www.makajawan.com/assets/css/app.css">
-<link rel="stylesheet" href="//www.makajawan.com/plugins/wp-jquery-lightbox/styles/lightbox.min.css?ver=1.4">
+<link rel="stylesheet" href="/styles/css/bootstrap.css">
 <style>
-input[type="number"] {height:30px;}
 /* Much like commenting out text in Dreamweaver, applying Liam as a class makes an item grey.*/
 .Liam {background-color: buttonface;}
 </style>
@@ -36,8 +26,6 @@ input[type="number"] {height:30px;}
 <script> document.domain = 'makajawan.com' </script>
 </head>
 
-
-<div class="pf-content" width=>
 
 <script>window.parent.$("body").animate({scrollTop:0}, 'slow');</script>
 
@@ -285,5 +273,4 @@ include("includes/strings.php");
 		include("includes/troopSchedule.php");
 	}
 ?>
-</div>
 </body>

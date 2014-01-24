@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130349146651793774" remote="130349146660000000" Dst="1" />
+<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130349761174441409" remote="130349761190000000" Dst="1" />
 <file name="scout.php" server="ssh.phx.nearlyfreespeech.net" local="130349116712971371" remote="130349116730000000" Dst="1" />
-<file name="scoutSignup.php" server="ssh.phx.nearlyfreespeech.net" local="130347305142412579" remote="130347305150000000" Dst="1" />
+<file name="scoutSignup.php" server="ssh.phx.nearlyfreespeech.net" local="130349762267583933" remote="130349762280000000" Dst="1" />
 <file name="scoutSignuper.php" server="ssh.phx.nearlyfreespeech.net" local="130347294437830312" remote="130347294450000000" Dst="1" />
 <file name="scoutSignedup.php" server="ssh.phx.nearlyfreespeech.net" local="130343807058269021" remote="130343818320000000" Dst="1" />
 <file name="troop.php" server="ssh.phx.nearlyfreespeech.net" local="130349112963196896" remote="130349112970000000" Dst="1" />
@@ -10,7 +10,7 @@
 <file name="troopAccountUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130343825556657068" remote="130343825660000000" Dst="1" />
 <file name="troopCampsite.php" server="ssh.phx.nearlyfreespeech.net" local="130343810347297143" remote="130343818340000000" Dst="1" />
 <file name="troopCampsiteUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130343857559627534" remote="130343857580000000" Dst="1" />
-<file name="troopRoster.php" server="ssh.phx.nearlyfreespeech.net" local="130343811821521464" remote="130343818350000000" Dst="1" />
+<file name="troopRoster.php" server="ssh.phx.nearlyfreespeech.net" local="130349731172185378" remote="130349731190000000" Dst="1" />
 <file name="troopRosterAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130349113564981316" remote="130349113580000000" Dst="1" />
 <file name="troopRosterAdded.php" server="ssh.phx.nearlyfreespeech.net" local="130343813075123166" remote="130343818360000000" Dst="1" />
 <file name="troopRosterDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130343842572010291" remote="130343842590000000" Dst="1" />
@@ -23,11 +23,11 @@
 <file name="troopEventUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130343872090498652" remote="130343872090000000" Dst="1" />
 <file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130346426613580184" remote="130346426700000000" Dst="1" />
 <file name="troopSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130347319482812803" remote="130347319500000000" Dst="1" />
-<file name="troopResetPassword.php" server="ssh.phx.nearlyfreespeech.net" local="130349063413592821" remote="130349063810000000" Dst="1" />
+<file name="troopResetPassword.php" server="ssh.phx.nearlyfreespeech.net" local="130349754989667660" remote="130349755000000000" Dst="1" />
 <file name="troopResetPasswordUsr.php" server="ssh.phx.nearlyfreespeech.net" local="130349069898783753" remote="130349069910000000" Dst="1" />
 <file name="troopResetPasswordPwd.php" server="ssh.phx.nearlyfreespeech.net" local="130349123933024335" remote="130349123940000000" Dst="1" />
 <file name="troopPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130349110243961365" remote="130349110260000000" Dst="1" />
-<file name="scoutResetPassword.php" server="ssh.phx.nearlyfreespeech.net" local="130349121735898666" remote="130349121740000000" Dst="1" />
+<file name="scoutResetPassword.php" server="ssh.phx.nearlyfreespeech.net" local="130349753318462072" remote="130349753320000000" Dst="1" />
 <file name="scoutResetPasswordPwd.php" server="ssh.phx.nearlyfreespeech.net" local="130349137148320206" remote="130349137160000000" Dst="1" />
 <file name="scoutResetPasswordUsr.php" server="ssh.phx.nearlyfreespeech.net" local="130349130547682671" remote="130349130560000000" Dst="1" />
 <file name="scoutPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130349133178693157" remote="130349133190000000" Dst="1" />

@@ -11,16 +11,19 @@ echo str_replace("##which##","troop",str_replace("##troopChecked##","checked",st
 <form method='post'>
 <p>If you've forgotten your username, enter your username below and hit "Fetch Username". Robots will scour the datatables to find your username. If you were trying to log in as a camper (and not into a troop account) please make sure that you checked the appropriate radio button on the login form, and try again.</p>
 <input type='number' name='troop' placeholder='troop'>
+<table style="display:inline; position: relative;
+top: 6;"><tr><td>
 <select name='council' id='council' onChange='showOther()'>
 	<option value='North East Illinois Council'>North East Illinois Council</option>
 	<option value='other'>Other</option>
-</select>
-<div id='other'></div>
+</select></td></tr>
+<tr><td><span id='other'></span></td></tr>
+</table>
 <script type='text/javascript'>
 function showOther() {
 if (document.getElementById('council').value == 'other')
 {
-document.getElementById('other').innerHTML = '<input type="text" name="councilOther" placeholder="council">';
+document.getElementById('other').innerHTML = '<input type="text" name="councilOther" placeholder="council" style="width:100%">';
 }
 else
 {
