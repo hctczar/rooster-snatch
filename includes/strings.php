@@ -60,7 +60,7 @@ Logging in as a...
 -------------------------------------------------------------------*/
 $troopMenu = 
 '<form method="post">
-	<div class="btn-group">
+	<div class="btn-group" style="margin-bottom:1em;">
 		<button name="page" class="btn btn-default" value="troopAccount" type="submit"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
 		<button name="page" class="btn btn-default" value="troopRoster" type="submit"><span class="glyphicon glyphicon-list-alt"></span><br>Roster</button>
 		<button name="page" class="btn btn-default" value="troopCampsite" type="submit"><span class="glyphicon glyphicon-home"></span><br>Campsites</button>
@@ -72,26 +72,45 @@ $troopMenu =
 /*-------------------------------------------------------------------
                         TROOP ACCOUNT
 -------------------------------------------------------------------*/
-$troopAccount = ""
-	."<form method='post'>"
-	."Troop Number: <br/><input type='text' name='troop' value='##troop##'><br/>"
-	."Email Address: <br/><input type='text' name='email' value='##email##'><br/>"
-	."Council: <br/>"
-	."<select name='council' id='council' onChange='showOther()'>"
-	." 	<option value='##council##'>##council##</option>"
-	."    <option value='North East Illinois Council'>North East Illinois Council</option>"
-	."    <option value='other'>Other</option>"
-	."</select>"
-	."<div id='other'></div>"
-	."<br/>"
-	."If you would like to choose a new passcode, please type the new passcode below. <br/>"
-	.""
-	."New Passcode: <input type='password' name='passcode1' id='passcode1' autocomplete='off'><br/>"
-	."New Passcode: <input type='password' name='passcode2' id='passcode2' onChange='matchPasscode()' onMouseOut='matchPasscode()' autocomplete='off'>"
-	."<div id='mismatch' style='color:red'></div>"
-	."<br/>"
-	."<input type='hidden' name='page' value='troopAccountUpdate'>"
-	."<div id='submit'><input type='submit' value='Sumbit Changes'></div>"
+$troopAccount = '
+<form method="post" role="form">
+	<div class="form-group">
+		<label for="troop">Troop Number</label>
+		<input type="text" id="troop" name="troop" value="##troop##" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="email">Email Address</label>
+		<input type="email" id="email" name="email" value="##email##" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="council">Council:</label>
+		<select name=\'council\' id=\'council\' onChange=\'showOther()\' class=\'form-control\'>
+			<option value=\'##council##\'>##council##</option>"
+			<option value=\'North East Illinois Council\'>North East Illinois Council</option>"
+			<option value=\'other\'>Other</option>"
+		</select>
+		<div id="other"></div>
+	</div>
+			<strong>Passcode:</strong><br>
+		If you would like to choose a new passcode, please type the new passcode below. <br><br>
+	<div class="well">
+		<div class="form-group">
+			<label for="passcode1">New Passcode:</label>
+			<input type=\'password\' name=\'passcode1\' id=\'passcode1\' autocomplete=\'off\' class=\'form-control\'>
+		</div>
+		<div class="form-group">
+			<label for="passcode2">Please re-type your new passcode:</label>
+			<input type=\'password\' name=\'passcode2\' id=\'passcode2\' onChange=\'matchPasscode()\' class=\'form-control\' onMouseOut=\'matchPasscode()\' autocomplete=\'off\'>
+		</div>
+		<div id=\'mismatch\' style=
+		\'color:red\'></div>
+		<input type=\'hidden\' name=\'page\' value=\'troopAccountUpdate\'>
+
+	</div>
+
+			<button type="submit" class="btn btn-primary">Save Changes to Account</button>
+
+</form>'
 	."<script type='text/javascript'>"
 	."	function showOther() {"
 	."		if (document.getElementById('council').value == 'other')"
