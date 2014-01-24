@@ -3,6 +3,7 @@
                         LOGIN
 -------------------------------------------------------------------*/
 $login = ""
+
 	."<form method='post'>"
 	."<table border = '1'>"
 	."<th align='left'>Login</th><td><input type='radio' name='type' value='troop' onClick='setText(\"troop\")' ##troopChecked##>Troop&nbsp;&nbsp;&nbsp;<input type='radio' name='type' value='scout' onClick='setText(\"scout\")' ##scoutChecked##>Scout</td>"
@@ -44,19 +45,17 @@ $login = ""
 /*-------------------------------------------------------------------
                         TROOP MENU
 -------------------------------------------------------------------*/
-$troopMenu = ""
-	."<table>"
-	."<tr>"
-	."<td><form method='post'><input type='hidden' name='page' value='troopAccount'><input type='submit' value='Account Settings' style='width:16em'></form></td>"
-	."<td><form method='post'><input type='hidden' name='page' value='troopRoster'><input type='submit' value='Edit Roster' style='width:16em'></form></td>"
-	."<td><form method='post'><input type='hidden' name='page' value='troopCampsite'><input type='submit' value='Campsite Requests' style='width:16em'></form></td>"
-	."</tr>"
-	."<tr>"
-	."<td><form method='post'><input type='hidden' name='page' value='troopEvents'><input type='submit' value='Event Signup' style='width:16em'></form></td>"
-	."<td></td>"
-	."<td><form method='post'><input type='hidden' name='page' value='troopSchedule'><input type='submit' value='View Schedule' style='width:16em'></form></td>"
-	."</tr>"
-	."</table>";
+$troopMenu = 
+'<form method="post">
+	<div class="btn-group">
+		<button name="page" class="btn btn-default" value="troopAccount" type="submit"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
+		<button name="page" class="btn btn-default" value="troopRoster" type="submit"><span class="glyphicon glyphicon-list-alt"></span><br>Roster</button>
+		<button name="page" class="btn btn-default" value="troopCampsite" type="submit"><span class="glyphicon glyphicon-home"></span><br>Campsites</button>
+		<button name="page" class="btn btn-default" value="troopEvents" type="submit"><span class="glyphicon glyphicon-tower"></span><br>Events</button>
+		<button name="page" class="btn btn-default" value="troopSchedule" type="submit"><span class="glyphicon glyphicon-calendar"></span><br>Schedule</button>
+	</div>
+</form>
+';
 /*-------------------------------------------------------------------
                         TROOP ACCOUNT
 -------------------------------------------------------------------*/
