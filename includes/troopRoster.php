@@ -21,7 +21,7 @@ if ($row = mysql_fetch_array($result))
 }
 echo $troopMenu;
 //prints campers in first week troop is camping for.
-echo "<table class='table table-striped' style='width:42em'>";
+echo "<table class='table table-striped'>";
 echo "<tr><th colspan='6'>Week $week1</th></tr>";
 $result = mysql_query("SELECT * FROM wp_roster WHERE (troopID = '".mysql_real_escape_string($active)."' and youth = '0' and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week1)."') ORDER BY lastName, firstName");
 while ($row = mysql_fetch_array($result))
@@ -48,7 +48,7 @@ echo "</table>";
 //if troops signed up for 2 weeks, prints second week campers
 if ($week2 != 0)
 {
-	echo "<table class='table table-striped' style='width:42em'>";
+	echo "<table class='table table-striped'>";
 	echo "<tr><th colspan='6'>Week $week2</th></tr>";
 	$result = mysql_query("SELECT * FROM wp_roster WHERE (troopID = '".mysql_real_escape_string($active)."' and youth = 0 and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week2)."') ORDER BY lastName,firstName");
 	while ($row = mysql_fetch_array($result))

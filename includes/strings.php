@@ -112,14 +112,23 @@ $troopAccount = ""
 -------------------------------------------------------------------*/
 $rosterAdder = ""
 	."<form method='post'>"
-	."<table border='1' style='width:42em'>"
-	."<tr><td>First Name</td><td>Last Name</td><td>Days Camping</td><td>Youth or Adult?</td></tr>"
+	.'<table class="table table-striped">'
+	."<tr><th>First Name</th><th>Last Name</th><th>Days Camping</th><th>Youth or Adult?</th></tr>"
 	."<tr>"
 	."";
 	$lineString = ""
-	."<td><input type='text' name='firstName##iter##'></td>"
-	."<td><input type='text' name='lastName##iter##'></td>"
-	."<td><table><tr><td align='center'>Week ##week1##</td><td align='center'>Week ##week2##</td><tr><td><input type='checkbox' name='week1##iter##' value='##week1##' checked></td><td><input type='checkbox' name='week2##iter##' value='##week2##' checked></td></tr></table></td>"
+	."<td><input type='text' class='form-control' placeholder='Enter First Name' name='firstName##iter##'></td>"
+	."<td><input type='text' class='form-control' placeholder='Enter Last Name' name='lastName##iter##'></td>"
+	."<td>
+			<label class='checkbox-inline'>
+				<input type='checkbox' name='week1##iter##' value='##week1##' checked>
+				Week ##week1## 
+			</label>
+			<label class='checkbox-inline'>
+				<input type='checkbox' name='week2##iter##' value='##week2##' checked>
+				Week ##week2##
+			</label>
+		</td>"
 	."<td>Youth <input type='radio' name='youth##iter##' value='1' checked>Adult <input type='radio' name='youth##iter##' value='0'></td>"
 	."</tr>";
 	for ($iter = 0; $iter<20;$iter++)
@@ -129,7 +138,7 @@ $rosterAdder = ""
 	$rosterAdder = $rosterAdder	.""
 	."</table>"
 	."<input type='hidden' name='page' value='troopRosterAdd'>"
-	."<input type='submit' value='add campers' style='width:16em'>"
+	."<button type='submit' value='add campers' class='btn btn-primary pull-right'>Add These Campers to Roster <span class='glyphicon glyphicon-arrow-right'></span></button>"
 	."</form>";
 	//##iter##
 	//##week2##
@@ -207,7 +216,9 @@ $scoutAccount = ""
 -------------------------------------------------------------------*/
 $scoutSignup = ""
 	."<form method='post'>"
-	."Rank: <select name='rank'>"
+	."<table>"
+	."<tr>"
+	."<td>Rank: </td><td><select name='rank' style = 'width:100%'>"
 	."    <option value='7'>Scout</option>"
 	."    <option value='6'>Tenderfoot</option>"
 	."    <option value='5'>Second</option>"
@@ -215,8 +226,8 @@ $scoutSignup = ""
 	."    <option value='3'>Star</option>"
 	."    <option value='2'>Life</option>"
 	."    <option value='1'>Eagle</option>"
-	."</select><br/>"
-	."Birthdate: <select name=\"moonth\" width = '8em'>"
+	."</select></td></tr>"
+	."<tr><td>Birthdate: </td><td><select name=\"moonth\" width = '8em'>"
 	."    <option value='1'>Jan</option>"
 	."    <option value='2'>Feb</option>"
 	."    <option value='3'>Mar</option>"
@@ -243,11 +254,11 @@ for ($iter = 0; $iter<18-8;$iter++)
 {
 $scoutSignup = $scoutSignup.str_replace("##iter##",$iter+1995,$lineString);
 }
-$scoutSignup = $scoutSignup	."</select>"
-	."<br/>Choose Week: <select name='week'>"
+$scoutSignup = $scoutSignup	."</select></td></tr>"
+	."<tr><td colspan = '2'><br/></td></tr><tr><td>Choose Week: </td><td><select style='width:100%' name='week'>"
 	."<option value='##week1##'>Week ##week1##</option>"
 	."<option value='##week2##'>Week ##week2##</option>"
-	."</select><br/><br/>"
+	."</select></td></tr></table><br/><br/>"
 	."Block A: <select name=\"blockA\">"
 	."	##blockA##"
 	."</select><br/>"

@@ -39,7 +39,9 @@ input[type="number"] {height:30px;}
 </head>
 <body>
 
-<div class="pf-content" width=>
+<div class="pf-content container">
+	<div class="row">
+		<div class="col-md-12">
 
 <script>window.parent.$("body").animate({scrollTop:0}, 'slow');</script>
 
@@ -287,6 +289,9 @@ include("includes/strings.php");
 		include("includes/troopSchedule.php");
 	}
 ?>
+		</div>
+	</div>
+	<!-- /.row -->
 </div>
 </body>
 </html>

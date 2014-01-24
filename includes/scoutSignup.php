@@ -83,5 +83,6 @@ $scoutSignupEcho=str_replace("##blockB##",fillOptions("B"),$scoutSignupEcho);
 $scoutSignupEcho=str_replace("##blockC##",fillOptions("C"),$scoutSignupEcho);
 $scoutSignupEcho=str_replace("##blockD##",fillOptions("D"),$scoutSignupEcho);
 
+echo "<br/>";
 echo $scoutSignupEcho;
 ?>
