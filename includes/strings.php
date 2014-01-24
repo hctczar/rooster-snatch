@@ -2,33 +2,46 @@
 /*-------------------------------------------------------------------
                         LOGIN
 -------------------------------------------------------------------*/
-$login = ""
+$login = '
+<h2>Please Log In</h2>
 
-	."<form method='post'>"
-	."<table border = '1'>"
-	."<th align='left'>Login</th><td><input type='radio' name='type' value='troop' onClick='setText(\"troop\")' ##troopChecked##>Troop&nbsp;&nbsp;&nbsp;<input type='radio' name='type' value='scout' onClick='setText(\"scout\")' ##scoutChecked##>Scout</td>"
-	."<tr>"
-	."<td id='text1'>Troop No.</td>"
-	."<td><input type='text' name='username'></td>"
-	."</tr>"
-	."<tr>"
-	."<td>Passcode</td>"
-	."<td><input type='password' name='passcode'></td>"
-	."</tr>"
-	."<tr>"
-	."<td colspan = '2'>"
-	."<div id='text2'><input type='hidden' name='page' value='troop'></div>"
-	."<input type='submit' value='Login!'>"
-	."</td>"
-	."</tr>"
-	."</table>"
-	."</form>"
+<form role="form" method="post">
+<div class="well">
+Logging in as a...
+<div class="radio">
+	<label>
+		<input type="radio" name="type" value="troop" onClick="setText(\'troop\')"" ##troopChecked##>
+		Troop Leader
+	</label>
+</div>
+<div class="radio">
+	<label>
+		<input type="radio" name="type" value="scout" onClick="setText(\'scout\')"" ##scoutChecked##>
+		Scout/Parent
+	</label>
+</div>
+</div>
+  <div class="form-group">
+    <label for="username" id="text1">Troop Number</label>
+    <input type="text" class="form-control" id="username" name="username">
+  </div>
+  <div class="form-group">
+    <label for="passcode">Passcode</label>
+    <input type="password" class="form-control" id="passcode" name="passcode">
+  </div>
+  <span id=\'text2\'><input type=\'hidden\' name=\'page\' value=\'troop\'></span>
+  <button class="btn btn-primary" type="submit" value="Login!"><span class="glyphicon glyphicon-user"></span> Log In</button>
+</form>
+
+
+
+'
 	.""
 	."<script type='text/javascript'>"
 	."function setText(string) {"
 	."    if (string=='troop')"
 	."    {"
-	."        document.getElementById('text1').innerHTML = 'Troop No.';"
+	."        document.getElementById('text1').innerHTML = 'Troop Number';"
 	."        document.getElementById('text2').innerHTML = '<input type=\'hidden\' name=\'page\' value=\'troop\'>';"
 	."    }"
 	."    else if (string=='scout')"

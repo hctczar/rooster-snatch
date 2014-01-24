@@ -51,6 +51,9 @@ input[type="number"] {height:30px;}
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<header class="container">
+<h1>My-Ka-Ja-Wan <small>Camper &amp; Troop Registration System</small></h1>
+</header>
 
 <div class="pf-content container">
 	<div class="row">
