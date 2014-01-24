@@ -7,9 +7,22 @@
 	//A little housekeeping
 	session_start();
 	$_SESSION["year"] = 2014; //gorsh, mickey, if only there was a way to get this dynammically or something!
-	$hostname = "localhost";
-	$username = "root";
-	$password = "root";
+
+	$domain = $_SERVER['HTTP_HOST'];
+	$domain = strtolower($domain);
+	if(substr_count($domain, 'makajawan.com') > 0) {
+		$hostname = "fartram.db";
+		$username = "jongunter";
+		$password = "JTWh784DxwptSswq";
+	} else {
+		$hostname = "localhost";
+		$username = "root";
+		$password = "root";
+	}
+
+
+
+
 	$dbhandle = mysql_connect($hostname, $username, $password) 
 		or die("Unable to connect to MySQL");
 	$selected = mysql_select_db("rooster_snatch",$dbhandle) 
