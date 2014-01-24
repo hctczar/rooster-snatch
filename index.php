@@ -7,26 +7,27 @@
 	//A little housekeeping
 	session_start();
 	$_SESSION["year"] = 2014; //gorsh, mickey, if only there was a way to get this dynammically or something!
-	$hostname = "fartram.db";
-	$username = "jongunter";
-	$password = "JTWh784DxwptSswq";
+	$hostname = "localhost";
+	$username = "root";
+	$password = "root";
 	$dbhandle = mysql_connect($hostname, $username, $password) 
 		or die("Unable to connect to MySQL");
 	$selected = mysql_select_db("rooster_snatch",$dbhandle) 
 		or die("Could not select examples");
 	//the address of the host
 	$siteAddress = "http://operation-rooster-snatch.nfshost.com";
-?><head>
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<link rel="stylesheet" href="//www.makajawan.com/plugins/addthis/css/output.css?ver=3.8">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&ver=3.8">
-<link rel="stylesheet" href="//www.makajawan.com/wp-includes/css/dashicons.min.css?ver=3.8">
-<link rel="stylesheet" href="//www.makajawan.com/wp-includes/css/admin-bar.min.css?ver=3.8">
-<link rel="stylesheet" href="//www.makajawan.com/plugins/wordpress-seo/css/adminbar.css?ver=1.4.19">
-<link rel="stylesheet" href="//www.makajawan.com/assets/css/bootstrap.css">
-<link rel="stylesheet" href="//www.makajawan.com/assets/css/bootstrap-responsive.css">
-<link rel="stylesheet" href="//www.makajawan.com/assets/css/app.css">
-<link rel="stylesheet" href="//www.makajawan.com/plugins/wp-jquery-lightbox/styles/lightbox.min.css?ver=1.4">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My-Ka-Ja-Wan</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
 input[type="number"] {height:30px;}
 /* Much like commenting out text in Dreamweaver, applying Liam as a class makes an item grey.*/
@@ -34,8 +35,9 @@ input[type="number"] {height:30px;}
 </style>
 <script src="/includes/sorttable.js"></script>
 <script> document.domain = 'makajawan.com' </script>
+<script src="js/bootstrap.min.js"></script>
 </head>
-
+<body>
 
 <div class="pf-content" width=>
 
@@ -287,3 +289,4 @@ include("includes/strings.php");
 ?>
 </div>
 </body>
+</html>
