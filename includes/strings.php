@@ -206,38 +206,45 @@ $rosterEditor = ""
 /*-------------------------------------------------------------------
                         SCOUT MENU
 -------------------------------------------------------------------*/
-$scoutMenu = ""
-	."<table>"
-	."<tr>"
-	."<td style='width:16em'><form method='post'><input type='hidden' name='page' value='scoutAccount'><input type='submit' value='Account Settings' style='width:16em'></form></td>"
-	."<td></td>"
-	."<td style='width:16em'><form method='post'><input type='hidden' name='page' value='scoutSignup'><input type='submit' value='Sign Up For Merit Badges' style='width:16em'></form></td>"
-	."<tr>"
-	."</table>";
+$scoutMenu = '
+	<form method="post">
+		<div class="btn-group" style="margin-bottom:1em;">
+			<button type="submit" name="page" value="scoutAccount" class="btn-default btn"><span class="glyphicon glyphicon-cog"></span><br> Account Settings</button>
+			<button type="submit" name="page" value="scoutSignup" class="btn-default btn"><span class="glyphicon glyphicon-ok-circle"></span><br> Merit Badge Signup</button>
+		</div>
+	</form>
+';
 /*-------------------------------------------------------------------
                         SCOUT ACCOUNT
 -------------------------------------------------------------------*/
-$scoutAccount = ""
-	."<form method='post'>"
-	."If you would like to choose a new passcode, please type the new passcode below. <br/><br/>"
-	.""
-	."New Passcode: <input type='password' name='passcode1' id='passcode1' autocomplete='off'><br/>"
-	."New Passcode: <input type='password' name='passcode2' id='passcode2' onChange='matchPasscode()' onMouseOut='matchPasscode()' autocomplete='off'>"
-	."<div id='mismatch' style='color:red'></div>"
-	."<br/>"
-	."<input type='hidden' name='page' value='scoutAccountUpdate'>"
-	."<div id='submit'><input type='submit' value='Sumbit Changes'></div>"
+$scoutAccount = '
+	<h2>Change Your Passcode</h2>
+	<div class="alert alert-danger" id="mismatch" style="display:none;"></div>
+<form method="post" role="form">
+	<div class="form-group">
+		<label for="passcode1">New Passcode:</label>
+		<input type="password" name="passcode1" id="passcode1" autocomplete="off" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="passcode2">Please re-type your password:</label>
+		<input type="password" name="passcode2" id="passcode2" autocomplete="off" class="form-control" onChange="matchPasscode()" onMouseOut="matchPasscode()">
+	</div>
+	<input type=\'hidden\' name=\'page\' value=\'scoutAccountUpdate\'>
+	<button type="submit" class="btn btn-primary" id="submit">Update Account Info</button>
+</form>'
 	."<script type='text/javascript'>"
 	."	function matchPasscode() {"
 	."		if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)"
 	."		{"
-	."			document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
-	."          document.getElementById('submit').innerHTML = 'OOPS';"
+	."			document.getElementById('mismatch').style.display = 'block';
+				document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
+	."          document.getElementById('submit').disabled = true;"
 	."		}"
 	."		else"
 	."		{"
+				."document.getElementById('mismatch').style.display = 'none';"
 	."			document.getElementById('mismatch').innerHTML = '';"
-	."          document.getElementById('submit').innerHTML = '<input type=\'submit\' value=\'Sumbit Changes\'>';"
+	."          document.getElementById('submit').disabled = false;"
 	."		}"
 	."	}"
 	.""
