@@ -46,6 +46,7 @@ input[type="number"] {height:30px;}
 /* Much like commenting out text in Dreamweaver, applying Liam as a class makes an item grey.*/
 .Liam {background-color: buttonface;}
 </style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/includes/sorttable.js"></script>
 <script> document.domain = 'makajawan.com' </script>
 <script src="js/bootstrap.min.js"></script>
