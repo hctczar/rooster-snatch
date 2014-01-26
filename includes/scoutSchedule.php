@@ -13,11 +13,13 @@ while ($row = mysql_fetch_array($result))
 	$weeks[]=$row['week'];
 }
 //A function that takes a block letter as an argument and returns a registered MB
-function getRegistered($block, $week)
+function getRegistered($block, $week, $active)
 {
-    $result = mysql_query("SELECT * FROM wp_signups WHERE (week = '".$week."' AND block = '".$block."')");
+    $result = mysql_query("SELECT * FROM wp_signups WHERE (week = '".$week."' AND block = '".$block."' AND scoutID = '".$active."')");
 	$row = mysql_fetch_array($result);
 	$badgeID = $row['badge'];
+	if ($badgeID == 'none')
+		$return;
 	$result = mysql_query("SELECT * FROM wp_badges WHERE id = '".$badgeID."'");
 	$row = mysql_fetch_array($result);
 	return $row['badge'];
@@ -25,6 +27,6 @@ function getRegistered($block, $week)
 //loop through weeks camping, display merit display MBs signed registered
 for($i=0;$i<count($weeks);$i++)
 {
-	echo 'Week ',$weeks[$i],'<br/>Block A: ',getRegistered('A', $weeks[$i]),'<br/>Block B: ',getRegistered('B', $weeks[$i]),'<br/>Block C: ',getRegistered('C', $weeks[$i]),'<br/>Block D: ',getRegistered('D', $weeks[$i]),'<br/><br/>';
+	echo 'Week ',$weeks[$i],'<br/>Block A: ',getRegistered('A', $weeks[$i], $active),'<br/>Block B: ',getRegistered('B', $weeks[$i], $active),'<br/>Block C: ',getRegistered('C', $weeks[$i], $active),'<br/>Block D: ',getRegistered('D', $weeks[$i], $active),'<br/><br/>';
 }
 ?>

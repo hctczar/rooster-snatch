@@ -33,5 +33,5 @@
 <file name="scoutPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130349133178693157" remote="130349133190000000" Dst="1" />
 <file name="scoutAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130349143498823434" remote="130349145190000000" Dst="1" />
 <file name="scoutAccountUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130349152033681600" remote="130349152050000000" Dst="1" />
-<file name="scoutSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130352464362260805" remote="130352464370000000" Dst="1" />
+<file name="scoutSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130352475022530537" remote="130352475020000000" Dst="1" />
 </dwsync>
