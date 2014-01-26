@@ -18,7 +18,7 @@
 			throw new Exception('unable to find the table.');
 	} catch (Exception $e){
 		try {
-			$hostname = "fartram.dbs";
+			$hostname = "fartram.db";
 			$username = "jongunter";
 			$password = "JTWh784DxwptSswq";
 			if (! $dbhandle = @mysql_connect($hostname, $username, $password))
