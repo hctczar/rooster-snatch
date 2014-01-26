@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130352423419489012" remote="130352423460000000" Dst="1" />
+<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130352430459171659" remote="130352430750000000" Dst="1" />
 <file name="scout.php" server="ssh.phx.nearlyfreespeech.net" local="130349116712971371" remote="130349116730000000" Dst="1" />
 <file name="scoutSignup.php" server="ssh.phx.nearlyfreespeech.net" local="130349762267583933" remote="130349762280000000" Dst="1" />
 <file name="scoutSignuper.php" server="ssh.phx.nearlyfreespeech.net" local="130347294437830312" remote="130347294450000000" Dst="1" />
@@ -33,4 +33,5 @@
 <file name="scoutPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130349133178693157" remote="130349133190000000" Dst="1" />
 <file name="scoutAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130349143498823434" remote="130349145190000000" Dst="1" />
 <file name="scoutAccountUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130349152033681600" remote="130349152050000000" Dst="1" />
+<file name="scoutSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130352464362260805" remote="130352464370000000" Dst="1" />
 </dwsync>

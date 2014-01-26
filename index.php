@@ -66,9 +66,18 @@ input[type="number"] {height:30px;}
 <script>window.parent.$("body").animate({scrollTop:0}, 'slow');</script>
 
 <?php
-
 //string declarations of the HTML and JavaScript code to be displayed
 include("includes/strings.php");
+//utility function. Returns copy from wp_copy.
+function getCopy($shortTag)
+{
+    $result = mysql_query("SELECT * FROM wp_copy WHERE shortTag = '".mysql_real_escape_string($shortTag)."'");
+	$row = mysql_fetch_array($result);
+	if (is_array($row))
+		return $row['text'];
+	else
+		return false;
+}
 ?>
 
 <?php
@@ -153,6 +162,13 @@ include("includes/strings.php");
 	elseif ($_POST["page"] == "scoutSignedup")
 	{
 		include("includes/scoutSignedup.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT SCHEDULE
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutSchedule")
+	{
+		include("includes/scoutSchedule.php");
 	}
 	/*------------------------------------------------
 	                  TROOP
