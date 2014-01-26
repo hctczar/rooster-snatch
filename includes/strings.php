@@ -46,7 +46,7 @@ Logging in as a...
 	."    }"
 	."    else if (string=='scout')"
 	."    {"
-	."        document.getElementById('text1').innerHTML = 'Scout';"
+	."        document.getElementById('text1').innerHTML = 'Username';"
 	."        document.getElementById('text2').innerHTML = '<input type=\'hidden\' name=\'page\' value=\'scout\'>';"
 	."    }"
 	."}"
