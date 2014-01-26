@@ -8,25 +8,28 @@
 	session_start();
 	$_SESSION["year"] = 2014; //gorsh, mickey, if only there was a way to get this dynammically or something!
 
-	$domain = $_SERVER['HTTP_HOST'];
-	$domain = strtolower($domain);
-	if(substr_count($domain, 'makajawan.com') > 0) {
-		$hostname = "fartram.db";
-		$username = "jongunter";
-		$password = "JTWh784DxwptSswq";
-	} else {
+	try {
 		$hostname = "localhost";
 		$username = "root";
 		$password = "root";
+		if (! $dbhandle = @mysql_connect($hostname, $username, $password))
+			throw new Exception('unable to connect to the database.');
+		if (! $selected = @mysql_select_db("rooster_snatch",$dbhandle))
+			throw new Exception('unable to find the table.');
+	} catch (Exception $e){
+		try {
+			$hostname = "fartram.dbs";
+			$username = "jongunter";
+			$password = "JTWh784DxwptSswq";
+			if (! $dbhandle = @mysql_connect($hostname, $username, $password))
+				throw new Exception('unable to connect to the database.');
+			if (! $selected = @mysql_select_db("rooster_snatch",$dbhandle))
+				throw new Exception('unable to find table.');;
+		} catch (Exception $e){
+			echo 'Sorry. The database seems to be temporarily unavailable. The server was ',  $e->getMessage();
+			exit(1);
+		}
 	}
-
-
-
-
-	$dbhandle = mysql_connect($hostname, $username, $password) 
-		or die("Unable to connect to MySQL");
-	$selected = mysql_select_db("rooster_snatch",$dbhandle) 
-		or die("Could not select examples");
 	//the address of the host
 	$siteAddress = "http://operation-rooster-snatch.nfshost.com";
 ?>
