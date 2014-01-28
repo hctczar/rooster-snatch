@@ -23,7 +23,7 @@ Logging in as a...
 </div>
   <div class="form-group">
     <label for="username" id="text1">Troop Number</label>
-    <input type="text" class="form-control" id="username" name="username">
+    <input type="text" class="form-control" id="username" name="username" autocorrect="off" autocapitalize="off">
   </div>
   <div class="form-group">
     <label for="passcode">Passcode</label>
@@ -61,11 +61,11 @@ Logging in as a...
 $troopMenu = 
 '<form method="post">
 	<div class="btn-group" style="margin-bottom:1em;">
-		<button name="page" class="btn btn-default" value="troopAccount" type="submit"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
-		<button name="page" class="btn btn-default" value="troopRoster" type="submit"><span class="glyphicon glyphicon-list-alt"></span><br>Roster</button>
-		<button name="page" class="btn btn-default" value="troopCampsite" type="submit"><span class="glyphicon glyphicon-home"></span><br>Campsites</button>
-		<button name="page" class="btn btn-default" value="troopEvents" type="submit"><span class="glyphicon glyphicon-tower"></span><br>Events</button>
-		<button name="page" class="btn btn-default" value="troopSchedule" type="submit"><span class="glyphicon glyphicon-calendar"></span><br>Schedule</button>
+		<button name="page" class="btn btn-default" value="troopAccount" type="submit" style="width:10em"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
+		<button name="page" class="btn btn-default" value="troopRoster" type="submit" style="width:10em"><span class="glyphicon glyphicon-list-alt"></span><br>Roster</button>
+		<button name="page" class="btn btn-default" value="troopCampsite" type="submit" style="width:10em"><span class="glyphicon glyphicon-home"></span><br>Campsites</button>
+		<button name="page" class="btn btn-default" value="troopEvents" type="submit" style="width:10em"><span class="glyphicon glyphicon-tower"></span><br>Events</button>
+		<button name="page" class="btn btn-default" value="troopSchedule" type="submit" style="width:10em"><span class="glyphicon glyphicon-calendar"></span><br>Schedule</button>
 	</div>
 </form>
 ';
@@ -209,9 +209,9 @@ $rosterEditor = ""
 $scoutMenu = '
 	<form method="post">
 		<div class="btn-group" style="margin-bottom:1em;">
-			<button type="submit" name="page" value="scoutAccount" class="btn-default btn"><span class="glyphicon glyphicon-cog"></span><br> Account Settings</button>
-			<button type="submit" name="page" value="scoutSignup" class="btn-default btn"><span class="glyphicon glyphicon-ok-circle"></span><br> Merit Badge Signup</button>
-			<button type="submit" name="page" value="scoutSchedule" class="btn-default btn"><span class="glyphicon glyphicon-calendar"></span><br> View Schedule</button>
+			<button type="submit" name="page" value="scoutAccount" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-cog"></span><br> Account Settings</button>
+			<button type="submit" name="page" value="scoutSignup" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-ok-circle"></span><br> Merit Badge Signup</button>
+			<button type="submit" name="page" value="scoutSchedule" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-calendar"></span><br> View Schedule</button>
 		</div>
 	</form>
 ';
@@ -258,7 +258,7 @@ $scoutSignup = ""
 	."<form method='post'>"
 	."<table>"
 	."<tr>"
-	."<td>Rank: </td><td><select name='rank' style = 'width:100%'>"
+	."<td>Rank: </td><td><select name='rank' class='form-control'>"
 	."    <option value='7'>Scout</option>"
 	."    <option value='6'>Tenderfoot</option>"
 	."    <option value='5'>Second</option>"
@@ -267,53 +267,33 @@ $scoutSignup = ""
 	."    <option value='2'>Life</option>"
 	."    <option value='1'>Eagle</option>"
 	."</select></td></tr>"
-	."<tr><td>Birthdate: </td><td><select name=\"moonth\" width = '8em'>"
-	."    <option value='1'>Jan</option>"
-	."    <option value='2'>Feb</option>"
-	."    <option value='3'>Mar</option>"
-	."    <option value='4'>Apr</option>"
-	."    <option value='5'>May</option>"
-	."    <option value='6'>Jun</option>"
-	."    <option value='7'>Jul</option>"
-	."    <option value='8'>Aug</option>"
-	."    <option value='9'>Sep</option>"
-	."    <option value='10'>Oct</option>"
-	."    <option value='11'>Nov</option>"
-	."    <option value='12'>Dec</option>"
-	."</select><select name=\"daay\" width = '8em'>";
-$lineString = ""
-	."	<option value='##iter##'>##iter##</option>";
-for ($iter = 0; $iter<31;$iter++)
-{
-$scoutSignup = $scoutSignup.str_replace("##iter##",$iter+1,$lineString);
-}
-$scoutSignup = $scoutSignup	."</select><select name=\"yeear\" width = '8em'>";
-$lineString = ""
-	."	<option value='##iter##'>##iter##</option>";
-for ($iter = 0; $iter<18-8;$iter++)
-{
-$scoutSignup = $scoutSignup.str_replace("##iter##",$iter+1995,$lineString);
-}
+	."<tr><td>Birthdate: </td><td><input type='date' name='bday' min='1995-01-01' max='2000-12-31' class='form-control'>";
 $scoutSignup = $scoutSignup	."</select></td></tr>"
-	."<tr><td colspan = '2'><br/></td></tr><tr><td>Choose Week: </td><td><select style='width:100%' name='week'>"
+	."<tr><td colspan = '2'><br/></td></tr><tr><td>Choose Week: </td><td><select class='form-control' name='week' id='weekSelect' onChange='fillBadges();'>"
 	."<option value='##week1##'>Week ##week1##</option>"
 	."<option value='##week2##'>Week ##week2##</option>"
 	."</select></td></tr></table><br/><br/>"
-	."Block A: <select name=\"blockA\">"
-	."	##blockA##"
-	."</select><br/>"
-	."Block B: <select name=\"blockB\">"
-	."	##blockB##"
-	."</select><br/>"
-	."Block C: <select name=\"blockC\">"
-	."	##blockC##"
-	."</select><br/>"
-	."Block D: <select name=\"blockD\">"
-	."	##blockD##"
-	."</select><br/>"
-	."<input type='hidden' name='page' value='scoutSignuper'>"
-	."<input type='submit' value='Submit Preferences' style='width:16em'>"
-	."</form>";	
+	."Block A: <select name=\"blockA\" class='form-control' id='blockA'><option value='none,none' id='A'>1st Choice</option>##blockA##</select><select name=\"blockABackup\" class='form-control' id='blockABackup'><option value='none,none' id='bA'>2nd Choice</option>##blockAb##</select><br/>"
+	."Block B: <select name=\"blockB\" class='form-control' id='blockB'><option value='none,none' id='B'>1st Choice</option>##blockB##</select><select name=\"blockBBackup\" class='form-control' id='blockBBackup'><option value='none,none' id='bB'>2nd Choice</option>##blockBb##</select><br/>"
+	."Block C: <select name=\"blockC\" class='form-control' id='blockC'><option value='none,none' id='C'>1st Choice</option>##blockC##</select><select name=\"blockCBackup\" class='form-control' id='blockCBackup'><option value='none,none' id='bC'>2nd Choice</option>##blockCb##</select><br/>"
+	."Block D: <select name=\"blockD\" class='form-control' id='blockD'><option value='none,none' id='D'>1st Choice</option>##blockD##</select><select name=\"blockDBackup\" class='form-control' id='blockDBackup'><option value='none,none' id='bD'>2nd Choice</option>##blockDb##</select><br/>"
+	."<button type='submit' class='btn btn-primary' name='page' value='scoutSignuper'>Register</button>"
+	."</form>"
+	."<script type='text/javascript'>"
+	."function fillBadges() {"
+	."	##badgesByWeek##"
+	."	var week=document.getElementById('weekSelect').value;"
+	."	document.getElementById('A'+badgeA[week]).selected=true;"
+	."	document.getElementById('B'+badgeB[week]).selected=true;"
+	."	document.getElementById('C'+badgeC[week]).selected=true;"
+	."	document.getElementById('D'+badgeD[week]).selected=true;"
+	."	document.getElementById('bA'+badgeAb[week]).selected=true;"
+	."	document.getElementById('bB'+badgeBb[week]).selected=true;"
+	."	document.getElementById('bC'+badgeCb[week]).selected=true;"
+	."	document.getElementById('bD'+badgeDb[week]).selected=true;"
+	."}"
+	."fillBadges();"
+	."</script>";
 	//##blockC##
 	//##blockB##
 	//##iter##

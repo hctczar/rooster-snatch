@@ -15,7 +15,7 @@ while ($row = mysql_fetch_array($result))
 //A function that takes a block letter as an argument and returns a registered MB
 function getRegistered($block, $week, $active)
 {
-    $result = mysql_query("SELECT * FROM wp_signups WHERE (week = '".$week."' AND block = '".$block."' AND scoutID = '".$active."')");
+    $result = mysql_query("SELECT * FROM wp_signups WHERE (year = '".mysql_real_escape_string($_SESSION['year'])."' AND week = '".$week."' AND block = '".$block."' AND scoutID = '".$active."' AND backup = '0')");
 	$row = mysql_fetch_array($result);
 	$badgeID = $row['badge'];
 	if ($badgeID == 'none')

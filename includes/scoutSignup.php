@@ -18,9 +18,9 @@ else
 }
 $scoutSignupEcho=str_replace("##week1##",$week1,$scoutSignupEcho);
 $scoutSignupEcho=str_replace("##week2##",$week2,$scoutSignupEcho);
-function fillOptions($block){
+function fillOptions($block,$backup){
 	$result = mysql_query("SELECT * FROM wp_badges WHERE block = '".mysql_real_escape_string($block)."' ORDER BY badge");
-	$stringAdder="<option value='none,none'>None</option>";
+	$stringAdder="";
 	$listOBadges = array();
 	while ($row = mysql_fetch_array($result))
 	{
@@ -72,17 +72,105 @@ function fillOptions($block){
 				$camp = " (East)";
 			}
 		}
-		$stringAdder=$stringAdder."<option value='".$idEast.",".$idWest."'>".$row["badge"].$camp."</option>";
+		$stringAdder=$stringAdder."<option id='".$backup.$block.$row["badge"]."' value='".$idEast.",".$idWest."'>".$row["badge"].$camp."</option>";
 		//add the badge with that name to our list-o-badges
 		$listOBadges[] = $row['badge'];
 	}
 	return $stringAdder;
 }
-$scoutSignupEcho=str_replace("##blockA##",fillOptions("A"),$scoutSignupEcho);
-$scoutSignupEcho=str_replace("##blockB##",fillOptions("B"),$scoutSignupEcho);
-$scoutSignupEcho=str_replace("##blockC##",fillOptions("C"),$scoutSignupEcho);
-$scoutSignupEcho=str_replace("##blockD##",fillOptions("D"),$scoutSignupEcho);
-
+$scoutSignupEcho=str_replace("##blockA##",fillOptions("A",''),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockB##",fillOptions("B",''),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockC##",fillOptions("C",''),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockD##",fillOptions("D",''),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockAb##",fillOptions("A",'b'),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockBb##",fillOptions("B",'b'),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockCb##",fillOptions("C",'b'),$scoutSignupEcho);
+$scoutSignupEcho=str_replace("##blockDb##",fillOptions("D",'b'),$scoutSignupEcho);
+//generate list of weeks for javascript funtion fillBadges();
+$year = mysql_real_escape_string($_SESSION['year']);
+$result129 = mysql_query("SELECT * FROM wp_roster WHERE (year = '".$year."' AND camperID = '".$active."') ORDER BY week");
+$badgeA=array();
+$badgeB=array();
+$badgeC=array();
+$badgeD=array();
+$badgeAb=array();
+$badgeBb=array();
+$badgeCb=array();
+$badgeDb=array();
+function getReg($block, $week, $active, $backup)
+{
+	$year = mysql_real_escape_string($_SESSION['year']);
+	$result = mysql_query("SELECT * FROM wp_signups WHERE (year = '".$year."' AND week = '".$week."' AND block = '".$block."' AND scoutID = '".$active."' AND backup = '".$backup."')");
+	$row = mysql_fetch_array($result);
+	if (is_array($row))
+	{
+		$result1=mysql_query("SELECT * FROM wp_badges WHERE id = '".mysql_real_escape_string($row["badge"])."'");
+		$row1=mysql_fetch_array($result1);
+		return "".$week." :'".$row1['badge']."'";
+	}
+}
+while ($row129 = mysql_fetch_array($result129))
+{
+	$week = mysql_real_escape_string($row129['week']);
+	$badgeA[]=getReg('A', $week, $active, '0');
+	$badgeB[]=getReg('B', $week, $active, '0');
+	$badgeC[]=getReg('C', $week, $active, '0');
+	$badgeD[]=getReg('D', $week, $active, '0');
+	$badgeAb[]=getReg('A', $week, $active, '1');
+	$badgeBb[]=getReg('B', $week, $active, '1');
+	$badgeCb[]=getReg('C', $week, $active, '1');
+	$badgeDb[]=getReg('D', $week, $active, '1');
+}
+$badgesByWeek="var badgeA={";
+for($i=0;$i<count($badgeA);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeA[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeB={";
+for($i=0;$i<count($badgeB);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeB[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeC={";
+for($i=0;$i<count($badgeC);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeC[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeD={";
+for($i=0;$i<count($badgeD);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeD[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeAb={";
+for($i=0;$i<count($badgeD);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeAb[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeBb={";
+for($i=0;$i<count($badgeD);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeBb[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeCb={";
+for($i=0;$i<count($badgeD);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeCb[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};var badgeDb={";
+for($i=0;$i<count($badgeD);$i++)
+{
+	$badgesByWeek=$badgesByWeek.$badgeDb[$i].",";
+}
+$badgesByWeek=rtrim($badgesByWeek, ",");
+$badgesByWeek=$badgesByWeek."};";
+$scoutSignupEcho=str_replace("##badgesByWeek##",$badgesByWeek,$scoutSignupEcho);
 echo "<br/>";
 echo $scoutSignupEcho;
 ?>

@@ -21,7 +21,7 @@ while ($row = mysql_fetch_array($result))
 	}
 	$name = $row["lastName"].", ".$row["firstName"];
 	//roll through signups to get badge ids, then roll through badges to get badge info like name and location. Do for all 4 blocks.
-	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'A'");
+	$result1 = mysql_query("SELECT * FROM wp_signups WHERE backup='0' AND scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'A'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeA = $row1["badge"];
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeA)."'");
@@ -29,7 +29,7 @@ while ($row = mysql_fetch_array($result))
 	$badgeAName = $row1["badge"];
 	$badgeALocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
-	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'B'");
+	$result1 = mysql_query("SELECT * FROM wp_signups WHERE backup='0' AND scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'B'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeB = $row1["badge"];
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeB)."'");
@@ -37,7 +37,7 @@ while ($row = mysql_fetch_array($result))
 	$badgeBName = $row1["badge"];
 	$badgeBLocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
-	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'C'");
+	$result1 = mysql_query("SELECT * FROM wp_signups WHERE backup='0' AND scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'C'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeC = $row1["badge"];
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeC)."'");
@@ -45,7 +45,7 @@ while ($row = mysql_fetch_array($result))
 	$badgeCName = $row1["badge"];
 	$badgeCLocation = ucfirst($row1["camp"])." ".$row1["Area"];
 	
-	$result1 = mysql_query("SELECT * FROM wp_signups WHERE scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'D'");
+	$result1 = mysql_query("SELECT * FROM wp_signups WHERE backup='0' AND scoutID = '".mysql_real_escape_string($row["camperID"])."' and week = '".mysql_real_escape_string($week)."' and block = 'D'");
 	$row1 = mysql_fetch_array($result1);
 	$badgeD = $row1["badge"];
 	$result1 = mysql_query("SELECT * FROM wp_badges where id = '".mysql_real_escape_string($badgeD)."'");

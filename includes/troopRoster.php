@@ -35,7 +35,7 @@ while ($row = mysql_fetch_array($result))
 	$ID = $row['camperID'];
 	//Check if the scout has registered for badges
 	$hasSigned = $no_mb_icon;
-	$result1 = mysql_query("SELECT * FROM wp_signups WHERE (scoutID = '".mysql_real_escape_string($ID)."' and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week1)."')");
+	$result1 = mysql_query("SELECT * FROM wp_signups WHERE (backup = '0' AND scoutID = '".mysql_real_escape_string($ID)."' and year = '".mysql_real_escape_string($_SESSION["year"])."' and week = '".mysql_real_escape_string($week1)."')");
 	$row1 = mysql_fetch_array($result1);
 	if (is_array($row1))
 	{
