@@ -63,8 +63,8 @@ $councilOptions =
 		<option value='Three Fires Council'>Three Fires</option>
 		<option value='Three Harbors Council'>Three Harbors</option>";
 		
-echo '<table class="table table-striped">';
-echo '<tr><th>Troop</th><th>Council</th><th>Email</th><th>Weeks</th><th colspan="1"></th></tr>';
+echo '<table class="table table-striped sortable">';
+echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th colspan="1" class="sorttable_nosort"></th></tr>';
 $result = mysql_query("SELECT * FROM wp_troops ORDER BY council, number");
 while ($row = mysql_fetch_array($result))
 {
@@ -79,13 +79,21 @@ while ($row = mysql_fetch_array($result))
 	if (count($weeks) > 0)
 	{
 		echo "<tr><form method='post'>";
-		echo "<td><input type='text' name='number' class='form-control' value='".$row['number']."' style='width:4em;'></td>";
-		echo "<td><select name='council' class='form-control'>
+		echo "<td sorttable_customkey='".$row['number']."'><input type='text' name='number' class='form-control' value='".$row['number']."' style='width:5em;'></td>";
+		echo "<td sorttable_customkey='".stripslashes($row['council'])."'><select name='council' class='form-control'>
 		<option value='".stripslashes($row['council'])."'>".str_replace(" Council","",stripslashes($row['council']))."</option>"
 		.$councilOptions
 		."</select></td>";
 		echo "<td><input type='text' name='email' class='form-control' value='".stripslashes($row['email'])."'></td>";
-		echo "<td>";
+		//find the earliest week in which a troop is camping. That week is used to sort the table by week.
+		$sort_week_column=0;
+		if (isset($weeks['6'])){$sort_week_column=6;}
+		if (isset($weeks['5'])){$sort_week_column=5;}
+		if (isset($weeks['4'])){$sort_week_column=4;}
+		if (isset($weeks['3'])){$sort_week_column=3;}
+		if (isset($weeks['2'])){$sort_week_column=2;}
+		if (isset($weeks['1'])){$sort_week_column=1;}
+		echo "<td sorttable_customkey='".$sort_week_column."'>";
 		if (isset($weeks['1'])){$week1=$weeks['1'];}
 		else {$week1='--Not Enrolled--';}
 		echo "<select name='week1'>

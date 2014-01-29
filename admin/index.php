@@ -45,6 +45,9 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
+table.sortable th:not(.sorttable_nosort):not(.sorttable_sorted):not(.sorttable_sorted_reverse):after { 
+    content: " \25B4\25BE" 
+}
 input[type="number"] {height:30px;}
 /* Much like commenting out text in Dreamweaver, applying Liam as a class makes an item grey.*/
 .Liam {background-color: buttonface;}
