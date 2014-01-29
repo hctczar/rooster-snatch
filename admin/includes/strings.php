@@ -2,97 +2,46 @@
 /*-------------------------------------------------------------------
                         LOGIN
 -------------------------------------------------------------------*/
-$login = '
+$kennyloggin = '
 <h2>Please Log In</h2>
 
 <form role="form" method="post">
-<div class="well">
-Logging in as a...
-<div class="radio">
-	<label>
-		<input type="radio" name="type" value="troop" onClick="setText(\'troop\')"" ##troopChecked##>
-		Troop Leader
-	</label>
-</div>
-<div class="radio">
-	<label>
-		<input type="radio" name="type" value="scout" onClick="setText(\'scout\')"" ##scoutChecked##>
-		Scout/Parent
-	</label>
-</div>
-</div>
   <div class="form-group">
-    <label for="username" id="text1">Troop Number</label>
+    <label for="username" id="text1">Username</label>
     <input type="text" class="form-control" id="username" name="username" autocorrect="off" autocapitalize="off">
   </div>
   <div class="form-group">
     <label for="passcode">Passcode</label>
     <input type="password" class="form-control" id="passcode" name="passcode">
   </div>
-  <span id=\'text2\'><input type=\'hidden\' name=\'page\' value=\'troop\'></span>
+  <span id=\'text2\'><input type=\'hidden\' name=\'page\' value=\'login\'></span>
   <button class="btn btn-primary" type="submit" value="Login!"><span class="glyphicon glyphicon-user"></span> Log In</button>
 </form>
 
 
 
-'
-	.""
-	."<script type='text/javascript'>"
-	."function setText(string) {"
-	."    if (string=='troop')"
-	."    {"
-	."        document.getElementById('text1').innerHTML = 'Troop Number';"
-	."        document.getElementById('text2').innerHTML = '<input type=\'hidden\' name=\'page\' value=\'troop\'>';"
-	."    }"
-	."    else if (string=='scout')"
-	."    {"
-	."        document.getElementById('text1').innerHTML = 'Username';"
-	."        document.getElementById('text2').innerHTML = '<input type=\'hidden\' name=\'page\' value=\'scout\'>';"
-	."    }"
-	."}"
-	."setText('##which##');"
-	."</script>";
-	//##scoutChecked##
-	//##troopChecked##
-	//##which##
+';
 /*-------------------------------------------------------------------
-                        TROOP MENU
+                        ADMIN MENU
 -------------------------------------------------------------------*/
-$troopMenu = 
+$adminMenu = 
 '<form method="post">
 	<div class="btn-group" style="margin-bottom:1em;">
-		<button name="page" class="btn btn-default" value="troopAccount" type="submit" style="width:10em"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
-		<button name="page" class="btn btn-default" value="troopRoster" type="submit" style="width:10em"><span class="glyphicon glyphicon-list-alt"></span><br>Roster</button>
-		<button name="page" class="btn btn-default" value="troopSchedule" type="submit" style="width:10em"><span class="glyphicon glyphicon-calendar"></span><br>Schedule</button>
-		<button name="page" class="btn btn-default" value="troopEvents" type="submit" style="width:10em"><span class="glyphicon glyphicon-tower"></span><br>Events</button>
-		<button name="page" class="btn btn-default" value="troopCampsite" type="submit" style="width:10em"><span class="glyphicon glyphicon-home"></span><br>Campsites</button>
+		<button name="page" class="btn btn-default" value="adminAccount" type="submit" style="width:10em"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
+		<button name="page" class="btn btn-default" value="adminTroops" type="submit" style="width:10em"><span class="glyphicon glyphicon-list-alt"></span><br>Add Troops</button>
+		<button name="page" class="btn btn-default" value="adminEvents" type="submit" style="width:10em"><span class="glyphicon glyphicon-calendar"></span><br>Add Events</button>
+		<button name="page" class="btn btn-default" value="adminBadges" type="submit" style="width:10em"><span class="glyphicon glyphicon-tower"></span><br>Add Badgers</button>
+		<button name="page" class="btn btn-default" value="adminRoster" type="submit" style="width:10em"><span class="glyphicon glyphicon-home"></span><br>View Rosters</button>
 	</div>
 </form>
 ';
 /*-------------------------------------------------------------------
-                        TROOP ACCOUNT
+                        ADMIN ACCOUNT
 -------------------------------------------------------------------*/
-$troopAccount = '
+$adminAccount = '
 <form method="post" role="form">
-	<div class="form-group">
-		<label for="troop">Troop Number</label>
-		<input type="text" id="troop" name="troop" value="##troop##" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="email">Email Address</label>
-		<input type="email" id="email" name="email" value="##email##" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="council">Council:</label>
-		<select name=\'council\' id=\'council\' onChange=\'showOther()\' class=\'form-control\'>
-			<option value=\'##council##\'>##council##</option>"
-			<option value=\'North East Illinois Council\'>North East Illinois Council</option>"
-			<option value=\'other\'>Other</option>"
-		</select>
-		<div id="other"></div>
-	</div>
-			<strong>Passcode:</strong><br>
-		If you would like to choose a new passcode, please type the new passcode below. <br><br>
+	<strong>Passcode:</strong><br>
+	If you would like to choose a new passcode, please type the new passcode below. <br><br>
 	<div class="well">
 		<div class="form-group">
 			<label for="passcode1">New Passcode:</label>
@@ -102,40 +51,28 @@ $troopAccount = '
 			<label for="passcode2">Please re-type your new passcode:</label>
 			<input type=\'password\' name=\'passcode2\' id=\'passcode2\' onChange=\'matchPasscode()\' class=\'form-control\' onMouseOut=\'matchPasscode()\' autocomplete=\'off\'>
 		</div>
-		<div id=\'mismatch\' style=
-		\'color:red\'></div>
-		<input type=\'hidden\' name=\'page\' value=\'troopAccountUpdate\'>
+		<div id="mismatch" style="color:red"></div>
+		<input type="hidden" name="page" value="adminAccountUpdate">
 
 	</div>
 
 			<button type="submit" class="btn btn-primary">Save Changes to Account</button>
 
-</form>'
-	."<script type='text/javascript'>"
-	."	function showOther() {"
-	."		if (document.getElementById('council').value == 'other')"
-	."		{"
-	."			document.getElementById('other').innerHTML = '<input type=\"text\" name=\"councilOther\" value=\"##council##\">';"
-	."		}"
-	."		else"
-	."		{"
-	."			document.getElementById('other').innerHTML = '';"
-	."		}"
-	."	}"
-	."	function matchPasscode() {"
-	."		if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)"
-	."		{"
-	."			document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
-	."          document.getElementById('submit').innerHTML = 'OOPS';"
-	."		}"
-	."		else"
-	."		{"
-	."			document.getElementById('mismatch').innerHTML = '';"
-	."          document.getElementById('submit').innerHTML = '<input type=\'submit\' value=\'Sumbit Changes\'>';"
-	."		}"
-	."	}"
-	.""
-	."</script>";
+</form>
+<script type="text/javascript">
+	function matchPasscode() {
+		if (document.getElementById("passcode1").value != document.getElementById("passcode2").value)
+		{
+			document.getElementById("mismatch").innerHTML = "Passcodes do not match";
+          document.getElementById("submit").innerHTML = "OOPS";
+		}
+		else
+		{
+			document.getElementById("mismatch").innerHTML = "";
+          document.getElementById("submit").innerHTML = "<input type=\"submit\" value=\"Sumbit Changes\">";
+		}
+	}
+	</script>';
 	//##email##
 	//##council##
 	//##troop##

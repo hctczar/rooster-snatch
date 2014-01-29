@@ -5,7 +5,8 @@ $result = mysql_query("SELECT * FROM wp_roster WHERE troopID = '".mysql_real_esc
 $week = 0;
 //csvbuilder string will be passed into download() function.
 $csvbuilder = "'";
-echo "<table border = '1' cellpadding='4'>";
+echo "<button type='submit' value='Download Schedule' class='btn btn-primary'>Download Schedule <span class='glyphicon glyphicon-download-alt'></span></button><br/><br/>";
+echo "<table border = '1' cellpadding='4' style='font-size:80%;'>";
 while ($row = mysql_fetch_array($result))
 {
 	if ($week != $row['week'])
@@ -14,7 +15,7 @@ while ($row = mysql_fetch_array($result))
 		$week =$row['week'];
 		echo "<tr><th colspan = '9' align='center'>Week ".$week."</th></tr>";
 		$csvbuilder = $csvbuilder."Week ".$week.",,,,,,,,%0A";
-		echo "<tr><th></th><th colspan = '2'>Block A</th><th colspan = '2' class='Liam'>Block B</th><th colspan = '2'>Block C</th><th colspan = '2' class='Liam'>Block D</th>";
+		echo "<tr><th></th><th colspan = '2' style='width:22.5%;'>Block A</th><th colspan = '2' class='Liam' style='width:22.5%;'>Block B</th><th colspan = '2' style='width:22.5%;'>Block C</th><th colspan = '2' class='Liam' style='width:22.5%;'>Block D</th>";
 		$csvbuilder = $csvbuilder.",Block A,,Block B,,Block C,,Block D,%0A";
 		echo "<tr><th>Name</th><th>Badge</th><th>Location</th><th class='Liam'>Badge</th><th class='Liam'>Location</th><th>Badge</th><th>Location</th><th class='Liam'>Badge</th><th class='Liam'>Location</th>";
 		$csvbuilder = $csvbuilder."Name,Badge,Location,Badge,Location,Badge,Location,Badge,Location%0A";
@@ -60,7 +61,7 @@ while ($row = mysql_fetch_array($result))
 echo "</table>";
 $csvbuilder = $csvbuilder."'";
 echo "<br/>";
-echo "<input type='submit' value='Download Schedule' style='width:16em' onClick='download();'>";
+echo "<button type='submit' value='Download Schedule' class='btn btn-primary'>Download Schedule <span class='glyphicon glyphicon-download-alt'></span></button>";
 //build function to print out csv of schedule.
 //Why is there a regex in this? Welp, if you don't escape the blank space characters, they get ignored. Andthatisabadthing. However, this also escapes the newline characters necessary for building a CSV. So we had to unescape those. Using a goddam regular expression for some reason.
 echo "<script>

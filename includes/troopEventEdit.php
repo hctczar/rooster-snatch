@@ -15,10 +15,10 @@ if ($row['troopID'] == $_SESSION["active"])
 	$available = (int)$row1['enrollment'] - (int)$row1['taken'] + (int)$registeredInitial;
 	echo "<h3>Use form to change the number of scouts/adults attending</h3>";
 	echo "<form method = 'post'>"
-	."<input type='number' value = '". $registeredInitial ."' name = 'registered' min='1' max = '". $available ."' height = '100px'>"
-	."<input type='hidden' name='page' value='troopEventUpdate'><br/>"
+	."<input type='number' value = '". $registeredInitial ."' name = 'registered' min='1' max = '". $available ."' class='form-control' style='width:10%; display:inline;'> (Max Available: ".$available.")<br/>"
+	."<input type='hidden' name='page' value='troopEventUpdate'>"
 	."<input type='hidden' name='event' value='". $eventID ."'><br/>"
-	."<input type='submit' value='Sumbit Changes'>"
+	."<button type='submit' value='Sumbit Changes' class='btn btn-primary'>Submit Changes <span class='glyphicon glyphicon-arrow-right'></span></button>"
 	."</form>";
 }
 //If $_POST was passed an event that the troop didn't own, we can only assume javascript hacking...

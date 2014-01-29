@@ -1,18 +1,21 @@
 <?php
 $eventAdder = ""
+	."<div style='width:66.6%;'>"
+	.getCopy("event_register")."<br/>"
 	."<form method='post'>"
-	."<select name='event' onChange='populate()' id = 'event'>"
+	."<select name='event' onChange='populate()' id = 'event' class='form-control'>"
 	."##eventList##"
 	."</select>"
-	."<select name='week' onChange='populate1()' id='week'>"
+	."<select name='week' onChange='populate1()' id='week' class='form-control' style='width:33%; display:inline;'>"
 	."</select>"
-	."<select name='time' id='time'>"
+	."<select name='time' id='time' class='form-control'  style='width:67%;  display:inline;'>"
 	."</select>"
-	."<input type='number' name='campers' placeholder='# of campers/adults' min='1'>"
+	."<input type='number' name='campers' placeholder='# of campers/adults' min='1' class='form-control'>"
 	."<br/>"
 	."<input type='hidden' name='page' value='troopEventAdd'>"
-	."<input type='submit' value='Add'>"
+	."<button type='submit' value='Add' class='btn btn-primary pull-right'>Register For Event <span class='glyphicon glyphicon-arrow-right'></span></button>"
 	."</form>"
+	."</div>"
 	."<script type='text/javascript'>"
 	."function populate() {var len = document.getElementById('week').length;for (var i=0; i<len; i++){document.getElementById('week').remove(0);}var len = document.getElementById('time').length;for (var i=0; i<len; i++){document.getElementById('time').remove(0);}";
 	$result = mysql_query("SELECT * FROM wp_events WHERE year = '".$_SESSION["year"]."' ORDER BY name");
@@ -117,8 +120,8 @@ $eventAdder = ""
 	
 echo $troopMenu;
 $active = $_SESSION["active"];
-echo "<br/><table border='1' class='sortable'>";
-echo "<tr><th>Event Title</th><th id='timeHeader'>Time</th><th>Signed Up</th><th colspan='2' class='sorttable_nosort'></th><tr>";
+echo "<br/><table class='table table-striped sortable'>";
+echo "<tr><th style='text-align:center;'>Event Title</th><th id='timeHeader' style='text-align:center;'>Time</th><th style='text-align:center;'>Signed Up</th><th colspan='2' class='sorttable_nosort'></th><tr>";
 $result=mysql_query("SELECT * FROM wp_eventsSigned WHERE (troopID = '".mysql_real_escape_string($active)."') ORDER BY eventID");
 while ($row = mysql_fetch_array($result))
 {
@@ -140,7 +143,7 @@ while ($row = mysql_fetch_array($result))
 	$time = date('g:ia',$time);
 	$registered = $row['registered'];
 	$title = stripslashes($row3["name"]);
-	echo "<tr><td align='center'>".$title."</td><td align='center' sorttable_customkey='".$sortTime."'>".$day." at ".$time.", Week ".$week."</td><td align='center'>".$registered."</td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventEdit'><input type='submit' value='edit' style='width:8em'></form></td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventDelete'><input type='submit' value='delete' style='width:8em'></form></td></tr>";				
+	echo "<tr><td align='center'>".$title."</td><td align='center' sorttable_customkey='".$sortTime."'>".$day." at ".$time.", Week ".$week."</td><td align='center'>".$registered."</td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventEdit'><button type='submit' value='edit' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Edit</button></form></td><td align='middle'><form method='post'><input type='hidden' name='event' value='".$row['id']."'><input type='hidden' name='page' value='troopEventDelete'><button type='submit' value='delete' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Delete</button></form></td></tr>";				
 }
 echo "</table><br/>";
 echo $eventAdder;
