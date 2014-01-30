@@ -81,7 +81,7 @@ $troopAccount = '
 	<div class="form-group">
 		<label for="email">Email Address</label>
 		<input type="email" id="email" name="email" value="##email##" class="form-control">
-	</div>
+	</div>'/*
 	<div class="form-group">
 		<label for="council">Council:</label>
 		<select name=\'council\' id=\'council\' onChange=\'showOther()\' class=\'form-control\'>
@@ -90,8 +90,8 @@ $troopAccount = '
 			<option value=\'other\'>Other</option>"
 		</select>
 		<div id="other"></div>
-	</div>
-			<strong>Passcode:</strong><br>
+	</div>*/
+			.'<strong>Passcode:</strong><br>
 		If you would like to choose a new passcode, please type the new passcode below. <br><br>
 	<div class="well">
 		<div class="form-group">
