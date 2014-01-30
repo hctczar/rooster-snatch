@@ -2,52 +2,107 @@
 $active = $_SESSION["active"];
 echo $adminMenu;
 
-$siteOptions= 
-		"<option value='--Not Enrolled--'>--Not Enrolled--</option>
-		<option value='Blackfoot A'>Blackfoot A</option>
-		<option value='Blackfoot B'>Blackfoot B</option>
-		<option value='Cheyenne A'>Cheyenne A</option>
-		<option value='Cheyenne B'>Cheyenne B</option>
-		<option value='Chippewa A'>Chippewa A</option>
-		<option value='Chippewa B'>Chippewa B</option>
-		<option value='Commanche A'>Commanche A</option>
-		<option value='Commanche B'>Commanche B</option>
-		<option value='Delaware A'>Delaware A</option>
-		<option value='Delaware B'>Delaware B</option>
-		<option value='Iroquois A'>Iroquois A</option>
-		<option value='Iroquois B'>Iroquois B</option>
-		<option value='Menominee A'>Menominee A</option>
-		<option value='Menominee B'>Menominee B</option>
-		<option value='Mohawk A'>Mohawk A</option>
-		<option value='Mohawk B'>Mohawk B</option>
-		<option value='Shawnee A'>Shawnee A</option>
-		<option value='Shawnee B'>Shawnee B</option>
-		<option value='Sioux A'>Sioux A</option>
-		<option value='Sioux B'>Sioux B</option>
-		<option value='Boone A'>Boone A</option>
-		<option value='Boone B'>Boone B</option>
-		<option value='Boone C'>Boone C</option>
-		<option value='Bowie A'>Bowie A</option>
-		<option value='Bowie B'>Bowie B</option>
-		<option value='Bridger A'>Bridger A</option>
-		<option value='Bridger B'>Bridger B</option>
-		<option value='Carson A'>Carson A</option>
-		<option value='Carson B'>Carson B</option>
-		<option value='Clark A'>Clark A</option>
-		<option value='Clark B'>Clark B</option>
-		<option value='Cody A'>Cody A</option>
-		<option value='Cody B'>Cody B</option>
-		<option value='Cody C'>Cody C</option>
-		<option value='Crocket'>Crocket</option>
-		<option value='Lewis A'>Lewis A</option>
-		<option value='Lewis B'>Lewis B</option>
-		<option value='Powell A'>Powell A</option>
-		<option value='Powell B'>Powell B</option>
-		<option value='Fremont'>Fremont</option>
-		<option value='Whitney A'>Whitney A</option>
-		<option value='Whitney B'>Whitney B</option>";
+$campsites = array();
+$campsites[]=array('east','Blackfoot',array('A','B','AB'));
+$campsites[]=array('east','Cheyenne',array('A','B','AB'));
+$campsites[]=array('east','Chippewa',array('A','B','AB'));
+$campsites[]=array('east','Commanche',array('A','B','AB'));
+$campsites[]=array('east','Delaware',array('A','B','AB'));
+$campsites[]=array('east','Iroquois',array('A','B','AB'));
+$campsites[]=array('east','Menominee',array('A','B','AB'));
+$campsites[]=array('east','Mohawk',array('A','B','AB'));
+$campsites[]=array('east','Shawnee',array('A','B','AB'));
+$campsites[]=array('east','Sioux',array('A','B','AB'));
+$campsites[]=array('west','Boone',array('A','B','C','AB','AC','BC','ABC'));
+$campsites[]=array('west','Bowie',array('A','B','AB'));
+$campsites[]=array('west','Bridger',array('A','B','AB'));
+$campsites[]=array('west','Carson',array('A','B','AB'));
+$campsites[]=array('west','Clark',array('A','B','AB'));
+$campsites[]=array('west','Cody',array('A','B','C','AB','AC','BC','ABC'));
+$campsites[]=array('west','Crocket',array('A'));
+$campsites[]=array('west','Lewis',array('A','B','AB'));
+$campsites[]=array('west','Powell',array('A','B','AB'));
+$campsites[]=array('west','Fremont',array('A'));
+$campsites[]=array('west','Whitney',array('A','B','AB'));
+//builds a site option string to populate the select elements. ALSO builds an identical (but 1000% javascriptier and 30% more associative) array client side. Which could be fun to play with later.
+$siteOptions= "";
+$javaSiteArray = "<script>var sites = new Array();";
+for($i=0;$i<count($campsites);$i++)
+{
+	$javaSiteArray .= "sites['".$campsites[$i][1]."']=['".$campsites[$i][0]."','".$campsites[$i][1]."',[";
+	for ($j=0;$j<count($campsites[$i][2]);$j++)
+	{
+		$javaSiteArray .="'".$campsites[$i][2][$j]."',";
+	}
+	$javaSiteArray = trim($javaSiteArray,',');
+	$javaSiteArray .= "]];";
+	$siteOptions = $siteOptions."<option class='".$campsites[$i][0]."' value='".$campsites[$i][1]."'>".$campsites[$i][1]."</option>";
+}
+$javaSiteArray .="</script>";
+echo $javaSiteArray;
+//builds those site options even more
+$resultNo=0;
+function showSelect($week)
+{
+	global $weeks, $subsites, $siteOptions, $resultNo;
+	if (isset ($weeks[$week]))
+	{
+		$site = $weeks[$week];
+		$subsite = $subsites[$week];
+		echo "<table><tr><td><select class='siteSelect".$week."' name = 'week".$week."' id='".$resultNo."caller".$week."' onchange='buildSubSites(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\");checkConflicts(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\",\"".$week."\");'>
+		<option value='".$site."'>".$site."</option>"
+		.$siteOptions
+		."</select></td><td>
+		<select class='subsiteSelect".$week."' name = 'subSite".$week."' id='".$resultNo."subSite".$week."' onmouseover='buildSubSites(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\");' onchange='checkConflicts(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\",\"".$week."\");'><option value='".$subsite."'>".$subsite."</option></select>
+		</td></tr></table>";
+	}
+}
+?>
+
+<script>
+function checkConflicts(subsite,site,week)
+{
+	activeSite = document.getElementById(site).value;
+	if (!activeSite){return;}
+	activeSubsite = document.getElementById(subsite).value;
+	var resSites = document.getElementsByClassName('siteSelect'+week);
+	var resSubsites = document.getElementsByClassName('subsiteSelect'+week);
+	for (var i=0;i<resSites.length;i++)
+	{
+		if (document.getElementById(site) === resSites[i])
+		{
+			continue;
+		}
+		if (activeSite == resSites[i].value)
+		{
+			for (var j=0;j<activeSubsite.length;j++)
+			{
+				if (resSubsites[i].value.search(activeSubsite[j]) != -1)
+				{
+					alert("Another troop is signed up for "+resSites[i].value+" "+resSubsites[i].value+" during week "+week+"!");
+				}
+			}
+		}
+	}
+}
+function buildSubSites(label,caller)
+{
+	activeSite = document.getElementById(caller).value;
+	subSelector = document.getElementById(label);
+	stringorama= '<option value="'+subSelector.value+'">'+subSelector.value+'</option>';
+	for (var i=0;i<sites[activeSite][2].length;i++)
+	{
+		stringorama += '<option value="'+sites[activeSite][2][i]+'">'+sites[activeSite][2][i]+'</option>';
+	}
+	subSelector.innerHTML=stringorama;
+}
+</script>
+<?php
 $councilOptions = 
-		"<option value='North East Illinois Council'>North East Illinois</option>
+		"<option value='NEIC Aptakisic'>NEIC Aptakisic</option>
+		<option value='NEIC North Star'>NEIC North Star</option>
+		<option value='NEIC Potawatomi'>NEIC Potawatomi</option>
+		<option value='NEIC Provisional'>NEIC Provisional</option>
 		<option value='Bay Lakes Council'>Bay Lakes</option>
 		<option value='Blackhawk Area Council'>Blackhawk Area</option>
 		<option value='Chicago Area Council'>Chicago Area</option>
@@ -62,9 +117,18 @@ $councilOptions =
 		<option value='Rainbow Area Council'>Rainbow Area</option>
 		<option value='Three Fires Council'>Three Fires</option>
 		<option value='Three Harbors Council'>Three Harbors</option>";
-		
-echo '<table class="table table-striped sortable">';
-echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th colspan="1" class="sorttable_nosort"></th></tr>';
+?>
+<button class='btn btn-primary' onclick="viewTable();">View / Hide List</button><br/><br/>
+<script>
+function viewTable()
+{
+	if (document.getElementById('troopList').style.display == 'none'){document.getElementById('troopList').style.display = 'block';}
+	else {document.getElementById('troopList').style.display = 'none';}
+}
+</script>
+<?php		
+echo '<table class="table table-striped sortable" id="troopList" style="display:none">';
+echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th class="sorttable_nosort">Sites</th><th colspan="1" class="sorttable_nosort"></th></tr>';
 $result = mysql_query("SELECT * FROM wp_troops ORDER BY council, number");
 while ($row = mysql_fetch_array($result))
 {
@@ -72,9 +136,11 @@ while ($row = mysql_fetch_array($result))
 	$year = mysql_real_escape_string($_SESSION['year']);
 	$result1 = mysql_query("SELECT * FROM wp_troopsMeta WHERE (troopID = '".$troopID."' AND year = '".$year."') ORDER BY week");
 	$weeks = array();
+	$subsites = array();
 	while ($row1 = mysql_fetch_array($result1))
 	{
 		$weeks[$row1['week']] = stripslashes($row1['campsite']);
+		$subsites[$row1['week']] = stripslashes($row1['subsite']);
 	}
 	if (count($weeks) > 0)
 	{
@@ -87,53 +153,40 @@ while ($row = mysql_fetch_array($result))
 		echo "<td><input type='text' name='email' class='form-control' value='".stripslashes($row['email'])."'></td>";
 		//find the earliest week in which a troop is camping. That week is used to sort the table by week.
 		$sort_week_column=0;
-		if (isset($weeks['6'])){$sort_week_column=6;}
-		if (isset($weeks['5'])){$sort_week_column=5;}
-		if (isset($weeks['4'])){$sort_week_column=4;}
-		if (isset($weeks['3'])){$sort_week_column=3;}
-		if (isset($weeks['2'])){$sort_week_column=2;}
-		if (isset($weeks['1'])){$sort_week_column=1;}
+		$checkWeek1 = "";
+		$checkWeek2 = "";
+		$checkWeek3 = "";
+		$checkWeek4 = "";
+		$checkWeek5 = "";
+		$checkWeek6 = "";
+		$sort_week_column=0;
+		if (isset($weeks['6'])){$sort_week_column=60; $checkWeek6 = "checked='true' ";}
+		if (isset($weeks['5'])){$sort_week_column=50 + (bool)$checkWeek6; $checkWeek5 = "checked='true' ";}
+		if (isset($weeks['4'])){$sort_week_column=40; $checkWeek4 = "checked='true' ";}
+		if (isset($weeks['3'])){$sort_week_column=30 + (bool)$checkWeek4; $checkWeek3 = "checked='true' ";}
+		if (isset($weeks['2'])){$sort_week_column=20; $checkWeek2 = "checked='true' ";}
+		if (isset($weeks['1'])){$sort_week_column=10 + (bool)$checkWeek2; $checkWeek1 = "checked='true' ";}
 		echo "<td sorttable_customkey='".$sort_week_column."'>";
-		if (isset($weeks['1'])){$week1=$weeks['1'];}
-		else {$week1='--Not Enrolled--';}
-		echo "<select name='week1'>
-		<option value='".$week1."'>".$week1."</option>"
-		.$siteOptions
-		."</select><br/>";
-		if (isset($weeks['2'])){$week2=$weeks['2'];}
-		else {$week2='--Not Enrolled--';}
-		echo "<select name='week2'>
-		<option value='".$week2."'>".$week2."</option>"
-		.$siteOptions
-		."</select><br/>";
-		if (isset($weeks[3])){$week3=$weeks[3];}
-		else {$week3='--Not Enrolled--';}
-		echo "<select name='week3'>
-		<option value='".$week3."'>".$week3."</option>"
-		.$siteOptions
-		."</select><br/>";
-		if (isset($weeks['4'])){$week4=$weeks['4'];}
-		else {$week4='--Not Enrolled--';}
-		echo "<select name='week4'>
-		<option value='".$week4."'>".$week4."</option>"
-		.$siteOptions
-		."</select><br/>";
-		if (isset($weeks['5'])){$week5=$weeks['5'];}
-		else {$week5='--Not Enrolled--';}
-		echo "<select name='week5'>
-		<option value='".$week5."'>".$week5."</option>"
-		.$siteOptions
-		."</select><br/>";
-		if (isset($weeks['6'])){$week6=$weeks['6'];}
-		else {$week6='--Not Enrolled--';}
-		echo "<select name='week6'>
-		<option value='".$week6."'>".$week6."</option>"
-		.$siteOptions
-		."</select>";
+		echo "<table><tr><th class='sorttable_nosort'>1</th><th class='sorttable_nosort'>2</th><th class='sorttable_nosort'>3</th><th class='sorttable_nosort'>4</th><th class='sorttable_nosort'>5</th><th class='sorttable_nosort'>6</th></tr><tr>";
+		echo "<td><input name='weeks[]' type='checkbox' value='1' $checkWeek1/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' value='2' $checkWeek2/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' value='3' $checkWeek3/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' value='4' $checkWeek4/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' value='5' $checkWeek5/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' value='6' $checkWeek6/></td>";
+		echo "</tr></table>";
+		echo "</td><td>";
+		showSelect(1);
+		showSelect(2);
+		showSelect(3);
+		showSelect(4);
+		showSelect(5);
+		showSelect(6);
 		echo "</td>";
 		echo "<td><input type='hidden' name='troop' value='".$row['id']."'><input type='hidden' name='page' value='adminTroopSave'><button type='submit' value='save' class='btn btn-primary'><span class='glyphicon glyphicon-floppy-saved'></span> Save</button></form></td>";
 		echo "</tr>";
 	}
+	$resultNo+=1;
 }
 echo "</table>";
 
@@ -144,23 +197,57 @@ echo "<select name='council' class='form-control' style='width:33%;'>"
 .$councilOptions
 ."</select>";
 echo "<input type='text' name='email' class='form-control' placeholder='Email' style='width:33%;'>";
-echo "Week 1: <select name='week1'>"
-.$siteOptions
-."</select><br/>";
-echo "Week 2: <select name='week2'>"
-.$siteOptions
-."</select><br/>";
-echo "Week 3: <select name='week3'>"
-.$siteOptions
-."</select><br/>";
-echo "Week 4: <select name='week4'>"
-.$siteOptions
-."</select><br/>";
-echo "Week 5: <select name='week5'>"
-.$siteOptions
-."</select><br/>";
-echo "Week 6: <select name='week6'>"
-.$siteOptions
-."</select><br/>";
+echo "<table><tr><th class='sorttable_nosort'>Select Weeks: </th><th class='sorttable_nosort'>1</th><th class='sorttable_nosort'>2</th><th class='sorttable_nosort'>3</th><th class='sorttable_nosort'>4</th><th class='sorttable_nosort'>5</th><th class='sorttable_nosort'>6</th></tr><tr>";
+		echo "<td></td><td><input name='weeks[]' type='checkbox' id='checkWeek1' value='1' onchange='showAddWeeks(1)'/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' id='checkWeek2' value='2' onchange='showAddWeeks(2)'/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' id='checkWeek3' value='3' onchange='showAddWeeks(3)'/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' id='checkWeek4' value='4' onchange='showAddWeeks(4)'/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' id='checkWeek5' value='5' onchange='showAddWeeks(5)'/></td>";
+		echo "<td><input name='weeks[]' type='checkbox' id='checkWeek6' value='6' onchange='showAddWeeks(6)'/></td>";
+		echo "</tr></table>";
+?>
+<script>
+function showAddWeeks(week)
+{
+	if (document.getElementById('checkWeek'+week).checked == true)
+	{
+		document.getElementById('addWeek'+week).style.display='inline';
+	}
+	if (document.getElementById('checkWeek'+week).checked == false)
+	{
+		document.getElementById('addWeek'+week).style.display='none';
+	}
+}
+function getSubsites(label,caller)
+{
+	activeSite = document.getElementById(caller).value;
+	subSelector = document.getElementById(label);
+	stringorama= '';
+	for (var i=0;i<sites[activeSite][2].length;i++)
+	{
+		stringorama += '<option value="'+sites[activeSite][2][i]+'">'+sites[activeSite][2][i]+'</option>';
+	}
+	subSelector.innerHTML=stringorama;
+}
+</script>
+<?php
+function buildSelect($week)
+{
+	global $siteOptions;
+	echo "<span id='addWeek".$week."' style='display:none;'> Week ".$week.": 
+	<select name='week".$week."' id='addWeekSelect".$week."' onchange='getSubsites(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\"); checkConflicts(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\",\"".$week."\");'>"
+		."<option value=''>save for later</option>"
+		.$siteOptions
+	."</select>
+	<select name = 'subSite".$week."' id='addSubweekSelect".$week."' onchange='checkConflicts(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\",\"".$week."\");'>
+		<option value=''> </option>
+	</select><br/></span>";
+}
+buildSelect(1);
+buildSelect(2);
+buildSelect(3);
+buildSelect(4);
+buildSelect(5);
+buildSelect(6);
 echo "<input type='hidden' name='page' value='adminTroopAdd'><button type='submit' value='Add Troop' class='btn btn-primary'><span glyphicon glyphicon-arrow-right></span> Add Troop</button></form>";
 ?>
