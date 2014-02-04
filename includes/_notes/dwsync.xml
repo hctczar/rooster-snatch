@@ -21,7 +21,7 @@
 <file name="troopEventAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130352402848852439" remote="130353211610000000" Dst="1" />
 <file name="troopEventEdit.php" server="ssh.phx.nearlyfreespeech.net" local="130354157102986333" remote="130354157100000000" Dst="1" />
 <file name="troopEventUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130352402849062451" remote="130353211620000000" Dst="1" />
-<file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130352402848482418" remote="130353211440000000" Dst="1" />
+<file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130360198119797565" remote="130360198110000000" Dst="1" />
 <file name="troopSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130355890686714196" remote="130355890780000000" Dst="1" />
 <file name="troopResetPassword.php" server="ssh.phx.nearlyfreespeech.net" local="130352475843057469" remote="130353211530000000" Dst="1" />
 <file name="troopResetPasswordUsr.php" server="ssh.phx.nearlyfreespeech.net" local="130352402849592482" remote="130353211540000000" Dst="1" />

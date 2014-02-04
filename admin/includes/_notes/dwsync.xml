@@ -8,4 +8,8 @@
 <file name="adminTroops.php" server="ssh.phx.nearlyfreespeech.net" local="130355320359250330" remote="130355320350000000" Dst="1" />
 <file name="adminTroopSave.php" server="ssh.phx.nearlyfreespeech.net" local="130355266006591535" remote="130355266000000000" Dst="1" />
 <file name="adminTroopAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130355334380702311" remote="130355334380000000" Dst="1" />
+<file name="adminBadges.php" server="ssh.phx.nearlyfreespeech.net" local="130360264034407665" remote="130360264020000000" Dst="1" />
+<file name="adminBadgeAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130360263062372068" remote="130360263040000000" Dst="1" />
+<file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130360201862991663" remote="130360201910000000" Dst="1" />
+<file name="adminBadgeDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130360262923694136" remote="130360262970000000" Dst="1" />
 </dwsync>

@@ -81,6 +81,40 @@ function getCopy($shortTag)
 	else
 		return false;
 }
+function getOptions($shortTag, $sort = true, $options = array())
+{
+	$entries = getCopy($shortTag);
+	//list must be comma delineated. Let's explode those commas
+	$entries = explode(",",$entries);
+	if (! function_exists("cmp"))
+	{
+		function cmp($a, $b)
+		{
+			$a = ltrim(rtrim($a));
+			$b = ltrim(rtrim($b));
+			if ($a == $b){return 0;}
+			if ($a > $b){return 1;}
+			if ($a < $b){return -1;}
+		}
+	}
+	if ($sort){usort($entries,"cmp");}
+	$entryOptions = "";
+	for($x=0 ; $x < count($entries) ; $x++)
+	{
+		//remove any leading and trailing whitespace.
+		$label = ltrim(rtrim($entries[$x]));
+		//let's format them as select options.
+		$entries[$x] = "<option value = '".$label."'";
+		for ($y=0 ; $y < count($options) ; $y++)
+		{
+			//Add any random options passed in.
+			$entries[$x] .= " ".$options[$y]." ";
+		}
+		$entries[$x] .= ">".$label."</option>";
+		$entryOptions .= $entries[$x];
+	}
+	return $entryOptions;
+}
 ?>
 
 <?php
@@ -167,25 +201,25 @@ function getCopy($shortTag)
 		include("includes/adminTroopAdd.php");
 	}
 	/*------------------------------------------------
-	                  SCOUT SCHEDULE
+	                  ADMIN BADGES
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "scoutSchedule")
+	elseif ($_POST["page"] == "adminBadges")
 	{
-		include("includes/scoutSchedule.php");
+		include("includes/adminBadges.php");
 	}
 	/*------------------------------------------------
-	                  TROOP
+	                  ADMIN BADGE ADD
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troop")
+	elseif ($_POST["page"] == "adminBadgeAdd")
 	{
-		include("includes/troop.php");
+		include("includes/adminBadgeAdd.php");
 	}
 	/*------------------------------------------------
-	                  TROOP PASSWORD UPDATE
+	                  ADMIN BADGE DELETE
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopPasswordUpdate")
+	elseif ($_POST["page"] == "adminBadgeDelete")
 	{
-		include("includes/troopPasswordUpdate.php");
+		include("includes/adminBadgeDelete.php");
 	}
 	/*------------------------------------------------
 	                  TROOP RESET PASSWORD
