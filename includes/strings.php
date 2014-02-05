@@ -274,20 +274,56 @@ $scoutSignup = $scoutSignup	."</select></td></tr>"
 	."<option value='##week2##'>Week ##week2##</option>"
 	."</select></td></tr></table><br/><br/>"
 	//So this is ugly. Let's explain. Each block is labeled, and then we drop down a line. Good so far. Each select element has a label (1st choice or 2nd choice). Now, we want that label to be on the same line as the element is's labeling. Unfortunately, bootstraps goes ahead and makes form elements render as blocks, not inline. So if you skip over that div for now, you'll notice that we've had to make each select element display as inline. Even then, though, the element takes up the full width of the page, forcing it onto its own line. So we had to manually set the width to 75%. Cool. Now, though, you'll notice that '1st choice: ' and '2nd choice,' despite having the same number of characters, are not necessarily the same length in most fonts. So we have to add some spacing in order to get both select elements to line up. (note that we can't just position the elements because if they are ever forced to drop down a line--I'm looking at you, iPhone--they'll no longer line up) The span, being an inline element, doesn't actually have a settable width. So that's why we had to make it an inline-block element. So we have everything where we want it, yay!. Now all we have to do is populate the select elements with a whole bunch of option elements, using php. And then add a little bit of javascript (and a lot more php) to get the right one to default!
-	.'<label for="blockA" id="text1">Block A: </label><br/><label for="blockA">1st Choice: </label><span style="width:10px; display:inline-block;"> </span>'
-	."<select name=\"blockA\" class='form-control' id='blockA' style='width:75%; display:inline;'><option value='none,none' id='A'>None</option>##blockA##</select><br/><label for='blockABackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockABackup\" class='form-control' id='blockABackup' style='width:75%; display:inline;'><option value='none,none' id='bA'>None</option>##blockAb##</select><br/>"
+	.'<label for="blockA" id="text1">Block A: </label><br/><label for="blockA">1st Choice: </label><span style="width:10px; display:inline-block;"> </span><span id="blockASpan"></span>'
+	."<select name=\"blockA\" class='form-control' id='blockA' style='width:75%; display:inline;' onchange='checkConflicts(\"blockA\");'><option value='none,none' id='A' conflicts=''>None</option>##blockA##</select><br/><label for='blockABackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockABackup\" class='form-control' id='blockABackup' style='width:75%; display:inline;'><option value='none,none' id='bA'>None</option>##blockAb##</select><br/>"
 	//then just rinse and repeat for the other blocks
-	.'<br/><label for="blockB" id="text1">Block B: </label><br/><label for="blockB">1st Choice: </label><span style="width:10px; display:inline-block;"> </span>'
-	."<select name=\"blockB\" class='form-control' id='blockB' style='width:75%; display:inline;'><option value='none,none' id='B'>None</option>##blockB##</select><br/><label for='blockBBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockBBackup\" class='form-control' id='blockBBackup' style='width:75%; display:inline;'><option value='none,none' id='bB'>None</option>##blockBb##</select><br/>"
+	.'<br/><label for="blockB" id="text1">Block B: </label><br/><label for="blockB">1st Choice: </label><span style="width:10px; display:inline-block;"> </span><span id="blockBSpan"></span>'
+	."<select name=\"blockB\" class='form-control' id='blockB' style='width:75%; display:inline;' onchange='checkConflicts(\"blockB\");'><option value='none,none' id='B' conflicts=''>None</option>##blockB##</select><br/><label for='blockBBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockBBackup\" class='form-control' id='blockBBackup' style='width:75%; display:inline;'><option value='none,none' id='bB'>None</option>##blockBb##</select><br/>"
 	//up to bat: block C, block D is on deck
-	.'<br/><label for="blockC" id="text1">Block C: </label><br/><label for="blockC">1st Choice: </label><span style="width:10px; display:inline-block;"> </span>'
-	."<select name=\"blockC\" class='form-control' id='blockC' style='width:75%; display:inline;'><option value='none,none' id='C'>None</option>##blockC##</select><br/><label for='blockCBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockCBackup\" class='form-control' id='blockCBackup' style='width:75%; display:inline;'><option value='none,none' id='bC'>None</option>##blockCb##</select><br/>"
+	.'<br/><label for="blockC" id="text1">Block C: </label><br/><label for="blockC">1st Choice: </label><span style="width:10px; display:inline-block;"> </span><span id="blockCSpan"></span>'
+	."<select name=\"blockC\" class='form-control' id='blockC' style='width:75%; display:inline;' onchange='checkConflicts(\"blockC\");'><option value='none,none' id='C' conflicts=''>None</option>##blockC##</select><br/><label for='blockCBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockCBackup\" class='form-control' id='blockCBackup' style='width:75%; display:inline;'><option value='none,none' id='bC'>None</option>##blockCb##</select><br/>"
 	//block D in da house!
-	.'<br/><label for="blockD" id="text1">Block D: </label><br/><label for="blockD">1st Choice: </label><span style="width:10px; display:inline-block;"> </span>'
-	."<select name=\"blockD\" class='form-control' id='blockD' style='width:75%; display:inline;'><option value='none,none' id='D'>None</option>##blockD##</select><br/><label for='blockDBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockDBackup\" class='form-control' id='blockDBackup' style='width:75%; display:inline;'><option value='none,none' id='bD'>None</option>##blockDb##</select><br/>"
+	.'<br/><label for="blockD" id="text1">Block D: </label><br/><label for="blockD">1st Choice: </label><span style="width:10px; display:inline-block;"> </span><span id="blockDSpan"></span>'
+	."<select name=\"blockD\" class='form-control' id='blockD' style='width:75%; display:inline;' onchange='checkConflicts(\"blockD\");'><option value='none,none' id='D' conflicts=''>None</option>##blockD##</select><br/><label for='blockDBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockDBackup\" class='form-control' id='blockDBackup' style='width:75%; display:inline;'><option value='none,none' id='bD'>None</option>##blockDb##</select><br/>"
 	."<br/><button type='submit' class='btn btn-primary' name='page' value='scoutSignuper'>Register</button>"
 	."</form>"
-	."<script type='text/javascript'>"
+	."<script type='text/javascript'>
+	function checkConflicts(block)
+	{
+		conA = '';
+		conB = '';
+		conC = '';
+		conD = '';
+		conflicts = document.getElementById('blockA').selectedOptions[0].getAttribute('conflicts');
+		if (conflicts.search('A') != -1){conA = document.getElementById('blockA').selectedOptions[0].innerHTML;}
+		if (conflicts.search('B') != -1){conB = document.getElementById('blockA').selectedOptions[0].innerHTML;}
+		if (conflicts.search('C') != -1){conC = document.getElementById('blockA').selectedOptions[0].innerHTML;}
+		if (conflicts.search('D') != -1){conD = document.getElementById('blockA').selectedOptions[0].innerHTML;}
+		conflicts = document.getElementById('blockB').selectedOptions[0].getAttribute('conflicts');
+		if (conflicts.search('A') != -1){conA = document.getElementById('blockB').selectedOptions[0].innerHTML;}
+		if (conflicts.search('B') != -1){conB = document.getElementById('blockB').selectedOptions[0].innerHTML;}
+		if (conflicts.search('C') != -1){conC = document.getElementById('blockB').selectedOptions[0].innerHTML;}
+		if (conflicts.search('D') != -1){conD = document.getElementById('blockB').selectedOptions[0].innerHTML;}
+		conflicts = document.getElementById('blockC').selectedOptions[0].getAttribute('conflicts');
+		if (conflicts.search('A') != -1){conA = document.getElementById('blockC').selectedOptions[0].innerHTML;}
+		if (conflicts.search('B') != -1){conB = document.getElementById('blockC').selectedOptions[0].innerHTML;}
+		if (conflicts.search('C') != -1){conC = document.getElementById('blockC').selectedOptions[0].innerHTML;}
+		if (conflicts.search('D') != -1){conD = document.getElementById('blockC').selectedOptions[0].innerHTML;}
+		conflicts = document.getElementById('blockD').selectedOptions[0].getAttribute('conflicts');
+		if (conflicts.search('A') != -1){conA = document.getElementById('blockD').selectedOptions[0].innerHTML;}
+		if (conflicts.search('B') != -1){conB = document.getElementById('blockD').selectedOptions[0].innerHTML;}
+		if (conflicts.search('C') != -1){conC = document.getElementById('blockD').selectedOptions[0].innerHTML;}
+		if (conflicts.search('D') != -1){conD = document.getElementById('blockD').selectedOptions[0].innerHTML;}
+		if (conA) {document.getElementById('blockA').style.display='none'; document.getElementById('blockA').options[0].selected=true; document.getElementById('blockASpan').innerHTML='This block is taken up by '+conA;}
+		else {document.getElementById('blockA').style.display='inline'; document.getElementById('blockASpan').innerHTML='';}
+		if (conB) {document.getElementById('blockB').style.display='none'; document.getElementById('blockB').options[0].selected=true; document.getElementById('blockBSpan').innerHTML='This block is taken up by '+conB;}
+		else {document.getElementById('blockB').style.display='inline'; document.getElementById('blockBSpan').innerHTML='';}
+		if (conC) {document.getElementById('blockC').style.display='none'; document.getElementById('blockC').options[0].selected=true; document.getElementById('blockCSpan').innerHTML='This block is taken up by '+conC;}
+		else {document.getElementById('blockC').style.display='inline'; document.getElementById('blockCSpan').innerHTML='';}
+		if (conD) {document.getElementById('blockD').style.display='none'; document.getElementById('blockD').options[0].selected=true; document.getElementById('blockDSpan').innerHTML='This block is taken up by '+conD;}
+		else {document.getElementById('blockD').style.display='inline'; document.getElementById('blockDSpan').innerHTML='';}
+	}
+	"
 	."function fillBadges() {"
 	."	##badgesByWeek##"
 	."	var week=document.getElementById('weekSelect').value;"
@@ -300,7 +336,7 @@ $scoutSignup = $scoutSignup	."</select></td></tr>"
 	."	document.getElementById('bC'+badgeCb[week]).selected=true;"
 	."	document.getElementById('bD'+badgeDb[week]).selected=true;"
 	."}"
-	."fillBadges();"
+	."fillBadges(); checkConflicts('blockA');"
 	."</script>";
 	//##blockC##
 	//##blockB##

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130355337644959016" remote="130355337630000000" Dst="1" />
+<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130360317088822204" remote="130360317070000000" Dst="1" />
 <file name="login.php" server="ssh.phx.nearlyfreespeech.net" local="130354243349099329" remote="130354243340000000" Dst="1" />
 <file name="adminPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130354244334365683" remote="130354244330000000" Dst="1" />
 <file name="adminAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130354251651054174" remote="130354252410000000" Dst="1" />
@@ -12,4 +12,6 @@
 <file name="adminBadgeAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130360263062372068" remote="130360263040000000" Dst="1" />
 <file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130360201862991663" remote="130360201910000000" Dst="1" />
 <file name="adminBadgeDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130360262923694136" remote="130360262970000000" Dst="1" />
+<file name="adminBadgeCap.php" server="ssh.phx.nearlyfreespeech.net" local="130360326571554585" remote="130360326550000000" Dst="1" />
+<file name="adminBadgeCapUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130360329168953148" remote="130360329150000000" Dst="1" />
 </dwsync>

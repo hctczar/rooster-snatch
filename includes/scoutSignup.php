@@ -72,7 +72,7 @@ function fillOptions($block,$backup){
 				$camp = " (East)";
 			}
 		}
-		$stringAdder=$stringAdder."<option id='".$backup.$block.$row["badge"]."' value='".$idEast.",".$idWest."'>".$row["badge"].$camp."</option>";
+		$stringAdder=$stringAdder."<option id='".$backup.$block.$row["badge"]."' value='".$idEast.",".$idWest."' conflicts='".$row["conflicts"]."'>".$row["badge"].$camp."</option>";
 		//add the badge with that name to our list-o-badges
 		$listOBadges[] = $row['badge'];
 	}

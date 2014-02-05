@@ -222,18 +222,18 @@ function getOptions($shortTag, $sort = true, $options = array())
 		include("includes/adminBadgeDelete.php");
 	}
 	/*------------------------------------------------
-	                  TROOP RESET PASSWORD
+	                  ADMIN BADGE CAP
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopResetPassword")
+	elseif ($_POST["page"] == "adminBadgeCap")
 	{
-		include("includes/troopResetPassword.php");
+		include("includes/adminBadgeCap.php");
 	}
 	/*------------------------------------------------
-	                  TROOP RESET PASSWORD PWD
+	                  ADMIN BADGE CAP UPDATE
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopResetPasswordPwd")
+	elseif ($_POST["page"] == "adminBadgeCapUpdate")
 	{
-		include("includes/troopResetPasswordPwd.php");
+		include("includes/adminBadgeCapUpdate.php");
 	}
 	/*------------------------------------------------
 	                  TROOP RESET PASSWORD USR

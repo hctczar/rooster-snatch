@@ -20,6 +20,27 @@ $badgeCa = explode(",", $_POST["blockC"]);
 $badgeC = $badgeCa[$campSelect];
 $badgeDa = explode(",", $_POST["blockD"]);
 $badgeD = $badgeDa[$campSelect];
+//Ensure there are no conflicts
+$conflicts = '';
+$result = mysql_query("SELECT * FROM wp_badges WHERE id = '".$badgeA."'");
+$row = mysql_fetch_array($result);
+$conflicts .= $row['conflicts'];
+$result = mysql_query("SELECT * FROM wp_badges WHERE id = '".$badgeB."'");
+$row = mysql_fetch_array($result);
+$conflicts .= $row['conflicts'];
+$result = mysql_query("SELECT * FROM wp_badges WHERE id = '".$badgeC."'");
+$row = mysql_fetch_array($result);
+$conflicts .= $row['conflicts'];
+$result = mysql_query("SELECT * FROM wp_badges WHERE id = '".$badgeD."'");
+$row = mysql_fetch_array($result);
+$conflicts .= $row['conflicts'];
+//If there were conflicts, make sure that conflicting slots are forced to be 'none'
+//why is the if test so sketchy? because php sucks balls. strpos returns false if it doesn't find the substring. But it returns 0 (which == false) if it finds the substring at position 0. Why doesn't it just return -1 instead of false? We'll never know.
+if (strpos($conflicts,'A')===false){} else {$badgeA='none';}
+if (strpos($conflicts,'B')===false){} else {$badgeB='none';}
+if (strpos($conflicts,'C')===false){} else {$badgeC='none';}
+if (strpos($conflicts,'D')===false){} else {$badgeD='none';}
+
 //Delete any previous entries for that week and year by the same scout
 mysql_query("DELETE FROM wp_signups WHERE (year = '".mysql_real_escape_string($year)."' and week = '".mysql_real_escape_string($week)."' and scoutID = '".mysql_real_escape_string($scoutID)."')");
 //Add new entries for slots A-D
