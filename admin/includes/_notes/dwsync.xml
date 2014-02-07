@@ -5,16 +5,16 @@
 <file name="adminPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130354244334365683" remote="130354244330000000" Dst="1" />
 <file name="adminAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130354251651054174" remote="130354252410000000" Dst="1" />
 <file name="adminAccountUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130354255669774031" remote="130354255680000000" Dst="1" />
-<file name="adminTroops.php" server="ssh.phx.nearlyfreespeech.net" local="130362045619490152" remote="130362045580000000" Dst="1" />
+<file name="adminTroops.php" server="ssh.phx.nearlyfreespeech.net" local="130362814738398593" remote="130362814700000000" Dst="1" />
 <file name="adminTroopSave.php" server="ssh.phx.nearlyfreespeech.net" local="130355266006591535" remote="130355266000000000" Dst="1" />
 <file name="adminTroopAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130355334380702311" remote="130355334380000000" Dst="1" />
-<file name="adminBadges.php" server="ssh.phx.nearlyfreespeech.net" local="130360264034407665" remote="130360264020000000" Dst="1" />
+<file name="adminBadges.php" server="ssh.phx.nearlyfreespeech.net" local="130362816812727238" remote="130362816780000000" Dst="1" />
 <file name="adminBadgeAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130360263062372068" remote="130360263040000000" Dst="1" />
 <file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130360201862991663" remote="130360201910000000" Dst="1" />
 <file name="adminBadgeDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130360262923694136" remote="130360262970000000" Dst="1" />
 <file name="adminBadgeCap.php" server="ssh.phx.nearlyfreespeech.net" local="130362015010000000" remote="130362014970000000" Dst="1" />
 <file name="adminBadgeCapUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130361998110912816" remote="130361998080000000" Dst="1" />
 <file name="adminRoster.php" server="ssh.phx.nearlyfreespeech.net" local="130362030526316871" remote="130362030490000000" Dst="1" />
-<file name="adminEvents.php" server="ssh.phx.nearlyfreespeech.net" local="130362131654551076" remote="130362131620000000" Dst="1" />
+<file name="adminEvents.php" server="ssh.phx.nearlyfreespeech.net" local="130362782280912131" remote="130362782240000000" Dst="1" />
 <file name="adminEventAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130362139368092265" remote="130362139340000000" Dst="1" />
 </dwsync>

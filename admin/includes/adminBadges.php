@@ -5,6 +5,8 @@ function viewTable()
 {
 	if (document.getElementById('badgeList').style.display == 'none'){document.getElementById('badgeList').style.display = 'block';}
 	else {document.getElementById('badgeList').style.display = 'none';}
+	parent.document.getElementById('iframe1').height = "1666px";
+	parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 }
 </script>
 <div id ='badgeList' style="display:none">
@@ -56,6 +58,8 @@ function filterTable()
 		if (invisiblize){badgeRows[i].style.display = 'none';}
 		if (!invisiblize){badgeRows[i].style.display = 'table-row';}
 	}
+	parent.document.getElementById('iframe1').height = "1666px";
+	parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 }
 </script>
 <table class="table table-striped sortable">

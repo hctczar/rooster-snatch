@@ -108,7 +108,7 @@ $troopAccount = '
 
 	</div>
 
-			<button type="submit" class="btn btn-primary">Save Changes to Account</button>
+			<button type="submit" class="btn btn-primary" id="submit">Save Changes to Account</button>
 
 </form>'
 	."<script type='text/javascript'>"
@@ -126,13 +126,15 @@ $troopAccount = '
 	."		if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)"
 	."		{"
 	."			document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
-	."          document.getElementById('submit').innerHTML = 'OOPS';"
+	."           document.getElementById('submit').disabled = true;"
 	."		}"
 	."		else"
 	."		{"
 	."			document.getElementById('mismatch').innerHTML = '';"
-	."          document.getElementById('submit').innerHTML = '<input type=\'submit\' value=\'Sumbit Changes\'>';"
+	."           document.getElementById('submit').disabled = false;"
 	."		}"
+	."		parent.document.getElementById('iframe1').height = '855px';"
+	."		parent.document.getElementById('iframe1').height = document.body.scrollHeight;"
 	."	}"
 	.""
 	."</script>";
@@ -234,23 +236,24 @@ $scoutAccount = '
 	<input type=\'hidden\' name=\'page\' value=\'scoutAccountUpdate\'>
 	<button type="submit" class="btn btn-primary" id="submit">Update Account Info</button>
 </form>'
-	."<script type='text/javascript'>"
-	."	function matchPasscode() {"
-	."		if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)"
-	."		{"
-	."			document.getElementById('mismatch').style.display = 'block';
-				document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
-	."          document.getElementById('submit').disabled = true;"
-	."		}"
-	."		else"
-	."		{"
-				."document.getElementById('mismatch').style.display = 'none';"
-	."			document.getElementById('mismatch').innerHTML = '';"
-	."          document.getElementById('submit').disabled = false;"
-	."		}"
-	."	}"
-	.""
-	."</script>"
+	."<script type='text/javascript'>
+		function matchPasscode() {
+			if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)
+			{
+				document.getElementById('mismatch').style.display = 'block';
+				document.getElementById('mismatch').innerHTML = 'Passcodes do not match';
+	          document.getElementById('submit').disabled = true;
+			}
+			else
+			{
+				document.getElementById('mismatch').style.display = 'none';
+				document.getElementById('mismatch').innerHTML = '';
+	          document.getElementById('submit').disabled = false;
+			}
+			parent.document.getElementById('iframe1').height = '382px';
+			parent.document.getElementById('iframe1').height = document.body.scrollHeight;
+		}
+	</script>"
 ;
 /*-------------------------------------------------------------------
                         SCOUT SIGNUP
@@ -323,6 +326,8 @@ $scoutSignup = $scoutSignup	."</select></td></tr>"
 		else {document.getElementById('blockC').style.display='inline'; document.getElementById('blockCSpan').innerHTML='';}
 		if (conD) {document.getElementById('blockD').style.display='none'; document.getElementById('blockD').options[0].selected=true; document.getElementById('blockDSpan').innerHTML='This block is taken up by '+conD;}
 		else {document.getElementById('blockD').style.display='inline'; document.getElementById('blockDSpan').innerHTML='';}
+		parent.document.getElementById('iframe1').height = '804px';
+		parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 	}
 	"
 	."function fillBadges() {"

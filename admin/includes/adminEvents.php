@@ -30,6 +30,8 @@ echo $adminMenu;
 <input type='hidden' name='page' value='adminEventAdd'>
 <button type='submit' class='btn btn-primary' style='width:17.5%;'>Add Event <span class='glyphicon glyphicon-plus'></span></button>
 </form>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
 <script>
 function killTime()
 {
@@ -39,6 +41,7 @@ function killTime()
 		x=x[x.length-1];
 		x.parentNode.removeChild(x);
 	}
+	parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 }
 function newTime()
 {
@@ -65,5 +68,6 @@ function newTime()
 +"<tr><td><input type='checkbox' name='week1"+iter+"' value='1' checked></td><td><input type='checkbox' name='week2"+iter+"' value='1' checked></td><td><input type='checkbox' name='week3"+iter+"' value='1' checked></td><td><input type='checkbox' name='week4"+iter+"' value='1' checked></td><td><input type='checkbox' name='week5"+iter+"' value='1' checked></td><td><input type='checkbox' name='week6"+iter+"' value='1' checked></td></tr>"
 +"</table></br>"
 ;
+parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 }
-</script>
+  </script>

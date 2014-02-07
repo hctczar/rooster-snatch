@@ -133,15 +133,21 @@ $councilOptions =
 		<option value='Three Fires Council'>Three Fires</option>
 		<option value='Three Harbors Council'>Three Harbors</option>";
 ?>
-<button class='btn btn-primary' onclick="viewTable();">View / Hide List</button><br/><br/>
-<script>
+<button class='btn btn-primary' onclick="viewTable();">View / Hide List</button>
+<p><br/>
+  <br/>
+  <script>
 function viewTable()
 {
 	if (document.getElementById('troopList').style.display == 'none'){document.getElementById('troopList').style.display = 'block';}
 	else {document.getElementById('troopList').style.display = 'none';}
+	parent.document.getElementById('iframe1').height = "537px";
+	parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 }
 </script>
-<?php		
+</p>
+<p>
+  <?php		
 echo '<table class="table table-striped sortable" id="troopList" style="display:none">';
 echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th class="sorttable_nosort">Sites</th><th colspan="1" class="sorttable_nosort">Troop Size</th><th colspan="1" class="sorttable_nosort"></th></tr>';
 $result = mysql_query("SELECT * FROM wp_troops ORDER BY council, number");
@@ -228,6 +234,28 @@ echo "<table><tr><th class='sorttable_nosort'>Select Weeks: </th><th class='sort
 		echo "<td><input name='weeks[]' type='checkbox' id='checkWeek6' value='6' onchange='showAddWeeks(6)'/></td>";
 		echo "</tr></table>";
 ?>
+</p>
+<?php
+function buildSelect($week)
+{
+	global $siteOptions;
+	echo "<span id='addWeek".$week."' style='display:none;'> Week ".$week.": 
+	<select name='week".$week."' id='addWeekSelect".$week."' onchange='getSubsites(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\"); checkConflicts(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\",\"".$week."\");'>"
+		."<option value=''>save for later</option>"
+		.$siteOptions
+	."</select>
+	<select name = 'subSite".$week."' id='addSubweekSelect".$week."' onchange='checkConflicts(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\",\"".$week."\");'>
+		<option value=''> </option>
+	</select><br/></span>";
+}
+buildSelect(1);
+buildSelect(2);
+buildSelect(3);
+buildSelect(4);
+buildSelect(5);
+buildSelect(6);
+echo "<input type='hidden' name='page' value='adminTroopAdd'><button type='submit' value='Add Troop' class='btn btn-primary'><span glyphicon glyphicon-arrow-right></span> Add Troop</button></form>";
+?>
 <script>
 function showAddWeeks(week)
 {
@@ -252,24 +280,3 @@ function getSubsites(label,caller)
 	subSelector.innerHTML=stringorama;
 }
 </script>
-<?php
-function buildSelect($week)
-{
-	global $siteOptions;
-	echo "<span id='addWeek".$week."' style='display:none;'> Week ".$week.": 
-	<select name='week".$week."' id='addWeekSelect".$week."' onchange='getSubsites(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\"); checkConflicts(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\",\"".$week."\");'>"
-		."<option value=''>save for later</option>"
-		.$siteOptions
-	."</select>
-	<select name = 'subSite".$week."' id='addSubweekSelect".$week."' onchange='checkConflicts(\"addSubweekSelect".$week."\",\"addWeekSelect".$week."\",\"".$week."\");'>
-		<option value=''> </option>
-	</select><br/></span>";
-}
-buildSelect(1);
-buildSelect(2);
-buildSelect(3);
-buildSelect(4);
-buildSelect(5);
-buildSelect(6);
-echo "<input type='hidden' name='page' value='adminTroopAdd'><button type='submit' value='Add Troop' class='btn btn-primary'><span glyphicon glyphicon-arrow-right></span> Add Troop</button></form>";
-?>

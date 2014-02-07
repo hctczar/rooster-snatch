@@ -63,7 +63,7 @@ input[type="number"] {height:30px;}
 	<div class="row">
 		<div class="col-md-12">
 
-<script>window.parent.$("body").animate({scrollTop:0}, 'slow');</script>
+<script>window.parent.$("body").animate({scrollTop:200}, 'fast');</script>
 
 <?php
 //string declarations of the HTML and JavaScript code to be displayed
