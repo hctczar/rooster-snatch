@@ -1,9 +1,7 @@
 <?php
 echo $scoutMenu;
 $scoutSignupEcho=$scoutSignup;
-$active = substr($_SESSION["active"],1);
-echo '<p>',getCopy('mb_schedule_is_draft'),'</p>';
-
+$active = mysql_real_escape_string(substr($_SESSION["active"],1));
 //discover what weeks scouts are camping.
 $weeks = array();
 $year = mysql_real_escape_string($_SESSION['year']);
@@ -11,7 +9,15 @@ $result = mysql_query("SELECT * FROM wp_roster WHERE (year = '".$year."' AND cam
 while ($row = mysql_fetch_array($result))
 {
 	$weeks[]=$row['week'];
+	//ensure that that week has been approved.
+	$result1 = mysql_query("SELECT * FROM wp_signups WHERE (year = '".mysql_real_escape_string($_SESSION['year'])."' AND week = '".mysql_real_escape_string($row['week'])."' AND scoutID = '".$active."' AND backup = '0')");
+	$row1 = mysql_fetch_array($result1);
+	if ($row1['approved'] == 0)
+	{
+		echo '<div class="alert alert-warning">Scoutmaster approval required for week '.$row['week'].'.</div>';
+	}
 }
+echo '<p>',getCopy('mb_schedule_is_draft'),'</p>';
 //A function that takes a block letter as an argument and returns a registered MB
 function getRegistered($block, $week, $active)
 {

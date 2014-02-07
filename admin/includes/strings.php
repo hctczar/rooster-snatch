@@ -31,7 +31,7 @@ $adminMenu =
 		<button name="page" class="btn btn-default" value="adminTroops" type="submit" style="width:10em"><span class="glyphicon glyphicon-briefcase"></span><br>Add Troops</button>
 		<button name="page" class="btn btn-default" value="adminEvents" type="submit" style="width:10em"><span class="glyphicon glyphicon-calendar"></span><br>Add Events</button>
 		<button name="page" class="btn btn-default" value="adminBadges" type="submit" style="width:10em"><span class="glyphicon glyphicon-fire"></span><br>Add Badgers</button>
-		<button name="page" class="btn btn-default" value="adminBadgeCap" type="submit" style="width:10em"><span class="glyphicon glyphicon-dashboard"></span><br>Badge Caps</button>
+		<button name="page" class="btn btn-default" value="adminBadgeCap" type="submit" style="width:10em"><span class="glyphicon glyphicon-dashboard"></span><br>MB Caps $ Costs</button>
 		<button name="page" class="btn btn-default" value="adminRoster" type="submit" style="width:10em"><span class="glyphicon glyphicon-list-alt"></span><br>View Rosters</button>
 	</div>
 </form>

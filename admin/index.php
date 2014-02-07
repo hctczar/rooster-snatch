@@ -236,25 +236,25 @@ function getOptions($shortTag, $sort = true, $options = array())
 		include("includes/adminBadgeCapUpdate.php");
 	}
 	/*------------------------------------------------
-	                  TROOP RESET PASSWORD USR
+	                  ADMIN ROSTER
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopResetPasswordUsr")
+	elseif ($_POST["page"] == "adminRoster")
 	{
-		include("includes/troopResetPasswordUsr.php");
+		include("includes/adminRoster.php");
 	}
 	/*------------------------------------------------
-	                  WEEK SELECT (deprecated)
+	                  ADMIN EVENTS
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "weekSelect")
+	elseif ($_POST["page"] == "adminEvents")
 	{
-		$_POST["page"] = "troopRoster";
+		include("includes/adminEvents.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ACCOUNT
+	                  ADMIN EVENT ADD
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopAccount")
+	elseif ($_POST["page"] == "adminEventAdd")
 	{
-		include("includes/troopAccount.php");
+		include("includes/adminEventAdd.php");
 	}
 	/*------------------------------------------------
 	                  TROOP ACCOUNT UPDATE

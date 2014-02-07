@@ -63,8 +63,11 @@ $troopMenu =
 	<div class="btn-group" style="margin-bottom:1em;">
 		<button name="page" class="btn btn-default" value="troopAccount" type="submit" style="width:10em"><span class="glyphicon glyphicon-cog"></span><br>Settings</button>
 		<button name="page" class="btn btn-default" value="troopRoster" type="submit" style="width:10em"><span class="glyphicon glyphicon-list-alt"></span><br>Roster</button>
-		<button name="page" class="btn btn-default" value="troopSchedule" type="submit" style="width:10em"><span class="glyphicon glyphicon-calendar"></span><br>Schedule</button>
-		<button name="page" class="btn btn-default" value="troopEvents" type="submit" style="width:10em"><span class="glyphicon glyphicon-tower"></span><br>Events</button>
+		<button name="page" class="btn btn-default" value="troopSchedule" type="submit" style="width:10em"><span class="glyphicon glyphicon-calendar"></span><br>Schedule</button>';
+		if (mysql_fetch_array(mysql_query("SELECT * FROM wp_troops WHERE id = '".mysql_real_escape_string($_SESSION["active"])."'"))['approveBadges'])
+		{$troopMenu .= '<button name="page" class="btn btn-default" value="troopApproveBadges" type="submit" style="width:10em"><span class="glyphicon glyphicon-eye-open"></span><br>Approve Badges</button>';}
+		$troopMenu .= 
+		'<button name="page" class="btn btn-default" value="troopEvents" type="submit" style="width:10em"><span class="glyphicon glyphicon-tower"></span><br>Events</button>
 		<button name="page" class="btn btn-default" value="troopCampsite" type="submit" style="width:10em"><span class="glyphicon glyphicon-home"></span><br>Campsites</button>
 	</div>
 </form>
@@ -81,17 +84,14 @@ $troopAccount = '
 	<div class="form-group">
 		<label for="email">Email Address</label>
 		<input type="email" id="email" name="email" value="##email##" class="form-control">
-	</div>'/*
-	<div class="form-group">
-		<label for="council">Council:</label>
-		<select name=\'council\' id=\'council\' onChange=\'showOther()\' class=\'form-control\'>
-			<option value=\'##council##\'>##council##</option>"
-			<option value=\'North East Illinois Council\'>North East Illinois Council</option>"
-			<option value=\'other\'>Other</option>"
-		</select>
-		<div id="other"></div>
-	</div>*/
-			.'<strong>Passcode:</strong><br>
+	</div>
+	<strong>Approve MB Signups</strong>
+	<div class="well">
+		'.getCopy('approve_MB').'
+		<input type="checkbox" name="approveBadges" value="1" ##approveBadgesChecked##>Approve MB Signups<br/>
+		<input type="checkbox" name="emailBadges"   value="1" ##emailBadgesChecked##>Email Pending Schedules<br/>
+	</div>
+	<strong>Passcode:</strong><br>
 		If you would like to choose a new passcode, please type the new passcode below. <br><br>
 	<div class="well">
 		<div class="form-group">
@@ -161,7 +161,7 @@ $rosterAdder = ""
 				Week ##week2##
 			</label>
 		</td>"
-	."<td>Youth <input type='radio' name='youth##iter##' value='1' checked>Adult <input type='radio' name='youth##iter##' value='0'></td>"
+	."<td><table><tr><td>Youth <input type='radio' name='youth##iter##' value='1' checked></td></tr><tr><td>Adult <input type='radio' name='youth##iter##' value='0'></td></tr></table></td>"
 	."</tr>";
 	for ($iter = 0; $iter<20;$iter++)
 	{
@@ -212,6 +212,7 @@ $scoutMenu = '
 			<button type="submit" name="page" value="scoutAccount" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-cog"></span><br> Account Settings</button>
 			<button type="submit" name="page" value="scoutSignup" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-ok-circle"></span><br> Merit Badge Signup</button>
 			<button type="submit" name="page" value="scoutSchedule" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-calendar"></span><br> View Schedule</button>
+			<button type="submit" name="page" value="scoutCosts" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-tag"></span><br> Merit Badge Costs</button>
 		</div>
 	</form>
 ';

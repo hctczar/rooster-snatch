@@ -78,6 +78,15 @@ function getCopy($shortTag)
 	else
 		return false;
 }
+function getDateCopy($shortTag)
+{
+	$result = mysql_query("SELECT * FROM wp_dates WHERE shortTag = '".mysql_real_escape_string($shortTag)."'");
+	$row = mysql_fetch_array($result);
+	if (is_array($row))
+		return strtotime($row['date']);
+	else
+		return false;
+}
 ?>
 
 <?php
@@ -169,6 +178,13 @@ function getCopy($shortTag)
 	elseif ($_POST["page"] == "scoutSchedule")
 	{
 		include("includes/scoutSchedule.php");
+	}
+	/*------------------------------------------------
+	                  SCOUT COSTS
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutCosts")
+	{
+		include("includes/scoutCosts.php");
 	}
 	/*------------------------------------------------
 	                  TROOP
@@ -323,6 +339,20 @@ function getCopy($shortTag)
 	elseif ($_POST['page'] == "troopSchedule")
 	{
 		include("includes/troopSchedule.php");
+	}
+	/*------------------------------------------------
+	                  TROOP APPROVE BADGES
+	/*------------------------------------------------*/
+	elseif ($_POST['page'] == "troopApproveBadges")
+	{
+		include("includes/troopApproveBadges.php");
+	}
+	/*------------------------------------------------
+	                  TROOP APPROVE BADGES APPROVE
+	/*------------------------------------------------*/
+	elseif ($_POST['page'] == "troopApproveBadgesApprove")
+	{
+		include("includes/troopApproveBadgesApprove.php");
 	}
 ?>
 		</div>

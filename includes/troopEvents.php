@@ -1,4 +1,6 @@
 <?php
+$active = mysql_real_escape_string($_SESSION["active"]);
+$year = mysql_real_escape_string($_SESSION['year']);
 $eventAdder = ""
 	."<div style='width:66.6%;'>"
 	.getCopy("event_register")."<br/>"
@@ -17,7 +19,16 @@ $eventAdder = ""
 	."</form>"
 	."</div>"
 	."<script type='text/javascript'>"
-	."function populate() {var len = document.getElementById('week').length;for (var i=0; i<len; i++){document.getElementById('week').remove(0);}var len = document.getElementById('time').length;for (var i=0; i<len; i++){document.getElementById('time').remove(0);}";
+	."function populate() 
+	{
+		var len = document.getElementById('week').length;
+		for (var i=0; i<len; i++){
+			document.getElementById('week').remove(0);
+		}
+		var len = document.getElementById('time').length;
+		for (var i=0; i<len; i++){
+			document.getElementById('time').remove(0);
+		}";
 	$result = mysql_query("SELECT * FROM wp_events WHERE year = '".$_SESSION["year"]."' ORDER BY name");
 	$eventList = "";
 	while ($row = mysql_fetch_array($result))
@@ -26,12 +37,24 @@ $eventAdder = ""
 		$eventString = ""
 		."    if (document.getElementById('event').value == ".$row["id"].")"
 		."	{";
-		$result1 = mysql_query("SELECT * FROM wp_eventsMeta WHERE eventID = '".mysql_real_escape_string($row["id"])."'");
+		$result1 = mysql_query("SELECT * FROM wp_eventsMeta WHERE eventID = '".mysql_real_escape_string($row["id"])."' ORDER BY week");
 		$weekList ="\"";
 		$weekables = array();
+		//check to see if current date is passed events_live date
+		$eventsLive = getDateCopy("events_live");
 		while ($row1 = mysql_fetch_array($result1))
 		{
-			$weekables[] = $row1['week'];
+			//only add the week if we are that many weeks passed the events_live date
+			if (mktime(0,0,0,date("m"),date("d")+((int)$row1['week']-1)*-7,date("Y")) > $eventsLive)
+			{
+				//check if the troop is actually camping that week
+				$result4 = mysql_query("SELECT * FROM wp_troopsMeta WHERE year = '".$year."' AND week = '".$row1['week']."' AND troopID = '".$active."'");
+				$row4 = mysql_fetch_array($result4);
+				if (is_array($row4))
+				{
+					$weekables[] = $row1['week'];
+				}
+			}
 		}
 		$weekables = array_unique($weekables);
 		foreach ($weekables as $week)
@@ -119,10 +142,9 @@ $eventAdder = ""
 	
 	
 echo $troopMenu;
-$active = $_SESSION["active"];
 echo "<br/><table class='table table-striped sortable'>";
 echo "<tr><th style='text-align:center;'>Event Title</th><th id='timeHeader' style='text-align:center;'>Time</th><th style='text-align:center;'>Signed Up</th><th colspan='2' class='sorttable_nosort'></th><tr>";
-$result=mysql_query("SELECT * FROM wp_eventsSigned WHERE (troopID = '".mysql_real_escape_string($active)."') ORDER BY eventID");
+$result=mysql_query("SELECT * FROM wp_eventsSigned WHERE (troopID = '".$active."') ORDER BY eventID");
 while ($row = mysql_fetch_array($result))
 {
 	$result2=mysql_query("SELECT * FROM wp_eventsMeta WHERE id = '".mysql_real_escape_string($row["eventMetaID"])."'");

@@ -1,7 +1,7 @@
 <?php $active = $_SESSION["active"]; echo $adminMenu; ?>
 <form method='post'>
 <table class="table table-striped">
-<tr><th>Badge</th><th>Cap</th></tr>
+<tr><th>Badge</th><th>Cap</th><th>Cost</th></tr>
 <?php
 $result = mysql_query("SELECT * FROM wp_badges ORDER BY badge");
 $visited = array();
@@ -11,7 +11,7 @@ while ($row = mysql_fetch_array($result))
 	if (! in_array($row['badge'],$visited))
 	{
 		$visited[]=$row['badge'];
-		echo "<tr><td><input type='hidden' name='badge".$i."' value='".$row['badge']."'>".$row['badge']."</td><td><input type='text' name = 'cap".$i."' value = '".$row['cap']."'class='form-control'></td></tr>";
+		echo "<tr><td><input type='hidden' name='badge".$i."' value='".$row['badge']."'>".$row['badge']."</td><td><input type='text' name = 'cap".$i."' value = '".$row['cap']."' class='form-control'></td><td><textarea rows='2' cols='50' name='cost".$i."' class='form-control'>".$row['cost']."</textarea></td></tr>";
 		$i++;
 	}
 }

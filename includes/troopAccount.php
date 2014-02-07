@@ -8,6 +8,14 @@ $council = stripslashes($row['council']);
 $login = stripslashes($row['login']);
 $email = stripslashes($row['email']);
 $echoString = $troopAccount;
+//make sure that checkboxes default to checked, where appropriate
+$approveBadgesChecked = '';
+if ($row['approveBadges'] == true){$approveBadgesChecked = "checked";}
+$echoString = str_replace("##approveBadgesChecked##", $approveBadgesChecked, $echoString);
+$emailBadgesChecked = '';
+if ($row['emailBadges'] == true){$emailBadgesChecked = 'checked';}
+$echoString = str_replace("##emailBadgesChecked##", $emailBadgesChecked, $echoString);
+//make sure text boxes have the correct defaults
 $echoString = str_replace("##email##", $email, $echoString);
 $echoString = str_replace("##troop##", $troop, $echoString);
 $echoString = str_replace("##council##", $council, $echoString);
