@@ -2,6 +2,7 @@
 echo $scoutMenu;
 $active = mysql_real_escape_string(substr($_SESSION["active"],1));
 $year = mysql_real_escape_string($_SESSION['year']);
+echo getCopy("scout_cost");
 //discover what weeks scouts are camping.
 $weeks = array();
 $year = mysql_real_escape_string($_SESSION['year']);
