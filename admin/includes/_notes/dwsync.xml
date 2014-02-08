@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130363087948245303" remote="130363087920000000" Dst="1" />
+<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130363520327608323" remote="130363520430000000" Dst="1" />
 <file name="login.php" server="ssh.phx.nearlyfreespeech.net" local="130354243349099329" remote="130354243340000000" Dst="1" />
 <file name="adminPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130354244334365683" remote="130354244330000000" Dst="1" />
 <file name="adminAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130354251651054174" remote="130354252410000000" Dst="1" />
@@ -17,4 +17,11 @@
 <file name="adminRoster.php" server="ssh.phx.nearlyfreespeech.net" local="130362030526316871" remote="130362030490000000" Dst="1" />
 <file name="adminEvents.php" server="ssh.phx.nearlyfreespeech.net" local="130362782280912131" remote="130362782240000000" Dst="1" />
 <file name="adminEventAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130362139368092265" remote="130362139340000000" Dst="1" />
+<file name="adminCopy.php" server="ssh.phx.nearlyfreespeech.net" local="130363563918741594" remote="130363563890000000" Dst="1" />
+<file name="adminCopyUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130363554881384686" remote="130363554840000000" Dst="1" />
+<file name="adminDates.php" server="ssh.phx.nearlyfreespeech.net" local="130363565495381772" remote="130363565460000000" Dst="1" />
+<file name="adminDatesUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130363567312085682" remote="130363567270000000" Dst="1" />
+<file name="adminEmail.php" server="ssh.phx.nearlyfreespeech.net" local="130363746074810325" remote="130363746320000000" Dst="1" />
+<file name="adminEmailConfirm.php" server="ssh.phx.nearlyfreespeech.net" local="130363762511550453" remote="130363762470000000" Dst="1" />
+<file name="adminEmailSend.php" server="ssh.phx.nearlyfreespeech.net" local="130363770557180636" remote="130363770520000000" Dst="1" />
 </dwsync>

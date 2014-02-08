@@ -75,7 +75,9 @@ if ($email)
 	$row=mysql_fetch_array($result);
 	$subject = str_replace("##name##", $row['firstName']." ".$row['lastName'], getCopy('email_subj_mb_reg'));
 	$message = str_replace("##name##", $row['firstName']." ".$row['lastName'], getCopy('email_body_mb_reg'));
-	mail($email,$subject,$message,"From:MyKaJaWan@makajawan.com");
+	$headers = "From:MyKaJaWan@makajawan.com \r\n";
+	$headers .= "Content-Type: text/html; charset=ISO-8859-1 \r\n";
+	mail($email,$subject,$message,$headers);
 }
 include("includes/scoutSignedup.php");
 ?>

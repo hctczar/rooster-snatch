@@ -56,6 +56,7 @@ input[type="number"] {height:30px;}
 <script src="/includes/sorttable.js"></script>
 <script> document.domain = 'makajawan.com' </script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/tinymce/js/tinymce/tinymce.min.js"></script>
 </head>
 <body>
 <header class="container">
@@ -257,53 +258,53 @@ function getOptions($shortTag, $sort = true, $options = array())
 		include("includes/adminEventAdd.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ACCOUNT UPDATE
+	                  ADMIN COPY
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopAccountUpdate")
+	elseif ($_POST["page"] == "adminCopy")
 	{
-		include("includes/troopAccountUpdate.php");
+		include("includes/adminCopy.php");
 	}
 	/*------------------------------------------------
-	                  TROOP CAMPSITE
+	                  ADMIN COPY UPDATE
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopCampsite")
+	elseif ($_POST["page"] == "adminCopyUpdate")
 	{
-		include("includes/troopCampsite.php");
+		include("includes/adminCopyUpdate.php");
 	}
 	/*------------------------------------------------
-	                  TROOP CAMPSITE UPDATE
+	                  ADMIN DATES
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopCampsiteUpdate")
+	elseif ($_POST["page"] == "adminDates")
 	{
-		include("includes/troopCampsiteUpdate.php");
+		include("includes/adminDates.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ROSTER
+	                  ADMIN DATES UPDATE
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopRoster")
+	elseif ($_POST["page"] == "adminDatesUpdate")
 	{
-		include("includes/troopRoster.php");
+		include("includes/adminDatesUpdate.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ROSTER ADD
+	                  ADMIN EMAIL
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopRosterAdd")
+	elseif ($_POST["page"] == "adminEmail")
 	{
-		include("includes/troopRosterAdd.php");
+		include("includes/adminEmail.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ROSTER ADDED
+	                  ADMIN EMAIL CONFIRM
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopRosterAdded")
+	elseif ($_POST["page"] == "adminEmailConfirm")
 	{
-		include("includes/troopRosterAdded.php");
+		include("includes/adminEmailConfirm.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ROSTER DELETE
+	                  ADMIN EMAIL SEND
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopRosterDelete")
+	elseif ($_POST["page"] == "adminEmailSend")
 	{
-		include("includes/troopRosterDelete.php");
+		include("includes/adminEmailSend.php");
 	}
 	/*------------------------------------------------
 	                  TROOP ROSTER EDIT
