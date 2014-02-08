@@ -45,7 +45,7 @@ echo $javaSiteArray;
 $resultNo=0;
 function showSelect($week,$troop)
 {
-	global $weeks, $subsites, $siteOptions, $resultNo, $year;
+	global $weeks, $subsites, $siteOptions, $resultNo, $year, $iter;
 	$troop = mysql_real_escape_string($troop);
 	if (isset ($weeks[$week]))
 	{
@@ -53,11 +53,11 @@ function showSelect($week,$troop)
 		$rosterSize = mysql_num_rows($result);
 		$site = $weeks[$week];
 		$subsite = $subsites[$week];
-		echo "<table><tr><td><select class='siteSelect".$week."' name = 'week".$week."' id='".$resultNo."caller".$week."' onchange='buildSubSites(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\");checkConflicts(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\",\"".$week."\");'>
+		echo "<table><tr><td><select class='siteSelect".$week."' name = '".$iter."week".$week."' id='".$resultNo."caller".$week."' onchange='buildSubSites(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\");checkConflicts(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\",\"".$week."\");'>
 		<option value='".$site."'>".$site."</option>"
 		.$siteOptions
 		."</select></td><td>
-		<select class='subsiteSelect".$week."' name = 'subSite".$week."' id='".$resultNo."subSite".$week."' onmouseover='buildSubSites(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\");' onchange='checkConflicts(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\",\"".$week."\");'><option value='".$subsite."'>".$subsite."</option></select>
+		<select class='subsiteSelect".$week."' name = '".$iter."subSite".$week."' id='".$resultNo."subSite".$week."' onmouseover='buildSubSites(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\");' onchange='checkConflicts(\"".$resultNo."subSite".$week."\",\"".$resultNo."caller".$week."\",\"".$week."\");'><option value='".$subsite."'>".$subsite."</option></select>
 		</td></tr></table>";
 	}
 }
@@ -67,9 +67,11 @@ function showTroopSize($week,$troop)
 	$troop = mysql_real_escape_string($troop);
 	if (isset ($weeks[$week]))
 	{
-		$result = mysql_query("SELECT * FROM wp_roster WHERE year = '".$year."' AND week = '".$week."' AND troopID = '".$troop."'");
-		$rosterSize = mysql_num_rows($result);
-		echo "<table><tr><td>".$rosterSize."</td></tr></table>";
+		$result = mysql_query("SELECT * FROM wp_roster WHERE year = '".$year."' AND week = '".$week."' AND troopID = '".$troop."' AND youth = '0'");
+		$adultSize = mysql_num_rows($result);
+		$result = mysql_query("SELECT * FROM wp_roster WHERE year = '".$year."' AND week = '".$week."' AND troopID = '".$troop."' AND youth = '1'");
+		$youthSize = mysql_num_rows($result);
+		echo "<table><tr><td>".$adultSize."A ".$youthSize."Y"."</td></tr></table>";
 	}
 }
 ?>
@@ -134,8 +136,7 @@ $councilOptions =
 		<option value='Three Harbors Council'>Three Harbors</option>";
 ?>
 <button class='btn btn-primary' onclick="viewTable();">View / Hide List</button>
-<p><br/>
-  <br/>
+<p>
   <script>
 function viewTable()
 {
@@ -143,14 +144,16 @@ function viewTable()
 	else {document.getElementById('troopList').style.display = 'none';}
 	parent.document.getElementById('iframe1').height = "537px";
 	parent.document.getElementById('iframe1').height = document.body.scrollHeight;
+	
 }
 </script>
 </p>
 <p>
   <?php		
-echo '<table class="table table-striped sortable" id="troopList" style="display:none">';
-echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th class="sorttable_nosort">Sites</th><th colspan="1" class="sorttable_nosort">Troop Size</th><th colspan="1" class="sorttable_nosort"></th></tr>';
+echo '<form method="post"><table class="table table-striped sortable" id="troopList" style="display:none">';
+echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th class="sorttable_nosort">Sites</th><th colspan="1" class="sorttable_nosort">Troop Size</th></tr>';
 $result = mysql_query("SELECT * FROM wp_troops ORDER BY council, number");
+$iter=0;
 while ($row = mysql_fetch_array($result))
 {
 	$troopID = mysql_real_escape_string($row['id']);
@@ -164,13 +167,13 @@ while ($row = mysql_fetch_array($result))
 	}
 	if (count($weeks) > 0)
 	{
-		echo "<tr><form method='post'>";
-		echo "<td sorttable_customkey='".$row['number']."'><div class='input-group input-group-sm'><input type='text' name='number' class='form-control' value='".$row['number']."' style='width:5em;'></div></td>";
-		echo "<td sorttable_customkey='".stripslashes($row['council'])."'><div class='input-group input-group-sm'><select name='council' class='form-control'>
+		echo "<tr>";
+		echo "<td sorttable_customkey='".$row['number']."'><div class='input-group input-group-sm'><input type='text' name='number".$iter."' class='form-control' value='".$row['number']."' style='width:5em;'></div></td>";
+		echo "<td sorttable_customkey='".stripslashes($row['council'])."'><div class='input-group input-group-sm'><select name='council".$iter."' class='form-control'>
 		<option value='".stripslashes($row['council'])."'>".str_replace(" Council","",stripslashes($row['council']))."</option>"
 		.$councilOptions
 		."</select></div></td>";
-		echo "<td><div class='input-group input-group-sm'><input type='text' name='email' class='form-control' value='".stripslashes($row['email'])."'></div></td>";
+		echo "<td><div class='input-group input-group-sm'><input type='text' name='email".$iter."' class='form-control' value='".stripslashes($row['email'])."'></div></td>";
 		//find the earliest week in which a troop is camping. That week is used to sort the table by week.
 		$sort_week_column=0;
 		$checkWeek1 = "";
@@ -188,12 +191,12 @@ while ($row = mysql_fetch_array($result))
 		if (isset($weeks['1'])){$sort_week_column=10 + (bool)$checkWeek2; $checkWeek1 = "checked='true' ";}
 		echo "<td sorttable_customkey='".$sort_week_column."'>";
 		echo "<table><tr><th class='sorttable_nosort'>1</th><th class='sorttable_nosort'>2</th><th class='sorttable_nosort'>3</th><th class='sorttable_nosort'>4</th><th class='sorttable_nosort'>5</th><th class='sorttable_nosort'>6</th></tr><tr>";
-		echo "<td><input name='weeks[]' type='checkbox' value='1' $checkWeek1/></td>";
-		echo "<td><input name='weeks[]' type='checkbox' value='2' $checkWeek2/></td>";
-		echo "<td><input name='weeks[]' type='checkbox' value='3' $checkWeek3/></td>";
-		echo "<td><input name='weeks[]' type='checkbox' value='4' $checkWeek4/></td>";
-		echo "<td><input name='weeks[]' type='checkbox' value='5' $checkWeek5/></td>";
-		echo "<td><input name='weeks[]' type='checkbox' value='6' $checkWeek6/></td>";
+		echo "<td><input name='weeks".$iter."[]' type='checkbox' value='1' $checkWeek1/></td>";
+		echo "<td><input name='weeks".$iter."[]' type='checkbox' value='2' $checkWeek2/></td>";
+		echo "<td><input name='weeks".$iter."[]' type='checkbox' value='3' $checkWeek3/></td>";
+		echo "<td><input name='weeks".$iter."[]' type='checkbox' value='4' $checkWeek4/></td>";
+		echo "<td><input name='weeks".$iter."[]' type='checkbox' value='5' $checkWeek5/></td>";
+		echo "<td><input name='weeks".$iter."[]' type='checkbox' value='6' $checkWeek6/></td>";
 		echo "</tr></table>";
 		echo "</td><td>";
 		showSelect(1,$troopID);
@@ -210,12 +213,14 @@ while ($row = mysql_fetch_array($result))
 		showTroopSize(4,$troopID);
 		showTroopSize(5,$troopID);
 		showTroopSize(6,$troopID);
-		echo "</td>";
-		echo "<td><input type='hidden' name='troop' value='".$row['id']."'><input type='hidden' name='page' value='adminTroopSave'><button type='submit' value='save' class='btn btn-primary'><span class='glyphicon glyphicon-floppy-saved'></span> Save</button></form></td>";
+		echo "<input type='hidden' name='troop".$iter."' value='".$row['id']."'></td>";
 		echo "</tr>";
+		$iter +=1;
 	}
 	$resultNo+=1;
+	
 }
+echo "<tfoot><tr><td colspan='6' align='right'><input type='hidden' name='page' value='adminTroopSave'><button type='submit' value='save' class='btn btn-primary'><span class='glyphicon glyphicon-floppy-saved'></span> Save</button></form></td></tr></tfoot>";
 echo "</table>";
 
 echo getCopy("add_troop");

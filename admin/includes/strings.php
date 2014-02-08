@@ -57,7 +57,7 @@ $adminAccount = '
 
 	</div>
 
-			<button type="submit" class="btn btn-primary">Save Changes to Account</button>
+			<button type="submit" class="btn btn-primary" id="submit">Save Changes to Account</button>
 
 </form>
 <script type="text/javascript">
@@ -65,13 +65,15 @@ $adminAccount = '
 		if (document.getElementById("passcode1").value != document.getElementById("passcode2").value)
 		{
 			document.getElementById("mismatch").innerHTML = "Passcodes do not match";
-          document.getElementById("submit").innerHTML = "OOPS";
+          document.getElementById("submit").disabled = true;
 		}
 		else
 		{
 			document.getElementById("mismatch").innerHTML = "";
-          document.getElementById("submit").innerHTML = "<input type=\"submit\" value=\"Sumbit Changes\">";
+          document.getElementById("submit").disabled = false;
 		}
+		parent.document.getElementById("iframe1").height = "493px";
+		parent.document.getElementById("iframe1").height = document.body.scrollHeight;
 	}
 	</script>';
 	//##email##
