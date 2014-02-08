@@ -151,7 +151,7 @@ function viewTable()
 <p>
   <?php		
 echo '<form method="post"><table class="table table-striped sortable" id="troopList" style="display:none">';
-echo '<tr><th>Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th class="sorttable_nosort">Sites</th><th colspan="1" class="sorttable_nosort">Troop Size</th></tr>';
+echo '<tr><th style=width:7em;">Troop</th><th>Council</th><th class="sorttable_nosort">Email</th><th>Weeks</th><th class="sorttable_nosort">Sites</th><th colspan="1" class="sorttable_nosort" style=width:6em;">Troop Size</th></tr>';
 $result = mysql_query("SELECT * FROM wp_troops ORDER BY council, number");
 $iter=0;
 while ($row = mysql_fetch_array($result))
