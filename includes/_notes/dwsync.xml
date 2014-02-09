@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130362826782537479" remote="130362827070000000" Dst="1" />
+<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130363939722996367" remote="130363939680000000" Dst="1" />
 <file name="scout.php" server="ssh.phx.nearlyfreespeech.net" local="130352402846872326" remote="130353211460000000" Dst="1" />
 <file name="scoutSignup.php" server="ssh.phx.nearlyfreespeech.net" local="130360348156549176" remote="130360348140000000" Dst="1" />
 <file name="scoutSignuper.php" server="ssh.phx.nearlyfreespeech.net" local="130363559607094981" remote="130363559570000000" Dst="1" />
@@ -33,8 +33,9 @@
 <file name="scoutPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130352402847212345" remote="130353211460000000" Dst="1" />
 <file name="scoutAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130352402847002333" remote="130353211480000000" Dst="1" />
 <file name="scoutAccountUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130352402847142341" remote="130353211490000000" Dst="1" />
-<file name="scoutSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130363930135397988" remote="130363930110000000" Dst="1" />
+<file name="scoutSchedule.php" server="ssh.phx.nearlyfreespeech.net" local="130363935459312499" remote="130363935420000000" Dst="1" />
 <file name="troopApproveBadges.php" server="ssh.phx.nearlyfreespeech.net" local="130361901629584400" remote="130361901600000000" Dst="1" />
 <file name="troopApproveBadgesApprove.php" server="ssh.phx.nearlyfreespeech.net" local="130361899405647198" remote="130361899650000000" Dst="1" />
 <file name="scoutCosts.php" server="ssh.phx.nearlyfreespeech.net" local="130362156338612923" remote="130362156570000000" Dst="1" />
+<file name="scoutTrending.php" server="ssh.phx.nearlyfreespeech.net" local="130364034680695313" remote="130364034710000000" Dst="1" />
 </dwsync>

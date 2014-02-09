@@ -213,6 +213,7 @@ $scoutMenu = '
 		<div class="btn-group" style="margin-bottom:1em;">
 			<button type="submit" name="page" value="scoutAccount" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-cog"></span><br> Account Settings</button>
 			<button type="submit" name="page" value="scoutSignup" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-ok-circle"></span><br> Merit Badge Signup</button>
+			<button type="submit" name="page" value="scoutTrending" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-thumbs-up"></span><br> Trending Badges</button>
 			<button type="submit" name="page" value="scoutSchedule" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-calendar"></span><br> View Schedule</button>
 			<button type="submit" name="page" value="scoutCosts" class="btn-default btn" style="width:12em"><span class="glyphicon glyphicon-tag"></span><br> Merit Badge Costs</button>
 		</div>

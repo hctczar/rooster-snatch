@@ -187,6 +187,13 @@ function getDateCopy($shortTag)
 		include("includes/scoutCosts.php");
 	}
 	/*------------------------------------------------
+	                  SCOUT TRENDING
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "scoutTrending")
+	{
+		include("includes/scoutTrending.php");
+	}
+	/*------------------------------------------------
 	                  TROOP
 	/*------------------------------------------------*/
 	elseif ($_POST["page"] == "troop")

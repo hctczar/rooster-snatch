@@ -23,7 +23,7 @@ while ($row = mysql_fetch_array($result))
 $assigned = getDateCopy("mb_assigned");
 if (mktime(0,0,0,date("m"),date("d")+($lastWeek-1)*-7,date("Y")) < $assigned)
 {
-	echo getCopy('mb_schedule_is_draft');
+	echo '<div class="alert alert-warning">'.getCopy('mb_schedule_is_draft').'</div>';
 }
 //A function that takes a block letter as an argument and returns a registered MB
 function getRegistered($block, $week, $active)
@@ -38,8 +38,12 @@ function getRegistered($block, $week, $active)
 	return $row['badge'];
 }
 //loop through weeks camping, display merit display MBs signed registered
+?>
+<table class = "table table-striped">
+<?php
 for($i=0;$i<count($weeks);$i++)
 {
-	echo 'Week ',$weeks[$i],'<br/>Block A: ',getRegistered('A', $weeks[$i], $active),'<br/>Block B: ',getRegistered('B', $weeks[$i], $active),'<br/>Block C: ',getRegistered('C', $weeks[$i], $active),'<br/>Block D: ',getRegistered('D', $weeks[$i], $active),'<br/><br/>';
+	echo '<tr><th colspan="2">Week ',$weeks[$i],'</th></tr><tr><td>Block A</td><td>',getRegistered('A', $weeks[$i], $active),'</td></tr><tr><td>Block B</td><td>',getRegistered('B', $weeks[$i], $active),'</td></tr><tr><td>Block C</td><td>',getRegistered('C', $weeks[$i], $active),'</td></tr><tr><td>Block D</td><td>',getRegistered('D', $weeks[$i], $active),'</td></tr>';
 }
 ?>
+</table>
