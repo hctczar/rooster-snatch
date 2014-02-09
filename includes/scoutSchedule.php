@@ -6,6 +6,7 @@ $active = mysql_real_escape_string(substr($_SESSION["active"],1));
 $weeks = array();
 $year = mysql_real_escape_string($_SESSION['year']);
 $result = mysql_query("SELECT * FROM wp_roster WHERE (year = '".$year."' AND camperID = '".$active."') ORDER BY week");
+$lastWeek=0;
 while ($row = mysql_fetch_array($result))
 {
 	$weeks[]=$row['week'];
@@ -16,8 +17,14 @@ while ($row = mysql_fetch_array($result))
 	{
 		echo '<div class="alert alert-warning">Scoutmaster approval required for week '.$row['week'].'.</div>';
 	}
+	$lastWeek=$row['week'];
 }
-echo '<p>',getCopy('mb_schedule_is_draft'),'</p>';
+//check to see if schedule is offish-fish
+$assigned = getDateCopy("mb_assigned");
+if (mktime(0,0,0,date("m"),date("d")+($lastWeek-1)*-7,date("Y")) < $assigned)
+{
+	echo getCopy('mb_schedule_is_draft');
+}
 //A function that takes a block letter as an argument and returns a registered MB
 function getRegistered($block, $week, $active)
 {

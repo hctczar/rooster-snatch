@@ -23,5 +23,5 @@
 <file name="adminDatesUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130363567312085682" remote="130363567270000000" Dst="1" />
 <file name="adminEmail.php" server="ssh.phx.nearlyfreespeech.net" local="130363746074810325" remote="130363746320000000" Dst="1" />
 <file name="adminEmailConfirm.php" server="ssh.phx.nearlyfreespeech.net" local="130363762511550453" remote="130363762470000000" Dst="1" />
-<file name="adminEmailSend.php" server="ssh.phx.nearlyfreespeech.net" local="130363770557180636" remote="130363770520000000" Dst="1" />
+<file name="adminEmailSend.php" server="ssh.phx.nearlyfreespeech.net" local="130363929568655572" remote="130363929610000000" Dst="1" />
 </dwsync>

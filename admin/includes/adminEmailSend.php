@@ -14,7 +14,7 @@ if ($row['role'] == 'seacaptain')
 		$subject = $_SESSION['subject'];
 		$message = $_SESSION['message'];
 		$headers = $_SESSION['headers'];
-		$ok = @mail($to, $subject, $message, $headers);
+		$ok = mail($to, $subject, $message, $headers);
 		if ($ok) {echo "<div class='alert alert-success'>Sent to $to</div>";}
 	}
 }
