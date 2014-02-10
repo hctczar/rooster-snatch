@@ -136,8 +136,13 @@ else
 	insertTroop(5);
 	insertTroop(6);
 	//And now to send a strongly worded email...
-	$customString="Username: ".$login."\r\nPassword: ".$password;
-	mail($email,getCopy('email_subj_troop_enrolled'),getCopy('email_body_troop_enrolled').$customString,"From:MyKaJaWan@makajawan.com");
+	$email;
+	$subject = getCopy('email_subj_troop_enrolled');
+	$customString="<li>Username: <strong>".$login."</strong></li><li>Password: <strong>".$password."</strong></li>";
+	$message = getCopy('email_body_troop_enrolled').$customString;
+	$headers = "From:MyKaJaWan@makajawan.com \r\n";
+	$headers .= "Content-Type: text/html; charset=ISO-8859-1 \r\n";
+	mail($email,$subject,$message,$headers);
 }
 include("includes/adminTroops.php");
 ?>

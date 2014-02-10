@@ -267,10 +267,14 @@ function showAddWeeks(week)
 	if (document.getElementById('checkWeek'+week).checked == true)
 	{
 		document.getElementById('addWeek'+week).style.display='inline';
+		parent.document.getElementById('iframe1').height = "537px";
+		parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 	}
 	if (document.getElementById('checkWeek'+week).checked == false)
 	{
 		document.getElementById('addWeek'+week).style.display='none';
+		parent.document.getElementById('iframe1').height = "537px";
+		parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 	}
 }
 function getSubsites(label,caller)

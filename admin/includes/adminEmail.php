@@ -89,12 +89,14 @@ parent.document.getElementById('iframe1').height = document.body.scrollHeight;
 }
 function pluralize()
 {
+	//this function adds an 's' next to the word 'week' if the number before 'week' != '1.' This is how English works
 	x=document.getElementById('weeksCamping').value;
 	if (x != 1){document.getElementById("plural").innerHTML='s';}
 	else {document.getElementById("plural").innerHTML='';}
 }
 function hideMultiples()
 {
+	//this function shows or hides the filter options. It hides them if a single troop # has been entered
 	x=document.getElementById('troopNumber');
 	if (x.value.replace(/\s+/g, "") == "")
 	{

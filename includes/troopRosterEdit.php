@@ -1,4 +1,5 @@
 <?php
+echo $troopMenu;
 $active = $_SESSION["active"];
 $camper = $_POST["camper"];
 $rosterEditorFinal = $rosterEditor;

@@ -1,5 +1,6 @@
 <?php
 $active = $_SESSION["active"];
+$year = mysql_real_escape_string($_SESSION['year']);
 //check if troop has 0,1, or 2 weeks in troopsMeta, updates those weeks accordingly
 $result = mysql_query("SELECT * FROM wp_troopsMeta WHERE (troopID = '".mysql_real_escape_string($active)."' and year = '".mysql_real_escape_string($_SESSION["year"])."') ORDER BY week");
 $week1 = 0;
@@ -20,6 +21,8 @@ if ($row = mysql_fetch_array($result))
 	$week2 = $row["week"];
 }
 echo $troopMenu;
+//downloads troop Roster
+echo "<button type='submit' value='Download Roster' class='btn btn-primary' onclick='download();'>Download Roster <span class='glyphicon glyphicon-download-alt'></span></button><br/><br/>";
 //prints campers in first week troop is camping for.
 echo "<table class='table table-striped'>";
 echo "<tr><th colspan='6'>Week $week1</th></tr>";
@@ -73,7 +76,7 @@ if ($week2 != 0)
 	}
 	echo "</table>";
 }
-echo "<p> To add scouts or leaders to your roster, enter their names below, one camper per line, and then click the button labeled 'add campers'. If you have more campers than there are lines, simply add 20 campers at a time</p>";
+echo getCopy("add_scouts");
 $rosterAdder = str_replace("##week1##",$week1,$rosterAdder);
 //deletes extra week column if not applicable
 if ($week2 == 0)
@@ -85,3 +88,30 @@ if ($week2 == 0)
 $rosterAdder = str_replace("##week2##",$week2,$rosterAdder);
 echo $rosterAdder;
 ?>
+
+<?php
+$csvbuilder = 'Week,First Name,Last Name,Y/A%0A';
+$result = mysql_query("SELECT * FROM wp_roster WHERE year = '".$year."' and troopID = '".$active."' ORDER BY week, youth, lastName, firstName");
+while ($row = mysql_fetch_array($result))
+{
+	$week = $row['week'];
+	$first = stripslashes($row['firstName']);
+	$last = stripslashes($row['lastName']);
+	if ($row['youth']) {$youth="Youth";}
+	else {$youth="Adult";}
+	$csvbuilder .= '"'.$week.'","'.$first.'","'.$last.'","'.$youth.'"%0A';
+}
+?>
+<script>
+function download()
+{
+	var csvString = '<?php echo $csvbuilder; ?>';
+	var a         = document.createElement('a');
+	a.href        = 'data:attachment/csv,' + encodeURIComponent(csvString).replace(/%250A/g,'%0A');
+	a.target      = '_blank';
+	a.download    = 'roster.csv';
+	
+	document.body.appendChild(a);
+	a.click();
+}
+</script>

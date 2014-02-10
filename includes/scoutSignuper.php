@@ -1,8 +1,13 @@
 <?php
+$active = mysql_real_escape_string(substr($_SESSION["active"],1));
 $troopID=$_SESSION["troopID"];
 $email='';
 $week = $_POST["week"];
 $year = $_SESSION["year"];
+$result=mysql_query("SELECT * FROM wp_campers where id = '".$active."'");
+$row = mysql_fetch_array($result);
+$rank = $row['rank'];
+$dob = $row['dob'];
 $result=mysql_query("SELECT * FROM wp_troopsMeta WHERE troopID = '".mysql_real_escape_string($troopID)."' and year = '".mysql_real_escape_string($year)."' and week = '".mysql_real_escape_string($week)."'");
 $row = mysql_fetch_array($result);
 $camp = $row["camp"];
@@ -10,8 +15,6 @@ $campSelect = 0; //assumes East camper if there is a fatal error.
 if ($camp == "east"){$campSelect = 0;}
 if ($camp == "west"){$campSelect = 1;}
 $scoutID = substr($_SESSION["active"],1);
-$rank = (int)$_POST["rank"];
-$dob = mysql_real_escape_string($_POST['bday']);
 //Selects the appropriate MB id based on what side of the lake the scout is on (east = 0, west = 1)
 $badgeAa = explode(",", $_POST["blockA"]);
 $badgeA = $badgeAa[$campSelect];

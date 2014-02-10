@@ -48,7 +48,7 @@ for ($iter=0;$iter<20;$iter++)
 		$passwordEncrypt = MD5($password.$username);
 		$firstName = ucfirst($firstName);
 		$lastName = ucfirst($lastName);
-		$message=$message.$firstName." ".$lastName."\r\n    username: ".$username."\r\n    passcode: ".$password."\r\n\r\n";
+		$message=$message.$firstName." ".$lastName."<li>username: <strong>".$username."</strong></li><li>passcode:  <strong>".$password."</strong></li>";
 		mysql_query("INSERT INTO wp_campers (troopID, firstName, lastName, youth, username, tempPass) VALUES ('".mysql_real_escape_string($troopID)."', '".mysql_real_escape_string($firstName)."', '".mysql_real_escape_string($lastName)."', '".mysql_real_escape_string($youth)."', '".mysql_real_escape_string($username)."', '".$passwordEncrypt."')");
 		$result = mysql_query("SELECT * FROM wp_campers WHERE (username = '".mysql_real_escape_string($username)."')");
 		$row = mysql_fetch_array($result);
@@ -68,6 +68,11 @@ for ($iter=0;$iter<20;$iter++)
 //send email with passwords and stuff
 $result = mysql_query("SELECT * FROM wp_troops WHERE (id = '".mysql_real_escape_string($active)."')");
 $row = mysql_fetch_array($result);
-mail(stripslashes($row["email"]),"Campers added to MyKaJaWan",$message,"From:MyKaJaWan@makajawan.com");
+$email = stripslashes($row["email"]);
+$subject = getCopy('email_subj_campers_add');
+$message = getCopy('email_body_campers_add')."\r\n".$message;
+$headers = "From:MyKaJaWan@makajawan.com \r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1 \r\n";
+mail($email,$subject,$message,$headers);
 include("includes/troopRosterAdded.php");
 ?>

@@ -129,7 +129,7 @@ function getOptions($shortTag, $sort = true, $options = array())
 	if (! isset($_POST["page"]))
 	//generate the login page
 	{
-		echo $kennyloggin;
+		echo str_replace("##special##","",$kennyloggin);
 	}
 	/*------------------------------------------------
 	                  login
@@ -146,25 +146,25 @@ function getOptions($shortTag, $sort = true, $options = array())
 		include("includes/adminPasswordUpdate.php");
 	}
 	/*------------------------------------------------
-	                  SCOUT RESET PASSWORD
+	                  ADMIN RESET PASSWORD
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "scoutResetPassword")
+	elseif ($_POST["page"] == "adminResetPassword")
 	{
-		include("includes/scoutResetPassword.php");
+		include("includes/adminResetPassword.php");
 	}
 	/*------------------------------------------------
-	                  SCOUT RESET PASSWORD PWD
+	                  ADMIN RESET PASSWORD PWD
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "scoutResetPasswordPwd")
+	elseif ($_POST["page"] == "adminResetPasswordPwd")
 	{
-		include("includes/scoutResetPasswordPwd.php");
+		include("includes/adminResetPasswordPwd.php");
 	}
 	/*------------------------------------------------
-	                  SCOUT RESET PASSWORD USR
+	                  ADMIN RESET PASSWORD USR
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "scoutResetPasswordUsr")
+	elseif ($_POST["page"] == "adminResetPasswordUsr")
 	{
-		include("includes/scoutResetPasswordUsr.php");
+		include("includes/adminResetPasswordUsr.php");
 	}
 	/*------------------------------------------------
 	                  ADMIN ACCOUNT
@@ -307,39 +307,39 @@ function getOptions($shortTag, $sort = true, $options = array())
 		include("includes/adminEmailSend.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ROSTER EDIT
+	                  ADMIN USERS
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopRosterEdit")
+	elseif ($_POST["page"] == "adminUsers")
 	{
-		include("includes/troopRosterEdit.php");
+		include("includes/adminUsers.php");
 	}
 	/*------------------------------------------------
-	                  TROOP ROSTER UPDATE
+	                  ADMIN USERS ADD
 	/*------------------------------------------------*/
-	elseif ($_POST["page"] == "troopRosterUpdate")
+	elseif ($_POST["page"] == "adminUsersAdd")
 	{
-		include("includes/troopRosterUpdate.php");
+		include("includes/adminUsersAdd.php");
 	}
 	/*------------------------------------------------
-	                  TROOP EVENTS
+	                  ADMIN USERS DELETE
 	/*------------------------------------------------*/
-	elseif ($_POST['page'] == "troopEvents")
+	elseif ($_POST['page'] == "adminUsersDelete")
 	{
-		include("includes/troopEvents.php");
+		include("includes/adminUsersDelete.php");
 	}
 	/*------------------------------------------------
-	                  TROOP EVENT DELETE
+	                  ADMIN USERS EDIT
 	/*------------------------------------------------*/
-	elseif ($_POST['page'] == "troopEventDelete")
+	elseif ($_POST['page'] == "adminUsersEdit")
 	{
-		include("includes/troopEventDelete.php");
+		include("includes/adminUsersEdit.php");
 	}
 	/*------------------------------------------------
-	                  TROOP EVENT ADD
+	                  ADMIN USER EDITOR
 	/*------------------------------------------------*/
-	elseif ($_POST['page'] == "troopEventAdd")
+	elseif ($_POST['page'] == "adminUserEditor")
 	{
-		include("includes/troopEventAdd.php");
+		include("includes/adminUserEditor.php");
 	}
 	/*------------------------------------------------
 	                  TROOP EVENT EDIT

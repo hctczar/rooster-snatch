@@ -1,36 +1,47 @@
 <?php
-echo str_replace("##which##","troop",str_replace("##troopChecked##","checked",str_replace("##scoutChecked##","",$login)));
+echo str_replace("##special##","",str_replace("##which##","troop",str_replace("##troopChecked##","checked",str_replace("##scoutChecked##","",$login))));
+
+function getCouncils()
+{
+	$councils=array();
+	$result = mysql_query("SELECT * FROM wp_troops");
+	while ($row = mysql_fetch_array($result))
+	{
+		if (strpos($row['council'],"NEIC") === false){$councils[]=$row['council'];}
+	}
+	$councils=array_unique($councils);
+	asort($councils);
+	$return = "
+	<option value='NEIC Aptakisic'>NEIC Aptakisic</option>\n
+	<option value='NEIC North Star'>NEIC North Star</option>\n
+	<option value='NEIC Potawatomi'>NEIC Potawatomi</option>\n
+	<option value='NEIC Provisional'>NEIC Provisional</option>\n
+	";
+	foreach ($councils as $council)
+	{
+		$return .= "<option value='".$council."'>".$council."</option>\n";
+	}
+	return $return;
+}
 ?>
+<div class="well">
 <form method='post'>
-<p>If you've forgotten your password, enter your username below and hit "Reset Password". A new, temporary password will be emailed to the address specified in your troop account settings. If you were trying to log in as a camper (and not into a troop account) please make sure that you checked the appropriate radio button on the login form, and try again.</p>
-<input type='text' name='username' placeholder='username'>
-<input type='hidden' name='page' value='troopResetPasswordPwd'>
-<input type='submit' value='Reset Password'>
+<?php echo getCopy('troop_pwd_reset'); ?>
+<div class="input-group">
+    <input type="text" name="username" class="form-control" placeholder="Username">
+    <span class="input-group-btn"><button type="submit" class="btn" id="submit" name="page" value="troopResetPasswordPwd">Reset Password</button></span>
+</div>
 </form>
-<br/>
+</div>
+<div class="well">
 <form method='post'>
-<p>If you've forgotten your username, enter your username below and hit "Fetch Username". Robots will scour the datatables to find your username. If you were trying to log in as a camper (and not into a troop account) please make sure that you checked the appropriate radio button on the login form, and try again.</p>
-<input type='number' name='troop' placeholder='troop'>
-<table style="display:inline; position: relative;
-top: 6;"><tr><td>
-<select name='council' id='council' onChange='showOther()'>
-	<option value='North East Illinois Council'>North East Illinois Council</option>
-	<option value='other'>Other</option>
-</select></td></tr>
-<tr><td><span id='other'></span></td></tr>
-</table>
-<script type='text/javascript'>
-function showOther() {
-if (document.getElementById('council').value == 'other')
-{
-document.getElementById('other').innerHTML = '<input type="text" name="councilOther" placeholder="council" style="width:100%">';
-}
-else
-{
-document.getElementById('other').innerHTML = '';
-}
-}
-</script>
-<input type='hidden' name='page' value='troopResetPasswordUsr'>
-<input type='submit' value='Fetch Username'>
+<?php echo getCopy('troop_usr_reset'); ?>
+<div class="input-group">
+	<span class="input-group-btn"><input type='number' name='troop' placeholder='troop' class="form-control" style="width:8em;"></span>
+	<select name='council' id='council' onChange='showOther()' class="form-control">
+		<?php echo getCouncils(); ?>
+	</select>
+    <span class="input-group-btn"><button type="submit" class="btn" id="submit" name="page" value="troopResetPasswordUsr">Fetch Username</button></span>
+</div>
 </form>
+</div>

@@ -172,5 +172,16 @@ $badgesByWeek=rtrim($badgesByWeek, ",");
 $badgesByWeek=$badgesByWeek."};";
 $scoutSignupEcho=str_replace("##badgesByWeek##",$badgesByWeek,$scoutSignupEcho);
 echo "<br/>";
+//Ensure scout has provided a DOB and Rank
+$result = mysql_query("SELECT * FROM wp_campers WHERE id = '".mysql_real_escape_string($active)."'");
+$row = mysql_fetch_array($result);
+$bday = $row['dob'];
+$rank = $row['rank'];
+if (! ($bday && $rank))
+{
+	echo '<div class="alert alert-danger">'.getCopy("need_info").'</div>';
+	$scoutSignupEcho = str_replace("##handicapable##","disabled",$scoutSignupEcho);
+}
+
 echo $scoutSignupEcho;
 ?>

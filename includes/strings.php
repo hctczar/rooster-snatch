@@ -21,6 +21,7 @@ Logging in as a...
 	</label>
 </div>
 </div>
+##special##
   <div class="form-group">
     <label for="username" id="text1">Troop Number</label>
     <input type="text" class="form-control" id="username" name="username" autocorrect="off" autocapitalize="off">
@@ -73,75 +74,6 @@ $troopMenu =
 </form>
 ';
 /*-------------------------------------------------------------------
-                        TROOP ACCOUNT
--------------------------------------------------------------------*/
-$troopAccount = '
-<form method="post" role="form">
-	<div class="form-group">
-		<label for="troop">Troop Number</label>
-		<input type="text" id="troop" name="troop" value="##troop##" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="email">Email Address</label>
-		<input type="email" id="email" name="email" value="##email##" class="form-control">
-	</div>
-	<strong>Approve MB Signups</strong>
-	<div class="well">
-		'.getCopy('approve_MB').'
-		<input type="checkbox" name="approveBadges" value="1" ##approveBadgesChecked##>Approve MB Signups<br/>
-		<input type="checkbox" name="emailBadges"   value="1" ##emailBadgesChecked##>Email Pending Schedules<br/>
-	</div>
-	<strong>Passcode:</strong><br>
-		If you would like to choose a new passcode, please type the new passcode below. <br><br>
-	<div class="well">
-		<div class="form-group">
-			<label for="passcode1">New Passcode:</label>
-			<input type=\'password\' name=\'passcode1\' id=\'passcode1\' autocomplete=\'off\' class=\'form-control\'>
-		</div>
-		<div class="form-group">
-			<label for="passcode2">Please re-type your new passcode:</label>
-			<input type=\'password\' name=\'passcode2\' id=\'passcode2\' onChange=\'matchPasscode()\' class=\'form-control\' onMouseOut=\'matchPasscode()\' autocomplete=\'off\'>
-		</div>
-		<div id=\'mismatch\' style=
-		\'color:red\'></div>
-		<input type=\'hidden\' name=\'page\' value=\'troopAccountUpdate\'>
-
-	</div>
-
-			<button type="submit" class="btn btn-primary" id="submit">Save Changes to Account</button>
-
-</form>'
-	."<script type='text/javascript'>"
-	."	function showOther() {"
-	."		if (document.getElementById('council').value == 'other')"
-	."		{"
-	."			document.getElementById('other').innerHTML = '<input type=\"text\" name=\"councilOther\" value=\"##council##\">';"
-	."		}"
-	."		else"
-	."		{"
-	."			document.getElementById('other').innerHTML = '';"
-	."		}"
-	."	}"
-	."	function matchPasscode() {"
-	."		if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)"
-	."		{"
-	."			document.getElementById('mismatch').innerHTML = 'Passcodes do not match';"
-	."           document.getElementById('submit').disabled = true;"
-	."		}"
-	."		else"
-	."		{"
-	."			document.getElementById('mismatch').innerHTML = '';"
-	."           document.getElementById('submit').disabled = false;"
-	."		}"
-	."		parent.document.getElementById('iframe1').height = '855px';"
-	."		parent.document.getElementById('iframe1').height = document.body.scrollHeight;"
-	."	}"
-	.""
-	."</script>";
-	//##email##
-	//##council##
-	//##troop##
-/*-------------------------------------------------------------------
                         ROSTER ADDER
 -------------------------------------------------------------------*/
 $rosterAdder = ""
@@ -180,22 +112,31 @@ $rosterAdder = ""
 /*-------------------------------------------------------------------
                         ROSTER EDITOR
 -------------------------------------------------------------------*/
-$rosterEditor = ""
-	."<form method='post'>"
-	."First Name: <input type='text' name='firstName' value='##firstName##'><br/>"
-	."Last Name: <input type='text' name='lastName' value='##lastName##'>"
-	."<select name='youth'>"
-	."    <option value='1' ##selectedY##>Youth</option>"
-	."    <option value='0' ##selectedA##>Adult</option>"
-	."</select><br/>"
-	."Weeks Camping:<br/>"
-	."Week ##week1##<input type='checkbox' name='week1' value='##week1##' ##week1checked##><br/>"
-	."Week ##week2##<input type='checkbox' name='week2' value='##week2##' ##week2checked##><br/>"
-	.""
-	."<input type='hidden' name='camper' value='##camper##'>"
-	."<input type='hidden' name='page' value='troopRosterUpdate'>"
-	."<input type='submit' value='Sumbit Changes'>"
-	."</form>";
+$rosterEditor = '
+	<form method="post">
+	<div class="input-group">
+		<span class="input-group-addon" style="width:10em;">First Name</span>
+		<input type="text" name="firstName" value="##firstName##" class="form-control" style="width:10em;">
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon"style="width:10em;">Last Name</span>
+		<input type="text" name="lastName" value="##lastName##" class="form-control" style="width:10em;">
+	</div>
+
+	<select name="youth" class="form-control" style="width:20em;">
+	    <option value="1" ##selectedY##>Youth</option>
+	    <option value="0" ##selectedA##>Adult</option>
+	</select>
+	<br/>
+	<div class="well" style="width:20em;">
+	Weeks Camping:<br/>
+	Week ##week1## <input type="checkbox" name="week1" value="##week1##" ##week1checked##><br/>
+	Week ##week2## <input type="checkbox" name="week2" value="##week2##" ##week2checked##><br/>
+	</div>
+	<input type="hidden" name="camper" value="##camper##">
+	<input type="hidden" name="page" value="troopRosterUpdate">
+	<button type="submit" value="edit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+	</form>';
 	//##week1##
 	//##selectedY##
 	//##week1checked##
@@ -220,64 +161,50 @@ $scoutMenu = '
 	</form>
 ';
 /*-------------------------------------------------------------------
-                        SCOUT ACCOUNT
+                        TEMP LOGIN
 -------------------------------------------------------------------*/
-$scoutAccount = '
-	<h2>Change Your Passcode</h2>
-	<div class="alert alert-danger" id="mismatch" style="display:none;"></div>
-<form method="post" role="form">
-	<div class="form-group">
-		<label for="passcode1">New Passcode:</label>
-		<input type="password" name="passcode1" id="passcode1" autocomplete="off" class="form-control">
-	</div>
-	<div class="form-group">
-		<label for="passcode2">Please re-type your password:</label>
-		<input type="password" name="passcode2" id="passcode2" autocomplete="off" class="form-control" onChange="matchPasscode()" onMouseOut="matchPasscode()">
-	</div>
-	<input type=\'hidden\' name=\'page\' value=\'scoutAccountUpdate\'>
-	<button type="submit" class="btn btn-primary" id="submit">Update Account Info</button>
-</form>'
-	."<script type='text/javascript'>
-		function matchPasscode() {
-			if (document.getElementById('passcode1').value != document.getElementById('passcode2').value)
-			{
-				document.getElementById('mismatch').style.display = 'block';
-				document.getElementById('mismatch').innerHTML = 'Passcodes do not match';
-	          document.getElementById('submit').disabled = true;
-			}
-			else
-			{
-				document.getElementById('mismatch').style.display = 'none';
-				document.getElementById('mismatch').innerHTML = '';
-	          document.getElementById('submit').disabled = false;
-			}
-			parent.document.getElementById('iframe1').height = '382px';
-			parent.document.getElementById('iframe1').height = document.body.scrollHeight;
+$tempLogin = 
+'<form method = "post">
+<div class="input-group">
+	<span class="input-group-addon" style="width:12em;">New Passcode</span>
+	<input type="password" name="passcode1" id="passcode1" autocomplete="off" class="form-control" style="width:24em;"  onChange="matchPasscode();" onMouseOut="matchPasscode();">
+</div>
+<div class="input-group">
+	<span class="input-group-addon" style="width:12em;">Retype Passcode</span>
+	<input type="password" name="passcode2" id="passcode2" autocomplete="off" class="form-control" style="width:24em;" onChange="matchPasscode();" onMouseOut="matchPasscode();">
+</div>
+<div class="alert alert-warning" style="display:none;" id = "mismatch">Passwords do not match!</div>
+<br/>
+<button type="submit" class="btn btn-primary" id="submit" name="page" value = "##type##PasswordUpdate" onMouseOver="matchPasscode();">Update Password</button>
+</form>
+<script>
+	function matchPasscode() {
+		if (document.getElementById("passcode1").value != document.getElementById("passcode2").value)
+		{
+			document.getElementById("mismatch").style.display = "block";
+			document.getElementById("submit").disabled=true;
 		}
-	</script>"
-;
+		else
+		{
+			document.getElementById("mismatch").style.display = "none";
+			document.getElementById("submit").disabled=false;
+		}
+		parent.document.getElementById("iframe1").height = "197px";
+		parent.document.getElementById("iframe1").height = document.body.scrollHeight;
+	}
+</script>';
 /*-------------------------------------------------------------------
                         SCOUT SIGNUP
 -------------------------------------------------------------------*/
 $scoutSignup = ""
-	."<form method='post'>"
-	."<table>"
-	."<tr>"
-	."<td>Rank: </td><td><select name='rank' class='form-control'>"
-	."    <option value='7'>Scout</option>"
-	."    <option value='6'>Tenderfoot</option>"
-	."    <option value='5'>Second</option>"
-	."    <option value='4'>First</option>"
-	."    <option value='3'>Star</option>"
-	."    <option value='2'>Life</option>"
-	."    <option value='1'>Eagle</option>"
-	."</select></td></tr>"
-	."<tr><td>Birthdate: </td><td><input type='date' name='bday' min='1995-01-01' max='2000-12-31' class='form-control'>";
-$scoutSignup = $scoutSignup	."</select></td></tr>"
-	."<tr><td colspan = '2'><br/></td></tr><tr><td>Choose Week: </td><td><select class='form-control' name='week' id='weekSelect' onChange='fillBadges();'>"
-	."<option value='##week1##'>Week ##week1##</option>"
-	."<option value='##week2##'>Week ##week2##</option>"
-	."</select></td></tr></table><br/><br/>"
+	.'<form method="post">
+	    <div class="input-group">
+		<span class="input-group-addon" style="width:8em;">Choose Week:</span>
+		<select class="form-control" name="week" id="weekSelect" onChange="fillBadges();" style="width:8em;">
+			<option value="##week1##">Week ##week1##</option>
+			<option value="##week2##">Week ##week2##</option>
+		</select>
+	</div><br/>'
 	//So this is ugly. Let's explain. Each block is labeled, and then we drop down a line. Good so far. Each select element has a label (1st choice or 2nd choice). Now, we want that label to be on the same line as the element is's labeling. Unfortunately, bootstraps goes ahead and makes form elements render as blocks, not inline. So if you skip over that div for now, you'll notice that we've had to make each select element display as inline. Even then, though, the element takes up the full width of the page, forcing it onto its own line. So we had to manually set the width to 75%. Cool. Now, though, you'll notice that '1st choice: ' and '2nd choice,' despite having the same number of characters, are not necessarily the same length in most fonts. So we have to add some spacing in order to get both select elements to line up. (note that we can't just position the elements because if they are ever forced to drop down a line--I'm looking at you, iPhone--they'll no longer line up) The span, being an inline element, doesn't actually have a settable width. So that's why we had to make it an inline-block element. So we have everything where we want it, yay!. Now all we have to do is populate the select elements with a whole bunch of option elements, using php. And then add a little bit of javascript (and a lot more php) to get the right one to default!
 	.'<label for="blockA" id="text1">Block A: </label><br/><label for="blockA">1st Choice: </label><span style="width:10px; display:inline-block;"> </span><span id="blockASpan"></span>'
 	."<select name=\"blockA\" class='form-control' id='blockA' style='width:75%; display:inline;' onchange='checkConflicts(\"blockA\");'><option value='none,none' id='A' conflicts=''>None</option>##blockA##</select><br/><label for='blockABackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockABackup\" class='form-control' id='blockABackup' style='width:75%; display:inline;'><option value='none,none' id='bA'>None</option>##blockAb##</select><br/>"
@@ -290,7 +217,7 @@ $scoutSignup = $scoutSignup	."</select></td></tr>"
 	//block D in da house!
 	.'<br/><label for="blockD" id="text1">Block D: </label><br/><label for="blockD">1st Choice: </label><span style="width:10px; display:inline-block;"> </span><span id="blockDSpan"></span>'
 	."<select name=\"blockD\" class='form-control' id='blockD' style='width:75%; display:inline;' onchange='checkConflicts(\"blockD\");'><option value='none,none' id='D' conflicts=''>None</option>##blockD##</select><br/><label for='blockDBackup'>2nd Choice: </label><span style='width:5px; display:inline-block;'> </span><select name=\"blockDBackup\" class='form-control' id='blockDBackup' style='width:75%; display:inline;'><option value='none,none' id='bD'>None</option>##blockDb##</select><br/>"
-	."<br/><button type='submit' class='btn btn-primary' name='page' value='scoutSignuper'>Register</button>"
+	."<br/><button type='submit' class='btn btn-primary' name='page' value='scoutSignuper' ##handicapable##>Register</button>"
 	."</form>"
 	."<script type='text/javascript'>
 	function checkConflicts(block)
@@ -355,20 +282,22 @@ $scoutSignup = $scoutSignup	."</select></td></tr>"
 /*-------------------------------------------------------------------
                         CAMPSITE
 -------------------------------------------------------------------*/
-$campsite = ""
-	."<form method ='post'>"
-	."Please select a week:"
-	."<select name='week' onChange='setChecked()' id='weekSelect'  class='form-control' style='display:inline; width:14em;'>"
-	." 	##week1##"
-	."    ##week2##"
-	."</select>"
-	."<p>MaKaJaWan is happy to provide and set up our green canvas wall-tents for all of our guests. However, some troops choose to bring their own tents to camp. If your troop would like to use their own tents, please select the appropriate radio button bellow.</p>"
+$campsite = '
+	<form method ="post">
+	<div class="input-group">
+		<span class="input-group-addon">Please select a week:</span>
+		<select name="week" onChange="setChecked()" id="weekSelect"  class="form-control" style="display:inline; width:14em;">
+			##week1##
+			##week2##
+		</select>
+	</div><br/>'
+	."<div class='well'>"
+	.getCopy('campsite_tents')
 	."<input type='radio' name='tents' value='0' ##tents0## id='tents0'>Our troop will use MaKaJaWan's canvas wall-tents<br>"
 	."<input type='radio' name='tents' value='1' ##tents1## id='tents1'>Our adult leaders will bring their own tents<br>"
 	."<input type='radio' name='tents' value ='2' ##tents2## id='tents2'>All of our campers will bring their own tents"
-	."<br/><br/>"
-	."<input type='hidden' name='page' value='troopCampsiteUpdate'>"
-	."<input type='submit' value='Change Preferences'>"
+	."</div>"
+	.'<button type="submit" name="page" value="troopCampsiteUpdate" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span> Change Preferences</button>'
 	."</form>"
 	.""
 	."<script type='text/javascript'>"

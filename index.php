@@ -100,7 +100,7 @@ function getDateCopy($shortTag)
 	if (! isset($_POST["page"]))
 	//generate the login page
 	{
-		echo str_replace("##which##","troop",str_replace("##troopChecked##","checked",str_replace("##scoutChecked##","",$login)));
+		echo str_replace("##special##","",str_replace("##which##","troop",str_replace("##troopChecked##","checked",str_replace("##scoutChecked##","",$login))));
 	}
 	/*------------------------------------------------
 	                  SCOUT

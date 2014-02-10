@@ -8,7 +8,7 @@ echo $adminMenu;
 <form method = "post">
 <tr><th>Description</th><th style="width:80%;">Text</th></tr>
 <?php
-$result = mysql_query("SELECT * FROM wp_copy ORDER BY id");
+$result = mysql_query("SELECT * FROM wp_copy ORDER BY used, id");
 while ($row = mysql_fetch_array($result))
 {
 	echo '<tr><td>'.stripslashes($row['description']).'</td><td><textarea name = "text[]" class = "'.$row['tinyMCE'].'" rows="6" cols="80">'.stripslashes($row['text']).'</textarea><input type="hidden" name="copyID[]" value="'.$row['id'].'"></td></tr>';

@@ -4,7 +4,7 @@
 -------------------------------------------------------------------*/
 $kennyloggin = '
 <h2>Please Log In</h2>
-
+##special##
 <form role="form" method="post">
   <div class="form-group">
     <label for="username" id="text1">Username</label>
@@ -22,6 +22,39 @@ $kennyloggin = '
 
 ';
 /*-------------------------------------------------------------------
+                        TEMP LOGIN
+-------------------------------------------------------------------*/
+$tempLogin = 
+'<form method = "post">
+<div class="input-group">
+	<span class="input-group-addon" style="width:12em;">New Passcode</span>
+	<input type="password" name="passcode1" id="passcode1" autocomplete="off" class="form-control" style="width:24em;"  onChange="matchPasscode();">
+</div>
+<div class="input-group">
+	<span class="input-group-addon" style="width:12em;">Retype Passcode</span>
+	<input type="password" name="passcode2" id="passcode2" autocomplete="off" class="form-control" style="width:24em;" onChange="matchPasscode();" onMouseOut="matchPasscode();">
+</div>
+<div class="alert alert-warning" style="display:none;" id = "mismatch">Passwords do not match!</div>
+<br/>
+<button type="submit" class="btn btn-primary" id="submit" name="page" value = "adminPasswordUpdate" onMouseOver="matchPasscode();">Update Password</button>
+</form>
+<script>
+	function matchPasscode() {
+		if (document.getElementById("passcode1").value != document.getElementById("passcode2").value)
+		{
+			document.getElementById("mismatch").style.display = "block";
+			document.getElementById("submit").disabled=true;
+		}
+		else
+		{
+			document.getElementById("mismatch").style.display = "none";
+			document.getElementById("submit").disabled=false;
+		}
+		parent.document.getElementById("iframe1").height = "197px";
+		parent.document.getElementById("iframe1").height = document.body.scrollHeight;
+	}
+</script>';
+/*-------------------------------------------------------------------
                         ADMIN MENU
 -------------------------------------------------------------------*/
 $adminMenu = 
@@ -36,6 +69,7 @@ $adminMenu =
 		<button name="page" class="btn btn-default" value="adminCopy" type="submit" style="width:10em"><span class="glyphicon glyphicon-pencil"></span><br>Write Copy</button>
 		<button name="page" class="btn btn-default" value="adminDates" type="submit" style="width:10em"><span class="glyphicon glyphicon-time"></span><br>Set Dates</button>
 		<button name="page" class="btn btn-default" value="adminEmail" type="submit" style="width:10em"><span class="glyphicon glyphicon-envelope"></span><br>Send Emails</button>
+		<button name="page" class="btn btn-default" value="adminUsers" type="submit" style="width:10em"><span class="glyphicon glyphicon-user"></span><br>Manage Users</button>
 	</div>
 </form>
 ';
@@ -49,7 +83,7 @@ $adminAccount = '
 	<div class="well">
 		<div class="form-group">
 			<label for="passcode1">New Passcode:</label>
-			<input type=\'password\' name=\'passcode1\' id=\'passcode1\' autocomplete=\'off\' class=\'form-control\'>
+			<input type=\'password\' name=\'passcode1\' id=\'passcode1\' autocomplete=\'off\' class=\'form-control\' onChange=\'matchPasscode()\' onMouseOut=\'matchPasscode()\'>
 		</div>
 		<div class="form-group">
 			<label for="passcode2">Please re-type your new passcode:</label>

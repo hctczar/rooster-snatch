@@ -1,5 +1,4 @@
 <?php
-echo str_replace("##which##","scout",str_replace("##scoutChecked##","checked",str_replace("##troopChecked##","",$login)));
 $scout = mysql_real_escape_string($_POST["username"]);
 $password = "";
 		$a_z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -20,13 +19,41 @@ $row = mysql_fetch_array(mysql_query("SELECT * FROM wp_campers WHERE username = 
 $firstName = stripslashes($row["firstName"]);
 $lastName = stripslashes($row["lastName"]);
 $scoutID = $row["id"];
-echo "camper is: ".$firstName." ".$lastName." ".$scoutID."<br/>";
-//figure out troop ID
-$row = mysql_fetch_array(mysql_query("SELECT * FROM wp_roster WHERE camperID = '".$scoutID."'"));
-$troop = $row["troopID"];
-echo "troop is: ".$troop."<br/>";
-//figure out troop EMAIL
-$row = mysql_fetch_array(mysql_query("SELECT * FROM wp_troops WHERE id = '".$troop."'"));
-mail(stripslashes($row["email"]),"MyKaJaWan.com password reset for ".$firstName." ".$lastName."","".$firstName." ".$lastName."'s temporary passwod is: ".$password."\r\n\r\nPlease pass this information on to ".$firstName." as quickly as possible, because they will not be able to log in with their new password until you do. Once they have the new password, they can simply enter it into the login box as they would normally. Once logged in, they will be automatically prompted to chose a new password.\r\n\r\nIf you believe this message was sent in error, don't worry! Their old password will still work, and their account security has not been compromised.","From:MyKaJaWan@makajawan.com");
-echo "<p>An email has been sent to your troop leader (".stripslashes($row["email"]).") with instructions on how to log in!</p>";
+//What email to use?
+$email = '';
+if ($row['email'])
+{
+	$email = stripslashes($row['email']);
+	$subject = getCopy('email_subj_scout_pwd_reset_self');
+	$message = getCopy('email_body_scout_pwd_reset_self');
+	$special = '<div class="alert alert-success">An email has been sent to '.$email.' with instructions on how to log in!</div>';
+}
+else
+{
+	//figure out troop ID
+	$row = mysql_fetch_array(mysql_query("SELECT * FROM wp_roster WHERE camperID = '".$scoutID."'"));
+	$troop = $row["troopID"];
+	echo "troop is: ".$troop."<br/>";
+	//figure out troop EMAIL
+	$row = mysql_fetch_array(mysql_query("SELECT * FROM wp_troops WHERE id = '".$troop."'"));
+	$email = stripslashes($row['email']);
+	$subject = getCopy('email_subj_scout_pwd_reset_troop');
+	$message = getCopy('email_body_scout_pwd_reset_troop');
+	$special = '<div class="alert alert-success">An email has been sent to your troop leader ('.$email.') with instructions on how to log in!</div>';
+}
+//Email
+$subject = str_replace("##first##",$firstName,$subject);
+$subject = str_replace("##last##",$lastName,$subject);
+$message = str_replace("##pwd##",$password,$message);
+$message = str_replace("##first##",$firstName,$message);
+$message = str_replace("##last##",$lastName,$message);
+$headers = "From:MyKaJaWan@makajawan.com \r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1 \r\n";
+if ($email){
+	mail($email,$subject,$message,$headers);
+}
+else {
+	$special = '<div class="alert alert-warning">Sorry! No account with that username was found.</div>';
+}
+echo str_replace("##special##",$special,str_replace("##which##","scout",str_replace("##scoutChecked##","checked",str_replace("##troopChecked##","",$login))));
 ?>

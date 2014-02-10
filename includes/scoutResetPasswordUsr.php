@@ -1,5 +1,4 @@
 <?php
-echo str_replace("##which##","scout",str_replace("##scoutChecked##","checked",str_replace("##troopChecked##","",$login)));
 $troop = mysql_real_escape_string($_POST["troop"]);
 $council = mysql_real_escape_string($_POST["council"]);
 if ($council == "other")
@@ -13,10 +12,11 @@ $result = mysql_query("SELECT * FROM wp_campers WHERE troopID = '".$troopID."' a
 $row = mysql_fetch_array($result);
 if(! is_array($row))
 {
-	echo "Sorry! No account exists with that information";
+	$special = '<div class="alert alert-warning">Sorry! No account exists with that information</div>';
 }
 else
 {
-	echo "Your username is: ".$row["username"];
+	$special = '<div class="alert alert-success">Your username is: '.$row["username"].'</div>';
 }
+echo str_replace("##special##",$special,str_replace("##which##","scout",str_replace("##troopChecked##","",str_replace("##scoutChecked##","checked",$login))));
 ?>

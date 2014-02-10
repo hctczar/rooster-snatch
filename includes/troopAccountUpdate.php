@@ -11,9 +11,17 @@ if ($_POST["troop"] != "" and isset($_POST["troop"]))
 }
 //default email
 $email = stripslashes($row['email']);
-if ($_POST["email"] != "" and isset($_POST["email"]))
+$emails = $_POST["email"];
+$emailString = '';
+foreach ($emails as $adr)
 {
-	$email = $_POST["email"];
+	$emailString .= mysql_real_escape_string($adr);
+	$emailString .= ', ';
+}
+$emailString = rtrim($emailString,', ');
+if ($emailString != "")
+{
+	$email = $emailString;
 	mysql_query("UPDATE wp_troops SET email='".mysql_real_escape_string($email)."' WHERE (id='".mysql_real_escape_string($active)."')");
 }
 //approveBadges
@@ -59,6 +67,5 @@ if ($_POST["passcode1"] != "" and isset($_POST["passcode1"]))
 }
 include("includes/strings.php");
 echo $troopMenu;
-echo "<br/><h2>Your account has been updated</h2>";
-echo "<p>Updating your troop number will <em>not</em> change your username. It will only effect how your troop number will appear on camp documents like merit badge progress report</p><p>If you changed your password, make sure you keep it in a cool, dark place. Although we can manually reset your password to a temporary value, there might be a significiant time delay involved.</p>";
+echo getCopy("troop_account_update");
 ?>
