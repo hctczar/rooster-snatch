@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130364824033288459" remote="130364824050000000" Dst="1" />
-<file name="login.php" server="ssh.phx.nearlyfreespeech.net" local="130364820222380488" remote="130364820230000000" Dst="1" />
-<file name="adminPasswordUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130364821459001219" remote="130364821460000000" Dst="1" />
-<file name="adminAccount.php" server="ssh.phx.nearlyfreespeech.net" local="130354251651054174" remote="130354252410000000" Dst="1" />
-<file name="adminAccountUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130354255669774031" remote="130354255680000000" Dst="1" />
-<file name="adminTroops.php" server="ssh.phx.nearlyfreespeech.net" local="130364573611685163" remote="130364573630000000" Dst="1" />
-<file name="adminTroopSave.php" server="ssh.phx.nearlyfreespeech.net" local="130363114217507819" remote="130363114190000000" Dst="1" />
-<file name="adminTroopAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130364564424329676" remote="130364564430000000" Dst="1" />
-<file name="adminBadges.php" server="ssh.phx.nearlyfreespeech.net" local="130362816812727238" remote="130362816780000000" Dst="1" />
-<file name="adminBadgeAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130360263062372068" remote="130360263040000000" Dst="1" />
-<file name="sorttable.js" server="ssh.phx.nearlyfreespeech.net" local="130360201862991663" remote="130360201910000000" Dst="1" />
-<file name="adminBadgeDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130360262923694136" remote="130360262970000000" Dst="1" />
-<file name="adminBadgeCap.php" server="ssh.phx.nearlyfreespeech.net" local="130362015010000000" remote="130362014970000000" Dst="1" />
-<file name="adminBadgeCapUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130361998110912816" remote="130361998080000000" Dst="1" />
-<file name="adminRoster.php" server="ssh.phx.nearlyfreespeech.net" local="130362030526316871" remote="130362030490000000" Dst="1" />
-<file name="adminEvents.php" server="ssh.phx.nearlyfreespeech.net" local="130362782280912131" remote="130362782240000000" Dst="1" />
-<file name="adminEventAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130362139368092265" remote="130362139340000000" Dst="1" />
-<file name="adminCopy.php" server="ssh.phx.nearlyfreespeech.net" local="130364568566316584" remote="130364568800000000" Dst="1" />
-<file name="adminCopyUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130363554881384686" remote="130363554840000000" Dst="1" />
-<file name="adminDates.php" server="ssh.phx.nearlyfreespeech.net" local="130363565495381772" remote="130363565460000000" Dst="1" />
-<file name="adminDatesUpdate.php" server="ssh.phx.nearlyfreespeech.net" local="130363567312085682" remote="130363567270000000" Dst="1" />
-<file name="adminEmail.php" server="ssh.phx.nearlyfreespeech.net" local="130364514029687268" remote="130364514040000000" Dst="1" />
-<file name="adminEmailConfirm.php" server="ssh.phx.nearlyfreespeech.net" local="130363762511550453" remote="130363762470000000" Dst="1" />
-<file name="adminEmailSend.php" server="ssh.phx.nearlyfreespeech.net" local="130363929568655572" remote="130363929610000000" Dst="1" />
-<file name="adminUsers.php" server="ssh.phx.nearlyfreespeech.net" local="130364631173647519" remote="130364631180000000" Dst="1" />
-<file name="adminUsersAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130364641561441667" remote="130364641570000000" Dst="1" />
-<file name="adminUsersDelete.php" server="ssh.phx.nearlyfreespeech.net" local="130364643069107900" remote="130364643090000000" Dst="1" />
-<file name="adminUsersEdit.php" server="ssh.phx.nearlyfreespeech.net" local="130364733230834856" remote="130364733240000000" Dst="1" />
-<file name="adminUserEditor.php" server="ssh.phx.nearlyfreespeech.net" local="130364732292391180" remote="130364732730000000" Dst="1" />
-<file name="adminResetPassword.php" server="ssh.phx.nearlyfreespeech.net" local="130364795597212009" remote="130364795610000000" Dst="1" />
-<file name="adminResetPasswordPwd.php" server="ssh.phx.nearlyfreespeech.net" local="130364810328484589" remote="130364810340000000" Dst="1" />
-<file name="adminResetPasswordUsr.php" server="ssh.phx.nearlyfreespeech.net" local="130364801870250806" remote="130364801880000000" Dst="1" />
+<file name="strings.php" server="ssh.phx.nearlyfreespeech.net" local="130374111074315588" remote="130374111120000000" Dst="1" />
+<file name="adminEventInstance.php" server="ssh.phx.nearlyfreespeech.net" local="130374188199046870" remote="130374188190000000" Dst="1" />
+<file name="adminEventInstanceEdit.php" server="ssh.phx.nearlyfreespeech.net" local="130374169798954445" remote="130374169790000000" Dst="1" />
+<file name="adminEventInstanceEditIt.php" server="ssh.phx.nearlyfreespeech.net" local="130374182615927534" remote="130374182600000000" Dst="1" />
+<file name="adminEventInstanceAdd.php" server="ssh.phx.nearlyfreespeech.net" local="130374189484570398" remote="130374189470000000" Dst="1" />
+<file name="adminEventInstanceAddIt.php" server="ssh.phx.nearlyfreespeech.net" local="130374192747016999" remote="130374192730000000" Dst="1" />
+<file name="adminEventRegisterTroop.php" server="ssh.phx.nearlyfreespeech.net" local="130374195131213367" remote="130374195330000000" Dst="1" />
 </dwsync>

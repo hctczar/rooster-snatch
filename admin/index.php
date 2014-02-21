@@ -251,11 +251,53 @@ function getOptions($shortTag, $sort = true, $options = array())
 		include("includes/adminEvents.php");
 	}
 	/*------------------------------------------------
+	                  ADMIN EVENT VIEW
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "adminEventView")
+	{
+		include("includes/adminEventView.php");
+	}
+	/*------------------------------------------------
+	                  ADMIN EVENT INSTANCE
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "adminEventInstance")
+	{
+		include("includes/adminEventInstance.php");
+	}
+	/*------------------------------------------------
 	                  ADMIN EVENT ADD
 	/*------------------------------------------------*/
 	elseif ($_POST["page"] == "adminEventAdd")
 	{
 		include("includes/adminEventAdd.php");
+	}
+	/*------------------------------------------------
+	                  ADMIN EVENT INSTANCE EDIT
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "adminEventInstanceEdit")
+	{
+		include("includes/adminEventInstanceEdit.php");
+	}
+	/*------------------------------------------------
+	                  ADMIN EVENT INSTANCE EDIT IT
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "adminEventInstanceEditIt")
+	{
+		include("includes/adminEventInstanceEditIt.php");
+	}
+	/*------------------------------------------------
+	                  ADMIN EVENT INSTANCE ADD
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "adminEventInstanceAdd")
+	{
+		include("includes/adminEventInstanceAdd.php");
+	}
+	/*------------------------------------------------
+	                  ADMIN EVENT INSTANCE ADD IT
+	/*------------------------------------------------*/
+	elseif ($_POST["page"] == "adminEventInstanceAddIt")
+	{
+		include("includes/adminEventInstanceAddIt.php");
 	}
 	/*------------------------------------------------
 	                  ADMIN COPY
