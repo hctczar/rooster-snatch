@@ -54,6 +54,7 @@ input[type="number"] {height:30px;}
 </style>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/includes/sorttable.js"></script>
+<script src="/js/listjs.js"></script>
 <script> document.domain = 'makajawan.com' </script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/tinymce/js/tinymce/tinymce.min.js"></script>

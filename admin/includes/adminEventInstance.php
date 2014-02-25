@@ -25,8 +25,10 @@ if (isset($alerts)){echo $alerts;}
 </button>
 </form>
 <br/>
-<table class="table">
-<tr><th>Week</th><th>Day</th><th>Time</th><th>Capacity</th><th></th><th></th></tr>
+<input type="search" class="light-table-filter" data-table="order-table" placeholder="Week">
+<br/>
+<table class="table order-table">
+<thead><tr><th>Week</th><th>Day</th><th>Time</th><th>Capacity</th><th></th><th></th></tr></thead>
 <?php
 $result=mysql_query("SELECT * FROM wp_eventsMeta WHERE year='".$_SESSION["year"]."' AND eventID='".$eventID."' ORDER BY week, day, time");
 while ($row=mysql_fetch_array($result))
@@ -38,7 +40,7 @@ while ($row=mysql_fetch_array($result))
 	}
 	$dows= array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 	echo '
-	<tr>
+	<tr class="filterable">
 	<td>'.$row['week'].'</td>
 	<td>'.$dows[$row['day']].'</td>
 	<td>'.date("g:ia",strtotime($row['time'])).'</td>
@@ -145,7 +147,14 @@ while ($row=mysql_fetch_array($result))
 }
 ?>
 </table>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
 <script>
+var options = {
+    valueNames: [ 'name', 'city' ]
+};
+
+var hackerList = new List('hacker-list', options);
 function showTroops(id)
 {
 	document.getElementById('troops'+id).style.display='';
@@ -162,4 +171,49 @@ function hideTroops(id)
 	parent.document.getElementById("iframe1").height = "493px";
 	parent.document.getElementById("iframe1").height = document.body.scrollHeight;
 }
-</script>
+
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			if (row.className=='filterable')
+			{
+				var text = row.children[0].textContent.toLowerCase(), val = _input.value.toLowerCase();
+				row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+				parent.document.getElementById("iframe1").height = "493px";
+				parent.document.getElementById("iframe1").height = document.body.scrollHeight;
+			}
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
+  </script>
